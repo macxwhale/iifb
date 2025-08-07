@@ -23,52 +23,7 @@ const SBSTTA27 = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 text-center text-white py-12 lg:py-16">
-          {/* Navigation */}
-          <nav className="mb-12 lg:mb-16">
-            <div className="flex items-center justify-between">
-              {/* Logo */}
-              <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-                <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full border border-white/30"></div>
-                <span className="text-xl font-bold">CBD Panama</span>
-              </Link>
-
-              {/* Desktop Navigation */}
-              <div className="hidden md:flex items-center space-x-8">
-                <Link to="/" className="text-white/90 hover:text-white transition-colors">Home</Link>
-                <a href="/#about" className="text-white/90 hover:text-white transition-colors">About</a>
-                <a href="/#statements" className="text-white/90 hover:text-white transition-colors">Statements</a>
-                <a href="/#documents" className="text-white/90 hover:text-white transition-colors">Documents</a>
-                <a href="/#news" className="text-white/90 hover:text-white transition-colors">News & Media</a>
-                <a href="/#side-events" className="text-white/90 hover:text-white transition-colors">Side Events</a>
-              </div>
-
-              {/* Mobile Menu Button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="md:hidden text-white hover:bg-white/10"
-                onClick={toggleMenu}
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </Button>
-            </div>
-
-            {/* Mobile Navigation */}
-            {isMenuOpen && (
-              <div className="md:hidden mt-4 pt-4 border-t border-white/20">
-                <div className="flex flex-col space-y-2">
-                  <Link to="/" className="px-2 py-2 text-white/90 hover:text-white transition-colors text-left">Home</Link>
-                  <a href="/#about" className="px-2 py-2 text-white/90 hover:text-white transition-colors text-left">About</a>
-                  <a href="/#statements" className="px-2 py-2 text-white/90 hover:text-white transition-colors text-left">Statements</a>
-                  <a href="/#documents" className="px-2 py-2 text-white/90 hover:text-white transition-colors text-left">Documents</a>
-                  <a href="/#news" className="px-2 py-2 text-white/90 hover:text-white transition-colors text-left">News & Media</a>
-                  <a href="/#side-events" className="px-2 py-2 text-white/90 hover:text-white transition-colors text-left">Side Events</a>
-                </div>
-              </div>
-            )}
-          </nav>
-
+        <div className="relative z-10 container mx-auto px-4 text-center text-white py-20 lg:py-24">
           <div className="mb-12 lg:mb-16">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               SBSTTA-27
@@ -77,20 +32,70 @@ const SBSTTA27 = () => {
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed max-w-4xl mx-auto">
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90">
               Providing scientific guidance for implementing the Global Biodiversity Framework
             </p>
             
-            <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-6 text-lg">
-              <div className="flex items-center space-x-2">
-                <span className="w-2 h-2 bg-primary rounded-full"></span>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+              <div className="flex items-center space-x-2 text-lg">
+                <span className="w-2 h-2 bg-white rounded-full"></span>
                 <span>October 20-24, 2025</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <span className="w-2 h-2 bg-primary rounded-full"></span>
+              <div className="flex items-center space-x-2 text-lg">
+                <span className="w-2 h-2 bg-white rounded-full"></span>
                 <span>Panama City, Panama</span>
               </div>
             </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-3 text-lg font-semibold shadow-lg">
+                Learn More
+              </Button>
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 py-3 text-lg font-semibold backdrop-blur-sm">
+                View Schedule
+              </Button>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div className="pt-8">
+            {/* Desktop Navigation */}
+            <nav className="hidden md:block">
+              <div className="flex items-center justify-center space-x-1 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl">
+                <Link to="/" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Home</Link>
+                <a href="/#about" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">About</a>
+                <a href="/#statements" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Statements</a>
+                <a href="/#documents" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Documents</a>
+                <a href="/#news" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">News & Media</a>
+                <a href="/#side-events" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Side Events</a>
+              </div>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex justify-center">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-white hover:bg-white/10 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg"
+                onClick={toggleMenu}
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </Button>
+            </div>
+
+            {/* Mobile Navigation */}
+            {isMenuOpen && (
+              <nav className="md:hidden mt-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl overflow-hidden">
+                <div className="flex flex-col">
+                  <Link to="/" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Home</Link>
+                  <a href="/#about" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">About</a>
+                  <a href="/#statements" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Statements</a>
+                  <a href="/#documents" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Documents</a>
+                  <a href="/#news" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">News & Media</a>
+                  <a href="/#side-events" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300">Side Events</a>
+                </div>
+              </nav>
+            )}
           </div>
         </div>
       </section>
