@@ -76,7 +76,7 @@ const IntroductionSection = () => {
             </div>
 
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-10 lg:pt-12">
+            <div className="flex flex-col sm:flex-row gap-6 lg:gap-8 pt-10 lg:pt-12">
               <Button size="lg" className="bg-primary hover:bg-primary-hover">
                 Learn About the Meetings
               </Button>
