@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import heroBanner from '@/assets/hero-banner.jpg';
+import heroBannerImage from '@/assets/hero-banner.jpg';
 
 const SBSTTA27 = () => {
   return (
@@ -12,11 +12,9 @@ const SBSTTA27 = () => {
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ 
-            backgroundImage: `url(${heroBanner})`,
-          }}
+          style={{ backgroundImage: `url(${heroBannerImage})` }}
         >
-          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>
 
         {/* Content */}
