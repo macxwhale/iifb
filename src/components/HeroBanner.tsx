@@ -20,45 +20,41 @@ const HeroBanner = () => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white flex-1 flex flex-col justify-center">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          CBD Panama
-          <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
-            Meetings 2025
-          </span>
-        </h1>
-        
-        <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90">
-          Join the global conversation on biodiversity conservation and Indigenous rights in Panama City
-        </p>
+        <div>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            CBD
+            <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
+              Meetings 2025
+            </span>
+          </h1>
+          
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90">
+            Join the global conversation on biodiversity conservation and Indigenous rights in Panama City
+          </p>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
-          <div className="flex items-center space-x-2 text-lg">
-            <Calendar className="h-5 w-5" />
-            <span>October 20-30, 2025</span>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+            <div className="flex items-center space-x-2 text-lg">
+              <Calendar className="h-5 w-5" />
+              <span>October 20-30, 2025</span>
+            </div>
+            <div className="flex items-center space-x-2 text-lg">
+              <MapPin className="h-5 w-5" />
+              <span>Panama City, Panama</span>
+            </div>
           </div>
-          <div className="flex items-center space-x-2 text-lg">
-            <MapPin className="h-5 w-5" />
-            <span>Panama City, Panama</span>
-          </div>
-        </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-3 text-lg font-semibold">
-            Learn More
-          </Button>
-          <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 py-3 text-lg font-semibold">
-            View Schedule
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-3 text-lg font-semibold">
+              Learn More
+            </Button>
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 py-3 text-lg font-semibold">
+              View Schedule
+            </Button>
+          </div>
         </div>
 
         {/* Navigation */}
-        <div className="mt-16 mb-8">
-          {/* Logo */}
-          <div className="flex items-center justify-center space-x-2 mb-8">
-            <div className="w-8 h-8 bg-gradient-primary rounded-full"></div>
-            <span className="text-xl font-bold text-white">CBD Panama</span>
-          </div>
-
+        <div className="mb-8">
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center justify-center space-x-8">
             <a href="#about" className="text-white/90 hover:text-white transition-colors">About</a>
