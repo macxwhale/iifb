@@ -6,10 +6,10 @@ import sb8jImage from '@/assets/sb8j-event.jpg';
 
 const EventsSection = () => {
   return (
-    <section id="events" className="py-20 bg-background">
+    <section id="events" className="py-20 lg:py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+        <div className="text-center mb-20 lg:mb-24">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8 lg:mb-10">
             Two Crucial Meetings
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -17,7 +17,7 @@ const EventsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 max-w-6xl mx-auto">
           {/* SBSTTA-27 Event Card */}
           <Card className="overflow-hidden shadow-medium hover:shadow-strong transition-all duration-300 group">
             <div className="relative h-64 overflow-hidden">
@@ -34,16 +34,16 @@ const EventsSection = () => {
               </div>
             </div>
             
-            <CardHeader className="pb-4">
-              <CardTitle className="text-2xl text-foreground mb-2">SBSTTA-27</CardTitle>
+            <CardHeader className="pb-6">
+              <CardTitle className="text-2xl text-foreground mb-3">SBSTTA-27</CardTitle>
               <CardDescription className="text-base">
                 27th meeting of the Subsidiary Body on Scientific, Technical and Technological Advice
               </CardDescription>
             </CardHeader>
             
-            <CardContent className="space-y-4">
-              <div className="flex items-center space-x-2 text-muted-foreground">
-                <Calendar className="h-4 w-4" />
+            <CardContent className="space-y-6">
+              <div className="flex items-center space-x-3 text-muted-foreground">
+                <Calendar className="h-4 w-4 flex-shrink-0" />
                 <span>October 20-24, 2025</span>
               </div>
               
@@ -52,7 +52,7 @@ const EventsSection = () => {
                 with emphasis on monitoring progress and ecosystem-based approaches.
               </p>
               
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-3 mb-6">
                 <span className="bg-conference-light text-conference-dark px-3 py-1 rounded-full text-sm">
                   Biodiversity Monitoring
                 </span>
@@ -87,16 +87,16 @@ const EventsSection = () => {
               </div>
             </div>
             
-            <CardHeader className="pb-4">
-              <CardTitle className="text-2xl text-foreground mb-2">SB8J-1</CardTitle>
+            <CardHeader className="pb-6">
+              <CardTitle className="text-2xl text-foreground mb-3">SB8J-1</CardTitle>
               <CardDescription className="text-base">
                 First Meeting of the Subsidiary Body on Article 8(j) and Related Provisions
               </CardDescription>
             </CardHeader>
             
-            <CardContent className="space-y-4">
-              <div className="flex items-center space-x-2 text-muted-foreground">
-                <Calendar className="h-4 w-4" />
+            <CardContent className="space-y-6">
+              <div className="flex items-center space-x-3 text-muted-foreground">
+                <Calendar className="h-4 w-4 flex-shrink-0" />
                 <span>October 27-30, 2025</span>
               </div>
               
@@ -105,7 +105,7 @@ const EventsSection = () => {
                 addressing traditional knowledge and territorial rights.
               </p>
               
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-3 mb-6">
                 <span className="bg-conference-light text-conference-dark px-3 py-1 rounded-full text-sm">
                   Traditional Knowledge
                 </span>
