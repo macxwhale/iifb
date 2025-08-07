@@ -6,24 +6,45 @@ const IntroductionSection = () => {
     <section className="py-20 bg-gradient-subtle">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Video Section */}
+          {/* YouTube Video Section */}
           <div className="relative">
             <div className="relative overflow-hidden rounded-lg shadow-medium bg-muted aspect-video">
-              {/* Video placeholder with play button */}
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-primary">
-                <Button 
-                  variant="secondary" 
-                  size="lg" 
-                  className="bg-white/90 text-primary hover:bg-white hover:scale-105 transition-all duration-300"
-                >
-                  <Play className="h-6 w-6 mr-2 fill-current" />
-                  Watch Introduction
-                </Button>
-              </div>
+              <iframe
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="CBD Panama 2025 Introduction"
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
               
               {/* Decorative overlay */}
-              <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-sm rounded-lg px-3 py-1">
+              <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm rounded-lg px-3 py-1">
                 <span className="text-white text-sm font-medium">CBD Panama 2025</span>
+              </div>
+            </div>
+            
+            {/* Video Thumbnails */}
+            <div className="flex gap-2 mt-4 overflow-x-auto">
+              <div className="flex-shrink-0 w-24 h-16 bg-muted rounded cursor-pointer hover:opacity-80 transition-opacity">
+                <img 
+                  src="https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg" 
+                  alt="Video thumbnail 1"
+                  className="w-full h-full object-cover rounded"
+                />
+              </div>
+              <div className="flex-shrink-0 w-24 h-16 bg-muted rounded cursor-pointer hover:opacity-80 transition-opacity">
+                <img 
+                  src="https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg" 
+                  alt="Video thumbnail 2"
+                  className="w-full h-full object-cover rounded"
+                />
+              </div>
+              <div className="flex-shrink-0 w-24 h-16 bg-muted rounded cursor-pointer hover:opacity-80 transition-opacity">
+                <img 
+                  src="https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg" 
+                  alt="Video thumbnail 3"
+                  className="w-full h-full object-cover rounded"
+                />
               </div>
             </div>
           </div>
