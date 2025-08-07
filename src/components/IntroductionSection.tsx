@@ -71,24 +71,6 @@ const IntroductionSection = () => {
               </p>
             </div>
 
-            {/* Key highlights */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6">
-              <div className="flex items-start space-x-3 p-4 bg-card rounded-lg shadow-soft">
-                <Users className="h-6 w-6 text-primary mt-1" />
-                <div>
-                  <h4 className="font-semibold text-foreground">Indigenous Leadership</h4>
-                  <p className="text-sm text-muted-foreground">First-ever subsidiary body for Indigenous Peoples</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3 p-4 bg-card rounded-lg shadow-soft">
-                <Globe className="h-6 w-6 text-primary mt-1" />
-                <div>
-                  <h4 className="font-semibold text-foreground">Global Impact</h4>
-                  <p className="text-sm text-muted-foreground">Advancing the Global Biodiversity Framework</p>
-                </div>
-              </div>
-            </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button size="lg" className="bg-primary hover:bg-primary-hover">
@@ -97,6 +79,27 @@ const IntroductionSection = () => {
               <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/10">
                 Indigenous Participation
               </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Full-width horizontal highlights */}
+      <div className="w-full bg-card py-8 px-4">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 max-w-4xl mx-auto">
+          <div className="flex items-center space-x-4">
+            <Users className="h-8 w-8 text-primary" />
+            <div>
+              <h4 className="font-semibold text-foreground text-lg">Indigenous Leadership</h4>
+              <p className="text-muted-foreground">First-ever subsidiary body for Indigenous Peoples</p>
+            </div>
+          </div>
+          
+          <div className="flex items-center space-x-4">
+            <Globe className="h-8 w-8 text-primary" />
+            <div>
+              <h4 className="font-semibold text-foreground text-lg">Global Impact</h4>
+              <p className="text-muted-foreground">Advancing the Global Biodiversity Framework</p>
             </div>
           </div>
         </div>
