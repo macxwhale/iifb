@@ -79,9 +79,9 @@ const NewsCarousel = () => {
   };
 
   return (
-    <section id="news" className="py-20 bg-card">
+    <section id="news" className="py-20 bg-gradient-subtle border-t border-border/30">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-12">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-12 gap-6">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Latest News
@@ -91,12 +91,12 @@ const NewsCarousel = () => {
             </p>
           </div>
           
-          <div className="flex space-x-2">
+          <div className="flex space-x-3 justify-center lg:justify-end">
             <Button
               variant="outline"
               size="icon"
               onClick={prevSlide}
-              className="hover:bg-primary hover:text-primary-foreground"
+              className="hover:bg-primary hover:text-primary-foreground transition-all duration-200"
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -104,7 +104,7 @@ const NewsCarousel = () => {
               variant="outline"
               size="icon"
               onClick={nextSlide}
-              className="hover:bg-primary hover:text-primary-foreground"
+              className="hover:bg-primary hover:text-primary-foreground transition-all duration-200"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>
@@ -156,15 +156,15 @@ const NewsCarousel = () => {
         </div>
 
         {/* Indicators */}
-        <div className="flex justify-center mt-8 space-x-2">
+        <div className="flex justify-center mt-8 space-x-3">
           {Array.from({ length: Math.ceil(newsItems.length / itemsPerView) }).map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-colors ${
+              className={`w-3 h-3 rounded-full transition-all duration-200 ${
                 Math.floor(currentIndex / itemsPerView) === index
-                  ? 'bg-primary'
-                  : 'bg-muted hover:bg-primary/50'
+                  ? 'bg-primary shadow-md'
+                  : 'bg-muted hover:bg-primary/50 hover:scale-110'
               }`}
             />
           ))}

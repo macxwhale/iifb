@@ -5,17 +5,19 @@ const IntroductionSection = () => {
   return (
     <>
       {/* Full-width welcome title */}
-      <section className="w-full bg-gradient-subtle py-12 text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-          Welcome to
-          <span className="block text-primary">CBD Panama 2025</span>
-        </h2>
-        <p className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto px-4">
-          A landmark gathering bringing together global leaders, scientists, and Indigenous communities to advance biodiversity conservation
-        </p>
+      <section className="w-full bg-background py-16 text-center border-b border-border/30">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            Welcome to
+            <span className="block text-primary mt-2">CBD Panama 2025</span>
+          </h2>
+          <p className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto">
+            A landmark gathering bringing together global leaders, scientists, and Indigenous communities to advance biodiversity conservation
+          </p>
+        </div>
       </section>
       
-      <section className="py-20 bg-gradient-subtle">
+      <section className="py-16 bg-gradient-subtle">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* YouTube Video Section */}
