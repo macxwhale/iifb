@@ -1,12 +1,17 @@
-import Header from '@/components/Header';
+import { useState } from 'react';
 import Footer from '@/components/Footer';
 import heroBannerImage from '@/assets/hero-banner.jpg';
+import { Button } from '@/components/ui/button';
+import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const SBSTTA27 = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         {/* Background Image */}
@@ -17,8 +22,55 @@ const SBSTTA27 = () => {
           <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>
 
+        {/* Navigation */}
+        <nav className="relative z-20">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-between h-20">
+              {/* Logo */}
+              <Link to="/" className="flex items-center space-x-2 text-white hover:opacity-80 transition-opacity">
+                <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full border border-white/30"></div>
+                <span className="text-xl font-bold">CBD Panama</span>
+              </Link>
+
+              {/* Desktop Navigation */}
+              <div className="hidden md:flex items-center space-x-8">
+                <Link to="/" className="text-white/90 hover:text-white transition-colors">Home</Link>
+                <a href="/#about" className="text-white/90 hover:text-white transition-colors">About</a>
+                <a href="/#statements" className="text-white/90 hover:text-white transition-colors">Statements</a>
+                <a href="/#documents" className="text-white/90 hover:text-white transition-colors">Documents</a>
+                <a href="/#news" className="text-white/90 hover:text-white transition-colors">News & Media</a>
+                <a href="/#side-events" className="text-white/90 hover:text-white transition-colors">Side Events</a>
+              </div>
+
+              {/* Mobile Menu Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden text-white hover:bg-white/10"
+                onClick={toggleMenu}
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </Button>
+            </div>
+
+            {/* Mobile Navigation */}
+            {isMenuOpen && (
+              <div className="md:hidden pb-4 border-t border-white/20 mt-4">
+                <div className="flex flex-col space-y-2 pt-4">
+                  <Link to="/" className="px-2 py-2 text-white/90 hover:text-white transition-colors">Home</Link>
+                  <a href="/#about" className="px-2 py-2 text-white/90 hover:text-white transition-colors">About</a>
+                  <a href="/#statements" className="px-2 py-2 text-white/90 hover:text-white transition-colors">Statements</a>
+                  <a href="/#documents" className="px-2 py-2 text-white/90 hover:text-white transition-colors">Documents</a>
+                  <a href="/#news" className="px-2 py-2 text-white/90 hover:text-white transition-colors">News & Media</a>
+                  <a href="/#side-events" className="px-2 py-2 text-white/90 hover:text-white transition-colors">Side Events</a>
+                </div>
+              </div>
+            )}
+          </div>
+        </nav>
+
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 text-center text-white py-20 lg:py-24">
+        <div className="relative z-10 container mx-auto px-4 text-center text-white py-12 lg:py-16">
           <div className="mb-12 lg:mb-16">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               SBSTTA-27
