@@ -120,10 +120,12 @@ const EventsSection = () => {
                 </span>
               </div>
               
-              <Button className="w-full group bg-secondary hover:bg-secondary-hover">
-                Learn More About SB8J-1
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <Link to="/sb8j-1">
+                <Button className="w-full group bg-secondary hover:bg-secondary-hover">
+                  Learn More About SB8J-1
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
