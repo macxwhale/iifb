@@ -19,11 +19,11 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-foreground hover:text-primary transition-colors">Home</a>
-            <a href="#events" className="text-foreground hover:text-primary transition-colors">Events</a>
-            <a href="#news" className="text-foreground hover:text-primary transition-colors">News</a>
-            <a href="#statements" className="text-foreground hover:text-primary transition-colors">Statements</a>
             <a href="#about" className="text-foreground hover:text-primary transition-colors">About</a>
+            <a href="#statements" className="text-foreground hover:text-primary transition-colors">Statements</a>
+            <a href="#documents" className="text-foreground hover:text-primary transition-colors">Documents</a>
+            <a href="#news" className="text-foreground hover:text-primary transition-colors">News & Media</a>
+            <a href="#side-events" className="text-foreground hover:text-primary transition-colors">Side Events</a>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -41,11 +41,11 @@ const Header = () => {
         {isMenuOpen && (
           <nav className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col space-y-2">
-              <a href="#home" className="px-2 py-2 text-foreground hover:text-primary transition-colors">Home</a>
-              <a href="#events" className="px-2 py-2 text-foreground hover:text-primary transition-colors">Events</a>
-              <a href="#news" className="px-2 py-2 text-foreground hover:text-primary transition-colors">News</a>
-              <a href="#statements" className="px-2 py-2 text-foreground hover:text-primary transition-colors">Statements</a>
               <a href="#about" className="px-2 py-2 text-foreground hover:text-primary transition-colors">About</a>
+              <a href="#statements" className="px-2 py-2 text-foreground hover:text-primary transition-colors">Statements</a>
+              <a href="#documents" className="px-2 py-2 text-foreground hover:text-primary transition-colors">Documents</a>
+              <a href="#news" className="px-2 py-2 text-foreground hover:text-primary transition-colors">News & Media</a>
+              <a href="#side-events" className="px-2 py-2 text-foreground hover:text-primary transition-colors">Side Events</a>
             </div>
           </nav>
         )}
