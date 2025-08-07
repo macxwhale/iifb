@@ -9,7 +9,7 @@ const HeroBanner = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <section className="relative min-h-[85vh] lg:min-h-[90vh] flex flex-col overflow-hidden">
+    <section className="relative overflow-hidden">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -19,8 +19,8 @@ const HeroBanner = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center text-white flex flex-col justify-center py-16 lg:py-20">
-        <div className="mb-16 lg:mb-20">
+      <div className="relative z-10 container mx-auto px-4 text-center text-white py-20 lg:py-24">
+        <div className="mb-12 lg:mb-16">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             CBD
             <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
@@ -54,7 +54,7 @@ const HeroBanner = () => {
         </div>
 
         {/* Navigation */}
-        <div className="mt-auto">
+        <div className="pt-8">
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
             <div className="flex items-center justify-center space-x-1 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl">
