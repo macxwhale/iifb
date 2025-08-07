@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* CBD Conference Design System - Nature & Environmental Inspired */
+    --background: 120 20% 98%;
+    --foreground: 160 15% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 160 15% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 160 15% 15%;
+
+    /* Forest Green Primary */
+    --primary: 155 35% 25%;
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 155 35% 20%;
+
+    /* Ocean Blue Secondary */
+    --secondary: 200 40% 35%;
+    --secondary-foreground: 0 0% 98%;
+    --secondary-hover: 200 40% 30%;
+
+    /* Earth Brown Accent */
+    --accent: 25 35% 45%;
+    --accent-foreground: 0 0% 98%;
+    --accent-hover: 25 35% 40%;
+
+    /* Muted Nature Tones */
+    --muted: 120 15% 95%;
+    --muted-foreground: 160 10% 45%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 120 15% 90%;
+    --input: 120 15% 95%;
+    --ring: 155 35% 25%;
+
+    --radius: 0.75rem;
+
+    /* Custom Conference Colors */
+    --conference-green: 155 40% 30%;
+    --conference-blue: 200 45% 40%;
+    --conference-earth: 25 40% 50%;
+    --conference-light: 120 20% 96%;
+    --conference-dark: 160 20% 20%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--conference-green)), hsl(var(--conference-blue)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--conference-blue)), hsl(var(--conference-earth)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--conference-green)) 0%, hsl(var(--conference-blue)) 50%, hsl(var(--conference-earth)) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--conference-light)));
+
+    /* Shadows */
+    --shadow-soft: 0 2px 20px hsl(var(--conference-green) / 0.1);
+    --shadow-medium: 0 8px 30px hsl(var(--conference-green) / 0.15);
+    --shadow-strong: 0 20px 60px hsl(var(--conference-green) / 0.2);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
