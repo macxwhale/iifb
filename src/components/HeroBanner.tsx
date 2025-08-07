@@ -1,10 +1,15 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Calendar, MapPin } from 'lucide-react';
+import { Calendar, MapPin, Menu, X } from 'lucide-react';
 import heroBannerImage from '@/assets/hero-banner.jpg';
 
 const HeroBanner = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   return (
-    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[100vh] flex flex-col overflow-hidden">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -13,8 +18,53 @@ const HeroBanner = () => {
         <div className="absolute inset-0 bg-gradient-hero opacity-80"></div>
       </div>
 
+      {/* Navigation */}
+      <header className="relative z-10 w-full">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-gradient-primary rounded-full"></div>
+              <span className="text-xl font-bold text-white">CBD Panama</span>
+            </div>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-8">
+              <a href="#about" className="text-white/90 hover:text-white transition-colors">About</a>
+              <a href="#statements" className="text-white/90 hover:text-white transition-colors">Statements</a>
+              <a href="#documents" className="text-white/90 hover:text-white transition-colors">Documents</a>
+              <a href="#news" className="text-white/90 hover:text-white transition-colors">News & Media</a>
+              <a href="#side-events" className="text-white/90 hover:text-white transition-colors">Side Events</a>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden text-white hover:bg-white/10"
+              onClick={toggleMenu}
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <nav className="md:hidden py-4 border-t border-white/20">
+              <div className="flex flex-col space-y-2">
+                <a href="#about" className="px-2 py-2 text-white/90 hover:text-white transition-colors">About</a>
+                <a href="#statements" className="px-2 py-2 text-white/90 hover:text-white transition-colors">Statements</a>
+                <a href="#documents" className="px-2 py-2 text-white/90 hover:text-white transition-colors">Documents</a>
+                <a href="#news" className="px-2 py-2 text-white/90 hover:text-white transition-colors">News & Media</a>
+                <a href="#side-events" className="px-2 py-2 text-white/90 hover:text-white transition-colors">Side Events</a>
+              </div>
+            </nav>
+          )}
+        </div>
+      </header>
+
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center text-white">
+      <div className="relative z-10 container mx-auto px-4 text-center text-white flex-1 flex flex-col justify-center">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
           CBD Panama
           <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
