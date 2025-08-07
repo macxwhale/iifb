@@ -65,12 +65,14 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				conference: {
-					green: 'hsl(var(--conference-green))',
-					blue: 'hsl(var(--conference-blue))',
-					earth: 'hsl(var(--conference-earth))',
-					light: 'hsl(var(--conference-light))',
-					dark: 'hsl(var(--conference-dark))'
+				iifb: {
+					rust: 'hsl(var(--iifb-rust))',
+					forest: 'hsl(var(--iifb-forest))',
+					orange: 'hsl(var(--iifb-orange))',
+					earth: 'hsl(var(--iifb-earth))',
+					sage: 'hsl(var(--iifb-sage))',
+					cream: 'hsl(var(--iifb-cream))',
+					'dark-earth': 'hsl(var(--iifb-dark-earth))'
 				}
 			},
 			backgroundImage: {

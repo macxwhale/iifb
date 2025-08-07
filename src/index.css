@@ -8,61 +8,63 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* CBD Conference Design System - Nature & Environmental Inspired */
-    --background: 120 20% 98%;
-    --foreground: 160 15% 15%;
+    /* IIFB Brand Design System - Indigenous & Earth Inspired */
+    --background: 28 25% 96%;
+    --foreground: 20 15% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 160 15% 15%;
+    --card-foreground: 20 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 160 15% 15%;
+    --popover-foreground: 20 15% 15%;
 
-    /* Forest Green Primary */
-    --primary: 155 35% 25%;
+    /* IIFB Rust Primary */
+    --primary: 15 75% 45%;
     --primary-foreground: 0 0% 98%;
-    --primary-hover: 155 35% 20%;
+    --primary-hover: 15 75% 40%;
 
-    /* Ocean Blue Secondary */
-    --secondary: 200 40% 35%;
+    /* Deep Forest Secondary */
+    --secondary: 140 60% 25%;
     --secondary-foreground: 0 0% 98%;
-    --secondary-hover: 200 40% 30%;
+    --secondary-hover: 140 60% 20%;
 
-    /* Earth Brown Accent */
-    --accent: 25 35% 45%;
+    /* Warm Orange Accent */
+    --accent: 25 85% 55%;
     --accent-foreground: 0 0% 98%;
-    --accent-hover: 25 35% 40%;
+    --accent-hover: 25 85% 50%;
 
-    /* Muted Nature Tones */
-    --muted: 120 15% 95%;
-    --muted-foreground: 160 10% 45%;
+    /* Earth Muted Tones */
+    --muted: 28 20% 94%;
+    --muted-foreground: 20 10% 45%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 120 15% 90%;
-    --input: 120 15% 95%;
-    --ring: 155 35% 25%;
+    --border: 28 15% 88%;
+    --input: 28 15% 94%;
+    --ring: 15 75% 45%;
 
     --radius: 0.75rem;
 
-    /* Custom Conference Colors */
-    --conference-green: 155 40% 30%;
-    --conference-blue: 200 45% 40%;
-    --conference-earth: 25 40% 50%;
-    --conference-light: 120 20% 96%;
-    --conference-dark: 160 20% 20%;
+    /* IIFB Brand Colors */
+    --iifb-rust: 15 75% 45%;
+    --iifb-forest: 140 60% 25%;
+    --iifb-orange: 25 85% 55%;
+    --iifb-earth: 35 40% 35%;
+    --iifb-sage: 140 30% 60%;
+    --iifb-cream: 28 30% 92%;
+    --iifb-dark-earth: 20 20% 20%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--conference-green)), hsl(var(--conference-blue)));
-    --gradient-secondary: linear-gradient(135deg, hsl(var(--conference-blue)), hsl(var(--conference-earth)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--conference-green)) 0%, hsl(var(--conference-blue)) 50%, hsl(var(--conference-earth)) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--conference-light)));
+    --gradient-primary: linear-gradient(135deg, hsl(var(--iifb-rust)), hsl(var(--iifb-orange)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--iifb-forest)), hsl(var(--iifb-sage)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--iifb-rust)) 0%, hsl(var(--iifb-earth)) 50%, hsl(var(--iifb-forest)) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--iifb-cream)));
 
     /* Shadows */
-    --shadow-soft: 0 2px 20px hsl(var(--conference-green) / 0.1);
-    --shadow-medium: 0 8px 30px hsl(var(--conference-green) / 0.15);
-    --shadow-strong: 0 20px 60px hsl(var(--conference-green) / 0.2);
+    --shadow-soft: 0 2px 20px hsl(var(--iifb-rust) / 0.1);
+    --shadow-medium: 0 8px 30px hsl(var(--iifb-rust) / 0.15);
+    --shadow-strong: 0 20px 60px hsl(var(--iifb-rust) / 0.2);
 
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
