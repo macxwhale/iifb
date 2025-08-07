@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Twitter, Facebook, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-conference-dark text-white py-16">
+    <footer className="bg-iifb-dark-earth text-white py-16">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Logo and Description */}
