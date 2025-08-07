@@ -5,7 +5,7 @@ const IntroductionSection = () => {
   return (
     <section className="py-20 bg-gradient-subtle">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* YouTube Video Section */}
           <div className="relative">
             <div className="relative overflow-hidden rounded-lg shadow-medium bg-muted aspect-video">
