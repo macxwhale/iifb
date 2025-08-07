@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, Users, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import sbsttaImage from '@/assets/sbstta-event.jpg';
 import sb8jImage from '@/assets/sb8j-event.jpg';
 
@@ -64,10 +65,12 @@ const EventsSection = () => {
                 </span>
               </div>
               
-              <Button className="w-full group bg-primary hover:bg-primary-hover">
-                Learn More About SBSTTA-27
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <Link to="/sbstta-27">
+                <Button className="w-full group bg-primary hover:bg-primary-hover">
+                  Learn More About SBSTTA-27
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
