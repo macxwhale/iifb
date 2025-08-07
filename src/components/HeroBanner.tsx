@@ -19,8 +19,8 @@ const HeroBanner = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center text-white flex-1 flex flex-col justify-center">
-        <div>
+      <div className="relative z-10 container mx-auto px-4 text-center text-white h-full flex flex-col justify-center">
+        <div className="flex-1 flex flex-col justify-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             CBD
             <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
