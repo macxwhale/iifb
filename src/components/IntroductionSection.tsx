@@ -3,7 +3,19 @@ import { Play, Users, Globe } from 'lucide-react';
 
 const IntroductionSection = () => {
   return (
-    <section className="py-20 bg-gradient-subtle">
+    <>
+      {/* Full-width welcome title */}
+      <section className="w-full bg-gradient-subtle py-12 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          Welcome to
+          <span className="block text-primary">CBD Panama 2025</span>
+        </h2>
+        <p className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto px-4">
+          A landmark gathering bringing together global leaders, scientists, and Indigenous communities to advance biodiversity conservation
+        </p>
+      </section>
+      
+      <section className="py-20 bg-gradient-subtle">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* YouTube Video Section */}
@@ -51,16 +63,6 @@ const IntroductionSection = () => {
 
           {/* Text Content */}
           <div className="space-y-6">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                Welcome to
-                <span className="block text-primary">CBD Panama 2025</span>
-              </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                A landmark gathering bringing together global leaders, scientists, and Indigenous communities to advance biodiversity conservation
-              </p>
-            </div>
-
             <div className="space-y-4">
               <p className="text-lg text-foreground leading-relaxed">
                 Panama City will host two critical meetings that will shape the future of biodiversity governance. SBSTTA-27 will provide scientific guidance for implementing the Global Biodiversity Framework, while SB8J-1 marks a historic milestone in recognizing Indigenous Peoples' rights.
@@ -72,7 +74,7 @@ const IntroductionSection = () => {
             </div>
 
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-4 pt-8">
               <Button size="lg" className="bg-primary hover:bg-primary-hover">
                 Learn About the Meetings
               </Button>
@@ -105,6 +107,7 @@ const IntroductionSection = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
