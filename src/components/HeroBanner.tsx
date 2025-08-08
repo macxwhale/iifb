@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Calendar, MapPin, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import heroBannerImage from '@/assets/hero-banner.jpg';
+import heroBannerImage from '@/assets/hero-banner-indigenous.jpg';
 import CountdownTimer from '@/components/CountdownTimer';
 import natureGif from '@/assets/nature-forest.gif';
 
@@ -26,9 +26,9 @@ const HeroBanner = () => {
         <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12">
           {/* Left Content Container */}
           <div className="flex-1 text-white text-left">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
               CBD
-              <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
+              <span className="block text-4xl md:text-5xl font-normal mt-2 opacity-90">
                 Meetings 2025
               </span>
             </h1>
