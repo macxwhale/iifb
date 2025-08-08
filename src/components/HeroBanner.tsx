@@ -12,7 +12,7 @@ const HeroBanner = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section className="relative min-h-[80vh] lg:min-h-[85vh] overflow-hidden">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full"
