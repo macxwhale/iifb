@@ -12,10 +12,10 @@ const HeroBanner = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full"
         style={{ backgroundImage: `url(${heroBannerImage})` }}
       >
         <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
@@ -48,19 +48,19 @@ const HeroBanner = () => {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 px-8 py-3 text-lg font-semibold shadow-lg">
+          </div>
+
+          {/* Right Container - Countdown Timer & Action Buttons */}
+          <div className="flex flex-col items-center justify-center md:items-end space-y-6">
+            <CountdownTimer />
+            <div className="flex flex-col space-y-3 w-full max-w-xs">
+              <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 w-full font-semibold shadow-lg">
                 Register now
               </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 py-3 text-lg font-semibold backdrop-blur-sm">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full font-semibold backdrop-blur-sm">
                 Learn More
               </Button>
             </div>
-          </div>
-
-          {/* Right Container - Countdown Timer Only */}
-          <div className="flex flex-col items-center justify-center md:items-end">
-            <CountdownTimer />
           </div>
         </div>
 
