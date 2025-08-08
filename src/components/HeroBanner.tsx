@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Calendar, MapPin, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import heroBannerImage from '@/assets/hero-banner.jpg';
+import CountdownTimer from '@/components/CountdownTimer';
+import natureGif from '@/assets/nature-forest.gif';
 
 const HeroBanner = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,37 +22,55 @@ const HeroBanner = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center text-white py-20 lg:py-24">
-        <div className="mb-12 lg:mb-16">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            CBD
-            <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
-              Meetings 2025
-            </span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90">
-            Join the global conversation on biodiversity conservation and Indigenous rights in Panama City
-          </p>
+      <div className="relative z-10 container mx-auto px-4 py-20 lg:py-24">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12">
+          {/* Left Content Container */}
+          <div className="flex-1 text-white text-left">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              CBD
+              <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
+                Meetings 2025
+              </span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl mb-8 max-w-2xl leading-relaxed opacity-90">
+              Join the global conversation on biodiversity conservation and Indigenous rights in Panama City
+            </p>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
-            <div className="flex items-center space-x-2 text-lg">
-              <Calendar className="h-5 w-5" />
-              <span>October 20-30, 2025</span>
+            <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
+              <div className="flex items-center space-x-2 text-lg">
+                <Calendar className="h-5 w-5" />
+                <span>October 20-30, 2025</span>
+              </div>
+              <div className="flex items-center space-x-2 text-lg">
+                <MapPin className="h-5 w-5" />
+                <span>Panama City, Panama</span>
+              </div>
             </div>
-            <div className="flex items-center space-x-2 text-lg">
-              <MapPin className="h-5 w-5" />
-              <span>Panama City, Panama</span>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-3 text-lg font-semibold shadow-lg">
+                Learn More
+              </Button>
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 py-3 text-lg font-semibold backdrop-blur-sm">
+                View Schedule
+              </Button>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-3 text-lg font-semibold shadow-lg">
-              Learn More
-            </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 py-3 text-lg font-semibold backdrop-blur-sm">
-              View Schedule
-            </Button>
+          {/* Right Content Container */}
+          <div className="flex flex-col items-center gap-6 lg:items-end">
+            {/* Countdown Timer */}
+            <CountdownTimer />
+            
+            {/* Nature GIF */}
+            <div className="rounded-2xl overflow-hidden border-2 border-white/20 shadow-xl">
+              <img 
+                src={natureGif} 
+                alt="Nature and biodiversity animation" 
+                className="w-48 h-32 object-cover"
+              />
+            </div>
           </div>
         </div>
 
