@@ -12,7 +12,7 @@ const HeroBanner = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <section className="relative min-h-[50vh] lg:min-h-[60vh] overflow-hidden">
+    <section className="relative min-h-[40vh] overflow-hidden">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full"
@@ -55,10 +55,10 @@ const HeroBanner = () => {
               <CountdownTimer />
               <div className="flex flex-col space-y-3 w-full max-w-xs">
                 <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 w-full font-semibold shadow-lg">
-                  Register now
+                  SBSTTA-27
                 </Button>
                 <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full font-semibold backdrop-blur-sm">
-                  Learn More
+                  SB8-J
                 </Button>
               </div>
             </div>
