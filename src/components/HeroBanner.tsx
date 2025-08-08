@@ -23,8 +23,8 @@ const HeroBanner = () => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 h-full">
-          {/* Left Container - Original Content */}
+        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 md:gap-8 h-full">
+          {/* Left Container - Main Content */}
           <div className="text-white text-left">
             <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
               CBD
@@ -48,19 +48,19 @@ const HeroBanner = () => {
               </div>
             </div>
 
-          </div>
-
-          {/* Right Container - Countdown Timer & Actions */}
-          <div className="flex flex-col items-end space-y-4">
-            <CountdownTimer />
-            <div className="flex flex-col space-y-3 w-full max-w-xs">
-              <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 w-full font-semibold shadow-lg">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 px-8 py-3 text-lg font-semibold shadow-lg">
                 Register now
               </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full font-semibold backdrop-blur-sm">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 py-3 text-lg font-semibold backdrop-blur-sm">
                 Learn More
               </Button>
             </div>
+          </div>
+
+          {/* Right Container - Countdown Timer Only */}
+          <div className="flex flex-col items-center justify-center md:items-end">
+            <CountdownTimer />
           </div>
         </div>
 
