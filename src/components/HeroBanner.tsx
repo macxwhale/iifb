@@ -22,50 +22,51 @@ const HeroBanner = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 md:gap-8 h-full">
-          {/* Left Container - Main Content */}
-          <div className="text-white text-left">
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-              CBD
-              <span className="block text-4xl md:text-5xl font-normal mt-2 opacity-90">
-                Meetings 2025
-              </span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl mb-8 max-w-2xl leading-relaxed opacity-90">
-              Join the global conversation on biodiversity conservation and Indigenous rights in Panama City
-            </p>
+      <div className="relative z-10 flex flex-col justify-between h-full max-w-6xl mx-auto px-6 lg:px-8 py-8 lg:py-12">
+        <div className="flex-1 flex items-center">
+          <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 md:gap-8 w-full">
+            {/* Left Container - Main Content */}
+            <div className="text-white text-left">
+              <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
+                CBD
+                <span className="block text-4xl md:text-5xl font-normal mt-2 opacity-90">
+                  Meetings 2025
+                </span>
+              </h1>
+              
+              <p className="text-xl md:text-2xl mb-8 max-w-2xl leading-relaxed opacity-90">
+                Join the global conversation on biodiversity conservation and Indigenous rights in Panama City
+              </p>
 
-            <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
-              <div className="flex items-center space-x-2 text-lg">
-                <Calendar className="h-5 w-5" />
-                <span>October 20-30, 2025</span>
-              </div>
-              <div className="flex items-center space-x-2 text-lg">
-                <MapPin className="h-5 w-5" />
-                <span>Panama City, Panama</span>
+              <div className="flex flex-col md:flex-row items-start gap-6">
+                <div className="flex items-center space-x-2 text-lg">
+                  <Calendar className="h-5 w-5" />
+                  <span>October 20-30, 2025</span>
+                </div>
+                <div className="flex items-center space-x-2 text-lg">
+                  <MapPin className="h-5 w-5" />
+                  <span>Panama City, Panama</span>
+                </div>
               </div>
             </div>
 
-          </div>
-
-          {/* Right Container - Countdown Timer & Action Buttons */}
-          <div className="flex flex-col items-center justify-center md:items-end space-y-6">
-            <CountdownTimer />
-            <div className="flex flex-col space-y-3 w-full max-w-xs">
-              <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 w-full font-semibold shadow-lg">
-                Register now
-              </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full font-semibold backdrop-blur-sm">
-                Learn More
-              </Button>
+            {/* Right Container - Countdown Timer & Action Buttons */}
+            <div className="flex flex-col items-center justify-center md:items-end space-y-6">
+              <CountdownTimer />
+              <div className="flex flex-col space-y-3 w-full max-w-xs">
+                <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 w-full font-semibold shadow-lg">
+                  Register now
+                </Button>
+                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full font-semibold backdrop-blur-sm">
+                  Learn More
+                </Button>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Navigation */}
-        <div className="pt-8">
+        <div className="mt-8">
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
             <div className="flex items-center justify-center space-x-1 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl">
