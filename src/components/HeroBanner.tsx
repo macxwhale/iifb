@@ -23,9 +23,9 @@ const HeroBanner = () => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20 lg:py-24">
-        <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12">
-          {/* Left Content Container */}
-          <div className="flex-1 text-white text-left">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 h-full">
+          {/* Left Container - Original Content */}
+          <div className="text-white text-left">
             <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
               CBD
               <span className="block text-4xl md:text-5xl font-normal mt-2 opacity-90">
@@ -58,9 +58,8 @@ const HeroBanner = () => {
             </div>
           </div>
 
-          {/* Right Content Container - Far Right Corner */}
-          <div className="flex flex-col items-end justify-start">
-            {/* Countdown Timer */}
+          {/* Right Container - Countdown Timer */}
+          <div className="flex justify-end items-start">
             <CountdownTimer />
           </div>
         </div>
