@@ -57,7 +57,7 @@ const HeroBanner = () => {
                 <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 w-full font-semibold shadow-lg">
                   SBSTTA-27
                 </Button>
-                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full font-semibold backdrop-blur-sm">
+                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full font-semibold backdrop-blur-sm bg-white/10">
                   SB8-J
                 </Button>
               </div>
