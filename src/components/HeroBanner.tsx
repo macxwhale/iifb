@@ -48,25 +48,17 @@ const HeroBanner = () => {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-3 text-lg font-semibold shadow-lg">
-                Learn More
-              </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 py-3 text-lg font-semibold backdrop-blur-sm">
-                View Schedule
-              </Button>
-            </div>
           </div>
 
           {/* Right Container - Countdown Timer & Actions */}
           <div className="flex flex-col items-end space-y-4">
             <CountdownTimer />
             <div className="flex flex-col space-y-3 w-full max-w-xs">
-              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 w-full font-semibold shadow-lg">
+              <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 w-full font-semibold shadow-lg">
                 Register now
               </Button>
               <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full font-semibold backdrop-blur-sm">
-                Draft Programme
+                Learn More
               </Button>
             </div>
           </div>
