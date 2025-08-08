@@ -147,7 +147,7 @@ const KeyResourcesSection = () => {
                   className="flex-shrink-0 px-4"
                   style={{ width: `${100 / resources.length}%` }}
                 >
-                  <Card className="h-full shadow-soft hover:shadow-medium transition-all duration-300 group">
+                  <Card className="h-full shadow-soft hover:shadow-medium hover:scale-105 transition-all duration-300 group cursor-pointer">
                     <CardHeader>
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center space-x-3">

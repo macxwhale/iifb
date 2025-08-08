@@ -6,6 +6,7 @@ import SideEventsCarousel from '@/components/SideEventsCarousel';
 import StatementsCarousel from '@/components/StatementsCarousel';
 import KeyResourcesSection from '@/components/KeyResourcesSection';
 import Footer from '@/components/Footer';
+import BackToTop from '@/components/BackToTop';
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
       <StatementsCarousel />
       <KeyResourcesSection />
       <Footer />
+      <BackToTop />
     </div>
   );
 };

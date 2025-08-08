@@ -158,7 +158,7 @@ const SideEventsCarousel = () => {
                 className="flex-shrink-0 px-3"
                 style={{ width: `${100 / sideEvents.length}%` }}
               >
-                <Card className="h-full bg-card border-0 shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden">
+                <Card className="h-full bg-card border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group overflow-hidden cursor-pointer">
                   {/* Featured Image */}
                   <div className="relative h-64 overflow-hidden">
                     <img 
