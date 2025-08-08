@@ -4,7 +4,7 @@ import { Calendar, MapPin, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import heroBannerImage from '@/assets/hero-banner-indigenous.jpg';
 import CountdownTimer from '@/components/CountdownTimer';
-import natureGif from '@/assets/nature-forest.gif';
+
 
 const HeroBanner = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,19 +58,10 @@ const HeroBanner = () => {
             </div>
           </div>
 
-          {/* Right Content Container */}
-          <div className="flex flex-col items-center gap-6 lg:items-end">
+          {/* Right Content Container - Far Right Corner */}
+          <div className="flex flex-col items-end justify-start">
             {/* Countdown Timer */}
             <CountdownTimer />
-            
-            {/* Nature GIF */}
-            <div className="rounded-2xl overflow-hidden border-2 border-white/20 shadow-xl">
-              <img 
-                src={natureGif} 
-                alt="Nature and biodiversity animation" 
-                className="w-48 h-32 object-cover"
-              />
-            </div>
           </div>
         </div>
 
