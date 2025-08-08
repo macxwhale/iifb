@@ -2,6 +2,7 @@ import HeroBanner from '@/components/HeroBanner';
 import IntroductionSection from '@/components/IntroductionSection';
 import EventsSection from '@/components/EventsSection';
 import NewsCarousel from '@/components/NewsCarousel';
+import SideEventsCarousel from '@/components/SideEventsCarousel';
 import StatementsCarousel from '@/components/StatementsCarousel';
 import KeyResourcesSection from '@/components/KeyResourcesSection';
 import Footer from '@/components/Footer';
@@ -13,6 +14,7 @@ const Index = () => {
       <IntroductionSection />
       <EventsSection />
       <NewsCarousel />
+      <SideEventsCarousel />
       <StatementsCarousel />
       <KeyResourcesSection />
       <Footer />
