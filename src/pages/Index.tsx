@@ -1,3 +1,4 @@
+
 import HeroBanner from '@/components/HeroBanner';
 import IntroductionSection from '@/components/IntroductionSection';
 import EventsSection from '@/components/EventsSection';
@@ -6,7 +7,6 @@ import SideEventsCarousel from '@/components/SideEventsCarousel';
 import StatementsCarousel from '@/components/StatementsCarousel';
 import KeyResourcesSection from '@/components/KeyResourcesSection';
 import Footer from '@/components/Footer';
-import BackToTop from '@/components/BackToTop';
 
 const Index = () => {
   return (
@@ -19,7 +19,6 @@ const Index = () => {
       <SideEventsCarousel />
       <KeyResourcesSection />
       <Footer />
-      <BackToTop />
     </div>
   );
 };

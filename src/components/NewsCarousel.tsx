@@ -1,12 +1,10 @@
-import { useState, useEffect } from 'react';
+
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { ArrowRight, Calendar, Clock, Tag } from 'lucide-react';
 import indigenousBodyImage from '@/assets/news-indigenous-body.jpg';
 import panamaMeetingsImage from '@/assets/news-panama-meetings.jpg';
 import ipbesWorkshopImage from '@/assets/news-ipbes-workshop.jpg';
-import indigenousPrepImage from '@/assets/news-indigenous-prep.jpg';
-import frameworkReviewImage from '@/assets/news-framework-review.jpg';
 
 const newsItems = [
   {
@@ -18,18 +16,20 @@ const newsItems = [
     year: "2025",
     category: "Policy Update",
     image: indigenousBodyImage,
-    link: "#"
+    link: "#",
+    readTime: "5 min read"
   },
   {
     id: 2,
     title: "Panama to Host Crucial Biodiversity Meetings",
     description: "Panama City will welcome global experts for SBSTTA-27 and the inaugural SB8J-1 meeting, marking a new era in biodiversity governance.",
     date: "15",
-    month: "February",
+    month: "February", 
     year: "2025",
     category: "Event News",
     image: panamaMeetingsImage,
-    link: "#"
+    link: "#",
+    readTime: "3 min read"
   },
   {
     id: 3,
@@ -40,148 +40,132 @@ const newsItems = [
     year: "2025",
     category: "Research",
     image: ipbesWorkshopImage,
-    link: "#"
-  },
-  {
-    id: 4,
-    title: "Indigenous Leaders Prepare for Historic SB8J-1",
-    description: "IIFB organizes preparatory sessions to ensure meaningful participation of Indigenous Peoples in the first meeting of the new subsidiary body.",
-    date: "08",
-    month: "December",
-    year: "2024",
-    category: "Community",
-    image: indigenousPrepImage,
-    link: "#"
-  },
-  {
-    id: 5,
-    title: "Kunming-Montreal Framework Progress Review",
-    description: "Global assessment shows mixed progress on biodiversity targets, highlighting need for accelerated action and Indigenous involvement.",
-    date: "04",
-    month: "November",
-    year: "2024",
-    category: "Assessment",
-    image: frameworkReviewImage,
-    link: "#"
+    link: "#",
+    readTime: "4 min read"
   }
 ];
 
 const NewsCarousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [itemsPerView, setItemsPerView] = useState(1);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setItemsPerView(3);
-      } else if (window.innerWidth >= 768) {
-        setItemsPerView(2);
-      } else {
-        setItemsPerView(1);
-      }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => 
-      prev + itemsPerView >= newsItems.length ? 0 : prev + 1
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => 
-      prev === 0 ? Math.max(0, newsItems.length - itemsPerView) : prev - 1
-    );
-  };
-
   return (
-    <section id="news" className="py-20 lg:py-24 bg-gradient-subtle border-t border-border/30">
+    <section id="news" className="py-20 lg:py-24 bg-gradient-subtle">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8 lg:mb-12">
-          <div className="flex items-center justify-center gap-2 mb-4">
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-2 mb-6">
             <div className="w-2 h-2 rounded-full bg-primary"></div>
-            <span className="text-sm font-medium text-primary uppercase tracking-wider">Our Latest News</span>
+            <span className="text-sm font-medium text-primary uppercase tracking-wider">Stay Updated</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8 lg:mb-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Latest News and Articles
           </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Stay informed with the latest developments in biodiversity conservation and Indigenous rights
+          </p>
         </div>
 
-        <div className="flex items-center justify-between mb-12 lg:mb-16">
-          <div className="flex space-x-3">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={prevSlide}
-              className="hover:bg-primary hover:text-primary-foreground transition-all duration-200 rounded-full"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={nextSlide}
-              className="hover:bg-primary hover:text-primary-foreground transition-all duration-200 rounded-full"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </Button>
-          </div>
-          
-          <Button variant="ghost" className="group text-primary hover:text-primary-hover">
-            View All
-            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
+        {/* Featured Article (First Item) */}
+        <div className="mb-16">
+          <Card className="overflow-hidden bg-card border-2 border-transparent hover:border-primary shadow-xl hover:shadow-2xl transition-all duration-500 group">
+            <div className="grid lg:grid-cols-2 gap-0">
+              <div className="relative h-80 lg:h-full overflow-hidden">
+                <img 
+                  src={newsItems[0].image} 
+                  alt={newsItems[0].title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent lg:from-transparent lg:to-black/20"></div>
+                <div className="absolute top-6 left-6">
+                  <span className="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                    Featured
+                  </span>
+                </div>
+              </div>
+              
+              <div className="p-8 lg:p-12 flex flex-col justify-center">
+                <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="h-4 w-4" />
+                    <span>{newsItems[0].month} {newsItems[0].date}, {newsItems[0].year}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-4 w-4" />
+                    <span>{newsItems[0].readTime}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Tag className="h-4 w-4" />
+                    <span>{newsItems[0].category}</span>
+                  </div>
+                </div>
+                
+                <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-4 leading-tight group-hover:text-primary transition-colors duration-300">
+                  {newsItems[0].title}
+                </h3>
+                
+                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                  {newsItems[0].description}
+                </p>
+                
+                <Button className="w-fit group/btn bg-primary hover:bg-primary/90 text-lg px-8 py-3">
+                  Read Full Article
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover/btn:translate-x-1 transition-transform" />
+                </Button>
+              </div>
+            </div>
+          </Card>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {newsItems.slice(0, 6).map((item) => (
-            <Card key={item.id} className="h-full bg-card border-2 border-transparent hover:border-primary shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group overflow-hidden cursor-pointer">
-              {/* Featured Image */}
-              <div className="relative h-48 overflow-hidden">
+        {/* Secondary Articles */}
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          {newsItems.slice(1, 3).map((item, index) => (
+            <Card key={item.id} className="overflow-hidden bg-card border-2 border-transparent hover:border-primary shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer">
+              <div className="relative h-56 overflow-hidden">
                 <img 
                   src={item.image} 
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                
-                {/* Category Badge */}
-                <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-                  {item.category}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute top-4 left-4">
+                  <span className="bg-primary/90 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    {item.category}
+                  </span>
                 </div>
               </div>
               
-              {/* Content */}
-              <CardContent className="p-6 space-y-4">
-                <div className="text-sm text-muted-foreground">
-                  {item.month} {item.date}, {item.year}
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-3 w-3" />
+                    <span>{item.month} {item.date}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-3 w-3" />
+                    <span>{item.readTime}</span>
+                  </div>
                 </div>
                 
-                <h3 className="text-xl font-bold text-foreground leading-tight group-hover:text-primary transition-colors duration-200 line-clamp-2">
+                <h3 className="text-xl font-bold text-foreground mb-3 leading-tight group-hover:text-primary transition-colors duration-200 line-clamp-2">
                   {item.title}
                 </h3>
                 
-                <p className="text-muted-foreground leading-relaxed line-clamp-3">
+                <p className="text-muted-foreground leading-relaxed mb-6 line-clamp-3">
                   {item.description}
                 </p>
                 
-                {/* Read More Button */}
-                <div className="pt-4">
-                  <Button 
-                    variant="ghost" 
-                    className="w-full justify-between group/btn hover:bg-primary/5 p-0"
-                  >
-                    <span className="text-primary font-medium">Read More</span>
-                    <ArrowRight className="h-4 w-4 text-primary group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
-                </div>
+                <Button variant="ghost" className="w-full justify-between group/btn hover:bg-primary/5 p-0">
+                  <span className="text-primary font-medium">Read More</span>
+                  <ArrowRight className="h-4 w-4 text-primary group-hover/btn:translate-x-1 transition-transform" />
+                </Button>
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* View All Button */}
+        <div className="text-center">
+          <Button variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 px-8 py-3">
+            View All Articles
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
         </div>
       </div>
     </section>

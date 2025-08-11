@@ -8,7 +8,6 @@ const BackToTop = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      // Show button when user scrolls down 300px
       setIsVisible(window.pageYOffset > 300);
     };
 
@@ -28,14 +27,16 @@ const BackToTop = () => {
   }
 
   return (
-    <Button
-      onClick={scrollToTop}
-      className="fixed bottom-8 right-8 z-50 bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate-fade-in flex items-center gap-2 px-4 py-2 h-auto"
-      aria-label="Back to top"
-    >
-      <ChevronUp className="h-4 w-4" />
-      <span className="text-sm font-medium">Back to Top</span>
-    </Button>
+    <div className="absolute bottom-8 right-8">
+      <Button
+        onClick={scrollToTop}
+        className="bg-primary text-primary-foreground shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 animate-fade-in flex items-center gap-2 px-6 py-3 h-auto rounded-full border-2 border-white/20"
+        aria-label="Back to top"
+      >
+        <ChevronUp className="h-5 w-5" />
+        <span className="text-sm font-semibold">Back to Top</span>
+      </Button>
+    </div>
   );
 };
 
