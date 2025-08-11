@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Download, ExternalLink, FileText, Video, BookOpen } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const resources = [
   {
@@ -205,10 +206,12 @@ const KeyResourcesSection = () => {
 
         {/* View All Resources Button */}
         <div className="text-center mt-8">
-          <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
-            <FileText className="h-4 w-4 mr-2" />
-            View All Resources
-          </Button>
+          <Link to="/resources">
+            <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
+              <FileText className="h-4 w-4 mr-2" />
+              View All Resources
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

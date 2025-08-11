@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, Users, ArrowRight } from 'lucide-react';
@@ -43,11 +44,6 @@ const EventsSection = () => {
             </CardHeader>
             
             <CardContent className="space-y-6">
-              <div className="flex items-center space-x-3 text-muted-foreground">
-                <Calendar className="h-4 w-4 flex-shrink-0" />
-                <span>October 20-24, 2025</span>
-              </div>
-              
               <p className="text-foreground leading-relaxed">
                 Focus on science-based recommendations for implementing the Kunming-Montreal Global Biodiversity Framework, 
                 with emphasis on monitoring progress and ecosystem-based approaches.
@@ -98,11 +94,6 @@ const EventsSection = () => {
             </CardHeader>
             
             <CardContent className="space-y-6">
-              <div className="flex items-center space-x-3 text-muted-foreground">
-                <Calendar className="h-4 w-4 flex-shrink-0" />
-                <span>October 27-30, 2025</span>
-              </div>
-              
               <p className="text-foreground leading-relaxed">
                 Historic establishment of a permanent body focused on Indigenous Peoples and local communities, 
                 addressing traditional knowledge and territorial rights.

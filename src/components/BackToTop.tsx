@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronUp } from 'lucide-react';
@@ -29,11 +30,11 @@ const BackToTop = () => {
   return (
     <Button
       onClick={scrollToTop}
-      size="icon"
-      className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate-fade-in"
+      className="fixed bottom-8 right-8 z-50 bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate-fade-in flex items-center gap-2 px-4 py-2 h-auto"
       aria-label="Back to top"
     >
-      <ChevronUp className="h-5 w-5" />
+      <ChevronUp className="h-4 w-4" />
+      <span className="text-sm font-medium">Back to Top</span>
     </Button>
   );
 };

@@ -137,79 +137,50 @@ const NewsCarousel = () => {
           </Button>
         </div>
 
-        <div className="relative overflow-hidden">
-          <div 
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{ 
-              transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
-              width: `${(newsItems.length / itemsPerView) * 100}%`
-            }}
-          >
-            {newsItems.map((item) => (
-              <div
-                key={item.id}
-                className="flex-shrink-0 px-3"
-                style={{ width: `${100 / newsItems.length}%` }}
-              >
-                <Card className="h-full bg-card border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group overflow-hidden cursor-pointer">
-                  {/* Featured Image */}
-                  <div className="relative h-64 overflow-hidden">
-                    <img 
-                      src={item.image} 
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    
-                    {/* Date Badge */}
-                    <div className="absolute top-4 right-4 bg-primary text-white rounded-full w-16 h-16 flex flex-col items-center justify-center text-center shadow-lg">
-                      <span className="text-2xl font-bold leading-none">{item.date}</span>
-                      <span className="text-xs font-medium leading-none">{item.month}</span>
-                      <span className="text-xs leading-none opacity-90">{item.year}</span>
-                    </div>
-                  </div>
-                  
-                  {/* Content */}
-                  <CardContent className="p-6 space-y-4">
-                    <h3 className="text-xl font-bold text-foreground leading-tight group-hover:text-primary transition-colors duration-200 line-clamp-2">
-                      {item.title}
-                    </h3>
-                    
-                    <p className="text-muted-foreground leading-relaxed line-clamp-3">
-                      {item.description}
-                    </p>
-                    
-                    {/* Read More Button */}
-                    <div className="pt-4 border-t border-border/50">
-                      <Button 
-                        variant="ghost" 
-                        className="w-full justify-start group/btn hover:bg-primary/5 p-0"
-                      >
-                        <div className="flex items-center justify-between w-full">
-                          <span className="text-primary font-medium">Read More</span>
-                          <ArrowRight className="h-4 w-4 text-primary group-hover/btn:translate-x-1 transition-transform" />
-                        </div>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {newsItems.slice(0, 6).map((item) => (
+            <Card key={item.id} className="h-full bg-card border-2 border-transparent hover:border-primary shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group overflow-hidden cursor-pointer">
+              {/* Featured Image */}
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={item.image} 
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                
+                {/* Category Badge */}
+                <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
+                  {item.category}
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Indicators */}
-        <div className="flex justify-center mt-12 space-x-2">
-          {Array.from({ length: Math.ceil(newsItems.length / itemsPerView) }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                Math.floor(currentIndex / itemsPerView) === index
-                  ? 'bg-primary shadow-md scale-110'
-                  : 'bg-muted hover:bg-primary/50 hover:scale-105'
-              }`}
-            />
+              
+              {/* Content */}
+              <CardContent className="p-6 space-y-4">
+                <div className="text-sm text-muted-foreground">
+                  {item.month} {item.date}, {item.year}
+                </div>
+                
+                <h3 className="text-xl font-bold text-foreground leading-tight group-hover:text-primary transition-colors duration-200 line-clamp-2">
+                  {item.title}
+                </h3>
+                
+                <p className="text-muted-foreground leading-relaxed line-clamp-3">
+                  {item.description}
+                </p>
+                
+                {/* Read More Button */}
+                <div className="pt-4">
+                  <Button 
+                    variant="ghost" 
+                    className="w-full justify-between group/btn hover:bg-primary/5 p-0"
+                  >
+                    <span className="text-primary font-medium">Read More</span>
+                    <ArrowRight className="h-4 w-4 text-primary group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>

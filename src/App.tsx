@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,6 +8,7 @@ import Index from "./pages/Index";
 import SBSTTA27 from "./pages/SBSTTA27";
 import SB8J1 from "./pages/SB8J1";
 import Documents from "./pages/Documents";
+import Resources from "./pages/Resources";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +24,7 @@ const App = () => (
           <Route path="/sbstta-27" element={<SBSTTA27 />} />
           <Route path="/sb8j-1" element={<SB8J1 />} />
           <Route path="/documents" element={<Documents />} />
+          <Route path="/resources" element={<Resources />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
