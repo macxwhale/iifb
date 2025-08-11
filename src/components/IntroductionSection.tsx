@@ -5,21 +5,21 @@ const IntroductionSection = () => {
   return (
     <>
       {/* Full-width welcome title */}
-      <section className="w-full bg-background py-12 lg:py-16 text-center border-b border-border/30">
+      <section className="w-full bg-background py-8 lg:py-12 text-center border-b border-border/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">
             Welcome to
-            <span className="block text-primary mt-2">CBD Panama 2025</span>
+            <span className="block text-primary mt-1">CBD Panama 2025</span>
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             A landmark gathering bringing together global leaders, scientists, and Indigenous communities to advance biodiversity conservation
           </p>
         </div>
       </section>
       
-      <section className="py-12 lg:py-16 bg-gradient-subtle">
+      <section className="py-8 lg:py-12 bg-gradient-subtle">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-center">
           {/* YouTube Video Section */}
           <div className="relative">
             <div className="relative overflow-hidden rounded-lg shadow-medium bg-muted aspect-video">
@@ -64,19 +64,19 @@ const IntroductionSection = () => {
           </div>
 
           {/* Text Content */}
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <p className="text-lg text-foreground leading-relaxed mb-6">
+          <div className="space-y-4">
+            <div className="space-y-3">
+              <p className="text-base md:text-lg text-foreground leading-relaxed mb-4">
                 Panama City will host two critical meetings that will shape the future of biodiversity governance. SBSTTA-27 will provide scientific guidance for implementing the Global Biodiversity Framework, while SB8J-1 marks a historic milestone in recognizing Indigenous Peoples' rights.
               </p>
               
-              <p className="text-lg text-foreground leading-relaxed">
+              <p className="text-base md:text-lg text-foreground leading-relaxed">
                 Join us for this unprecedented gathering that represents a new era of inclusive decision-making in biodiversity conservation.
               </p>
             </div>
 
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-8">
+            <div className="flex flex-col sm:flex-row gap-3 pt-6">
               <Button size="lg" className="bg-primary hover:bg-primary-hover">
                 Learn About the Meetings
               </Button>
@@ -89,8 +89,8 @@ const IntroductionSection = () => {
       </div>
       
       {/* Full-width horizontal highlights */}
-      <div className="w-full bg-card py-12 px-4">
-        <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 max-w-4xl mx-auto">
+      <div className="w-full bg-card py-8 px-4">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12 max-w-3xl mx-auto">
           <div className="flex items-center space-x-6">
             <Users className="h-8 w-8 text-primary flex-shrink-0" />
             <div>
