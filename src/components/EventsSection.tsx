@@ -7,10 +7,10 @@ import sb8jImage from '@/assets/sb8j-event.jpg';
 
 const EventsSection = () => {
   return (
-    <section id="events" className="py-20 lg:py-24 bg-background">
+    <section id="events" className="py-16 lg:py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-20 lg:mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8 lg:mb-10">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Two Crucial Meetings
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -18,7 +18,7 @@ const EventsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
           {/* SBSTTA-27 Event Card */}
           <Card className="overflow-hidden shadow-medium hover:shadow-strong transition-all duration-300 group">
             <div className="relative h-64 overflow-hidden">

@@ -5,19 +5,19 @@ const IntroductionSection = () => {
   return (
     <>
       {/* Full-width welcome title */}
-      <section className="w-full bg-background py-20 lg:py-24 text-center border-b border-border/30">
+      <section className="w-full bg-background py-16 lg:py-20 text-center border-b border-border/30">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Welcome to
             <span className="block text-primary mt-2">CBD Panama 2025</span>
           </h2>
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto mb-8 lg:mb-10">
+          <p className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto">
             A landmark gathering bringing together global leaders, scientists, and Indigenous communities to advance biodiversity conservation
           </p>
         </div>
       </section>
       
-      <section className="py-18 lg:py-20 bg-gradient-subtle">
+      <section className="py-16 lg:py-20 bg-gradient-subtle">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* YouTube Video Section */}
@@ -76,7 +76,7 @@ const IntroductionSection = () => {
             </div>
 
 
-            <div className="flex flex-col sm:flex-row gap-6 lg:gap-8 pt-10 lg:pt-12">
+            <div className="flex flex-col sm:flex-row gap-4 pt-8">
               <Button size="lg" className="bg-primary hover:bg-primary-hover">
                 Learn About the Meetings
               </Button>
@@ -89,8 +89,8 @@ const IntroductionSection = () => {
       </div>
       
       {/* Full-width horizontal highlights */}
-      <div className="w-full bg-card py-12 lg:py-16 px-4">
-        <div className="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-20 max-w-4xl mx-auto">
+      <div className="w-full bg-card py-12 px-4">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 max-w-4xl mx-auto">
           <div className="flex items-center space-x-6">
             <Users className="h-8 w-8 text-primary flex-shrink-0" />
             <div>

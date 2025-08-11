@@ -28,7 +28,7 @@ const HeroBanner = () => {
             {/* Left Container - Main Content */}
             <div className="text-white text-left">
               <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-                CBD
+                CBD Panama
                 <span className="block text-4xl md:text-5xl font-normal mt-2 opacity-90">
                   Meetings 2025
                 </span>
@@ -52,14 +52,18 @@ const HeroBanner = () => {
 
             {/* Right Container - Countdown Timer & Action Buttons */}
             <div className="flex flex-col items-center justify-center md:items-end space-y-6">
-              <CountdownTimer />
-              <div className="flex flex-col space-y-3 w-full max-w-xs">
-                <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 w-full font-semibold shadow-lg">
-                  SBSTTA-27
-                </Button>
-                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full font-semibold backdrop-blur-sm bg-white/10">
-                  SB8-J
-                </Button>
+              <div className="flex flex-col items-center space-y-6 w-full max-w-xs">
+                <CountdownTimer />
+                <div className="flex flex-col space-y-3 w-full">
+                  <Link to="/sbstta-27">
+                    <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 w-full font-semibold shadow-lg">
+                      SBSTTA-27
+                    </Button>
+                  </Link>
+                  <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full font-semibold backdrop-blur-sm bg-white/10">
+                    SB8-J
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

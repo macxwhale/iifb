@@ -14,9 +14,9 @@ const Index = () => {
       <HeroBanner />
       <IntroductionSection />
       <EventsSection />
+      <StatementsCarousel />
       <NewsCarousel />
       <SideEventsCarousel />
-      <StatementsCarousel />
       <KeyResourcesSection />
       <Footer />
       <BackToTop />
