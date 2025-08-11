@@ -1,15 +1,10 @@
+
 import { useState } from 'react';
 import Footer from '@/components/Footer';
 import heroBannerImage from '@/assets/hero-banner.jpg';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const SBSTTA27 = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -55,47 +50,6 @@ const SBSTTA27 = () => {
                 View Schedule
               </Button>
             </div>
-          </div>
-
-          {/* Navigation */}
-          <div className="pt-8">
-            {/* Desktop Navigation */}
-            <nav className="hidden md:block">
-              <div className="flex items-center justify-center space-x-1 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl">
-                <Link to="/" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Home</Link>
-                <a href="/#about" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">About</a>
-                <a href="/#statements" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Statements</a>
-                <Link to="/documents" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Documents</Link>
-                <a href="/#news" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">News & Media</a>
-                <a href="/#side-events" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Side Events</a>
-              </div>
-            </nav>
-
-            {/* Mobile Menu Button */}
-            <div className="md:hidden flex justify-center">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-white hover:bg-white/10 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg"
-                onClick={toggleMenu}
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </Button>
-            </div>
-
-            {/* Mobile Navigation */}
-            {isMenuOpen && (
-              <nav className="md:hidden mt-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl overflow-hidden">
-                <div className="flex flex-col">
-                  <Link to="/" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Home</Link>
-                  <a href="/#about" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">About</a>
-                  <a href="/#statements" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Statements</a>
-                  <Link to="/documents" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Documents</Link>
-                  <a href="/#news" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">News & Media</a>
-                  <a href="/#side-events" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300">Side Events</a>
-                </div>
-              </nav>
-            )}
           </div>
         </div>
       </section>
