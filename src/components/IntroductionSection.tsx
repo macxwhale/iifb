@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Play, Users, Globe } from 'lucide-react';
 
@@ -19,7 +20,7 @@ const IntroductionSection = () => {
       
       <section className="py-8 lg:py-12 bg-gradient-subtle">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-start">
           {/* YouTube Video Section */}
           <div className="relative">
             <div className="relative overflow-hidden rounded-lg shadow-medium bg-muted aspect-video">
@@ -36,35 +37,10 @@ const IntroductionSection = () => {
                 <span className="text-white text-sm font-medium">CBD Panama 2025</span>
               </div>
             </div>
-            
-            {/* Video Thumbnails */}
-            <div className="flex gap-2 mt-4 overflow-x-auto">
-              <div className="flex-shrink-0 w-24 h-16 bg-muted rounded cursor-pointer hover:opacity-80 transition-opacity">
-                <img 
-                  src="https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg" 
-                  alt="Video thumbnail 1"
-                  className="w-full h-full object-cover rounded"
-                />
-              </div>
-              <div className="flex-shrink-0 w-24 h-16 bg-muted rounded cursor-pointer hover:opacity-80 transition-opacity">
-                <img 
-                  src="https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg" 
-                  alt="Video thumbnail 2"
-                  className="w-full h-full object-cover rounded"
-                />
-              </div>
-              <div className="flex-shrink-0 w-24 h-16 bg-muted rounded cursor-pointer hover:opacity-80 transition-opacity">
-                <img 
-                  src="https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg" 
-                  alt="Video thumbnail 3"
-                  className="w-full h-full object-cover rounded"
-                />
-              </div>
-            </div>
           </div>
 
           {/* Text Content */}
-          <div className="space-y-4">
+          <div className="space-y-4 mt-0">
             <div className="space-y-3">
               <p className="text-base md:text-lg text-foreground leading-relaxed mb-4">
                 Panama City will host two critical meetings that will shape the future of biodiversity governance. SBSTTA-27 will provide scientific guidance for implementing the Global Biodiversity Framework, while SB8J-1 marks a historic milestone in recognizing Indigenous Peoples' rights.
@@ -74,7 +50,6 @@ const IntroductionSection = () => {
                 Join us for this unprecedented gathering that represents a new era of inclusive decision-making in biodiversity conservation.
               </p>
             </div>
-
 
             <div className="flex flex-col sm:flex-row gap-3 pt-6">
               <Button size="lg" className="bg-primary hover:bg-primary-hover">
