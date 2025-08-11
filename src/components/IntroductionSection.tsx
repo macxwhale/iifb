@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { Play, Users, Globe } from 'lucide-react';
+import { Play, Users, Globe, Triangle } from 'lucide-react';
 
 const IntroductionSection = () => {
   return (
@@ -51,13 +51,39 @@ const IntroductionSection = () => {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 pt-4">
-              <Button size="lg" className="bg-primary hover:bg-primary-hover">
-                Learn About the Meetings
-              </Button>
-              <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/10">
-                Indigenous Participation
-              </Button>
+            {/* Cards replacing the buttons */}
+            <div className="grid grid-cols-1 gap-4 pt-4">
+              <div className="bg-card border border-border rounded-lg p-6 hover:shadow-medium transition-shadow duration-300">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0">
+                    <Triangle className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                      Indigenous Leadership
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      First-ever subsidiary body for Indigenous Peoples
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-card border border-border rounded-lg p-6 hover:shadow-medium transition-shadow duration-300">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0">
+                    <Triangle className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                      Powering transformative conservation
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      Explore the five key themes of Congress
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
