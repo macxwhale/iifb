@@ -1,5 +1,4 @@
 
-
 import { Button } from '@/components/ui/button';
 import { Play, Users, Globe, Triangle } from 'lucide-react';
 
@@ -55,7 +54,7 @@ const IntroductionSection = () => {
             {/* Cards replacing the buttons - side by side */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
               <div className="bg-card border border-border rounded-lg p-6 hover:shadow-medium transition-shadow duration-300">
-                <div className="flex items-start space-x-3">
+                <div className="flex flex-col items-center text-center space-y-3">
                   <div className="flex-shrink-0">
                     <Users className="h-6 w-6 text-primary" />
                   </div>
@@ -71,7 +70,7 @@ const IntroductionSection = () => {
               </div>
 
               <div className="bg-card border border-border rounded-lg p-6 hover:shadow-medium transition-shadow duration-300">
-                <div className="flex items-start space-x-3">
+                <div className="flex flex-col items-center text-center space-y-3">
                   <div className="flex-shrink-0">
                     <Globe className="h-6 w-6 text-primary" />
                   </div>
@@ -89,31 +88,9 @@ const IntroductionSection = () => {
           </div>
         </div>
       </div>
-      
-      {/* Full-width horizontal highlights */}
-      <div className="w-full bg-card py-6 px-4">
-        <div className="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12 max-w-3xl mx-auto">
-          <div className="flex items-center space-x-6">
-            <Users className="h-8 w-8 text-primary flex-shrink-0" />
-            <div>
-              <h4 className="font-semibold text-foreground text-lg mb-1">Indigenous Leadership</h4>
-              <p className="text-muted-foreground">First-ever subsidiary body for Indigenous Peoples</p>
-            </div>
-          </div>
-          
-          <div className="flex items-center space-x-6">
-            <Globe className="h-8 w-8 text-primary flex-shrink-0" />
-            <div>
-              <h4 className="font-semibold text-foreground text-lg mb-1">Global Impact</h4>
-              <p className="text-muted-foreground">Advancing the Global Biodiversity Framework</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
     </>
   );
 };
 
 export default IntroductionSection;
-
