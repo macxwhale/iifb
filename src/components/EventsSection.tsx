@@ -7,13 +7,13 @@ import sb8jImage from '@/assets/sb8j-event.jpg';
 
 const EventsSection = () => {
   return (
-    <section id="events" className="py-16 lg:py-20 bg-background">
+    <section id="events" className="py-12 lg:py-16 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Two Crucial Meetings
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
             Join global experts and Indigenous leaders in shaping the future of biodiversity conservation
           </p>
         </div>

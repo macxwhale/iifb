@@ -52,8 +52,10 @@ const HeroBanner = () => {
 
             {/* Right Container - Countdown Timer & Action Buttons */}
             <div className="flex flex-col items-center justify-center md:items-end space-y-6">
-              <div className="flex flex-col items-center space-y-6 w-full max-w-xs">
-                <CountdownTimer />
+              <div className="flex flex-col space-y-6 w-full max-w-xs">
+                <div className="w-full">
+                  <CountdownTimer />
+                </div>
                 <div className="flex flex-col space-y-3 w-full">
                   <Link to="/sbstta-27">
                     <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 w-full font-semibold shadow-lg">
