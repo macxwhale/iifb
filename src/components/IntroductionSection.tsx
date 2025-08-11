@@ -73,14 +73,14 @@ const IntroductionSection = () => {
               <div className="bg-card border border-border rounded-lg p-6 hover:shadow-medium transition-shadow duration-300">
                 <div className="flex items-start space-x-3">
                   <div className="flex-shrink-0">
-                    <Users className="h-6 w-6 text-primary" />
+                    <Globe className="h-6 w-6 text-primary" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">
-                      Powering transformative conservation
+                      Global Impact
                     </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      Explore the five key themes of Congress
+                      Advancing the Global Biodiversity Framework
                     </p>
                   </div>
                 </div>
