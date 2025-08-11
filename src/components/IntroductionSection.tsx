@@ -1,4 +1,5 @@
 
+
 import { Button } from '@/components/ui/button';
 import { Play, Users, Globe, Triangle } from 'lucide-react';
 
@@ -51,12 +52,12 @@ const IntroductionSection = () => {
               </p>
             </div>
 
-            {/* Cards replacing the buttons */}
-            <div className="grid grid-cols-1 gap-4 pt-4">
+            {/* Cards replacing the buttons - side by side */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
               <div className="bg-card border border-border rounded-lg p-6 hover:shadow-medium transition-shadow duration-300">
                 <div className="flex items-start space-x-3">
                   <div className="flex-shrink-0">
-                    <Triangle className="h-6 w-6 text-primary" />
+                    <Users className="h-6 w-6 text-primary" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">
@@ -72,7 +73,7 @@ const IntroductionSection = () => {
               <div className="bg-card border border-border rounded-lg p-6 hover:shadow-medium transition-shadow duration-300">
                 <div className="flex items-start space-x-3">
                   <div className="flex-shrink-0">
-                    <Triangle className="h-6 w-6 text-primary" />
+                    <Users className="h-6 w-6 text-primary" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">
@@ -115,3 +116,4 @@ const IntroductionSection = () => {
 };
 
 export default IntroductionSection;
+
