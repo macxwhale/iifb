@@ -49,10 +49,6 @@ const EventsSection = () => {
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="text-white space-y-2">
                   <div className="flex items-center gap-2 text-sm">
-                    <Calendar className="h-4 w-4" />
-                    <span>October 20-25, 2025</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
                     <MapPin className="h-4 w-4" />
                     <span>Panama Convention Center</span>
                   </div>
@@ -67,9 +63,12 @@ const EventsSection = () => {
                   <Users className="h-6 w-6 text-primary" />
                 </div>
               </div>
-              <CardDescription className="text-base text-muted-foreground">
+              <CardDescription className="text-base text-muted-foreground mb-4">
                 27th meeting of the Subsidiary Body on Scientific, Technical and Technological Advice
               </CardDescription>
+              <div className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
+                October 20-25, 2025
+              </div>
             </CardHeader>
             
             <CardContent className="space-y-8 pb-8">
@@ -119,10 +118,6 @@ const EventsSection = () => {
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="text-white space-y-2">
                   <div className="flex items-center gap-2 text-sm">
-                    <Calendar className="h-4 w-4" />
-                    <span>October 26-30, 2025</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
                     <MapPin className="h-4 w-4" />
                     <span>Panama Convention Center</span>
                   </div>
@@ -137,9 +132,12 @@ const EventsSection = () => {
                   <Globe className="h-6 w-6 text-secondary" />
                 </div>
               </div>
-              <CardDescription className="text-base text-muted-foreground">
+              <CardDescription className="text-base text-muted-foreground mb-4">
                 First Meeting of the Subsidiary Body on Article 8(j) and Related Provisions
               </CardDescription>
+              <div className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
+                October 26-30, 2025
+              </div>
             </CardHeader>
             
             <CardContent className="space-y-8 pb-8">
