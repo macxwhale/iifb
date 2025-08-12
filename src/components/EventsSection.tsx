@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, Users, ArrowRight, MapPin, Clock } from 'lucide-react';
+import { Calendar, Users, ArrowRight, MapPin, Clock, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import sbsttaImage from '@/assets/sbstta-event.jpg';
 import sb8jImage from '@/assets/sb8j-event.jpg';
