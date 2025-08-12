@@ -90,6 +90,33 @@ const SBSTTA27 = () => {
                 </div>
               </div>
 
+              {/* Additional Resources */}
+              <div className="bg-gradient-subtle p-8 lg:p-12 rounded-lg border border-border/30 mb-12">
+                <h3 className="text-2xl font-bold text-foreground mb-6">Related Resources</h3>
+                <ul className="space-y-3 text-lg text-foreground">
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-primary rounded-full mr-4"></span>
+                    IPBES Workshop
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-primary rounded-full mr-4"></span>
+                    IIFB Preparatory session
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-primary rounded-full mr-4"></span>
+                    IIFB Statements
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-primary rounded-full mr-4"></span>
+                    Photos
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-primary rounded-full mr-4"></span>
+                    Side events
+                  </li>
+                </ul>
+              </div>
+
               <div className="bg-gradient-subtle p-8 lg:p-12 rounded-lg border border-border/30">
                 <h3 className="text-2xl font-bold text-foreground mb-6">Meeting Impact</h3>
                 <p className="text-lg text-foreground leading-relaxed mb-6">

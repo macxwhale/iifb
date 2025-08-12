@@ -32,13 +32,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
-        {/* Copyright */}
-        <div className="border-t border-gray-600 pt-8 mt-12 text-center">
-          <p className="text-gray-400 text-sm">
-            © 2025 CBD Panama Meetings. All rights reserved.
-          </p>
-        </div>
       </div>
       
       <BackToTop />
