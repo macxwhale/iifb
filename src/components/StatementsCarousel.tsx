@@ -95,24 +95,20 @@ const StatementsCarousel = () => {
   return (
     <section id="statements" className="py-20 lg:py-24 relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 relative">
+        <div className="text-center mb-12 relative">
           <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
             <div className="w-24 h-24 bg-gradient-to-br from-iifb-sage/30 to-iifb-cream/30 rounded-full blur-2xl"></div>
           </div>
           <div className="relative">
-            <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="flex items-center justify-center gap-3 mb-4">
               <Star className="h-4 w-4 text-iifb-forest" />
               <span className="text-sm font-bold text-iifb-forest uppercase tracking-widest">Official Documents</span>
               <Star className="h-4 w-4 text-iifb-forest" />
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-              IIFB 
-              <span className="block text-iifb-forest mt-2">Statements</span>
+              IIFB Statements
             </h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-iifb-sage via-iifb-forest to-iifb-sage mx-auto mb-6"></div>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Key documents and position papers from the International Indigenous Forum on Biodiversity
-            </p>
+            <div className="w-32 h-1 bg-gradient-to-r from-iifb-sage via-iifb-forest to-iifb-sage mx-auto"></div>
           </div>
         </div>
         
