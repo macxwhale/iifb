@@ -8,147 +8,113 @@ import sb8jImage from '@/assets/sb8j-event.jpg';
 
 const EventsSection = () => {
   return (
-    <section id="events" className="py-16 lg:py-20 relative">
+    <section id="events" className="py-8 lg:py-12 bg-background">
       <div className="container mx-auto px-4">
-        {/* Enhanced section header */}
-        <div className="text-center mb-16 relative">
-          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
-            <Calendar className="h-4 w-4 text-primary" />
-            <span className="text-sm font-medium text-primary uppercase tracking-wider">Events</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">
             Two Crucial Meetings
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6"></div>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             Join global experts and Indigenous leaders in shaping the future of biodiversity conservation
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
-          {/* SBSTTA-27 Event Card - Enhanced design */}
-          <Card className="overflow-hidden shadow-strong hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 group border-2 border-transparent hover:border-primary/20 bg-gradient-to-br from-card to-card/80 relative">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-primary/50 to-transparent"></div>
-            <div className="relative h-72 overflow-hidden">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+          {/* SBSTTA-27 Event Card */}
+          <Card className="overflow-hidden shadow-medium hover:shadow-strong transition-all duration-300 group">
+            <div className="relative h-64 overflow-hidden">
               <img 
                 src={sbsttaImage} 
                 alt="SBSTTA-27 Meeting"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-              <div className="absolute bottom-6 left-6 text-white">
-                <span className="bg-primary/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold border border-white/20">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <span className="bg-primary px-3 py-1 rounded-full text-sm font-semibold">
                   Scientific Advisory
                 </span>
               </div>
-              <div className="absolute top-6 right-6">
-                <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
-                  <Calendar className="h-6 w-6 text-white" />
-                </div>
-              </div>
             </div>
             
-            <CardHeader className="pb-4 space-y-4">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-2xl lg:text-3xl text-foreground font-bold">SBSTTA-27</CardTitle>
-                <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                  <span className="text-primary font-bold text-sm">27</span>
-                </div>
-              </div>
-              <CardDescription className="text-base leading-relaxed">
+            <CardHeader className="pb-6">
+              <CardTitle className="text-2xl text-foreground mb-3">SBSTTA-27</CardTitle>
+              <CardDescription className="text-base">
                 27th meeting of the Subsidiary Body on Scientific, Technical and Technological Advice
               </CardDescription>
             </CardHeader>
             
-            <CardContent className="space-y-6 pt-0">
+            <CardContent className="space-y-6">
               <p className="text-foreground leading-relaxed">
                 Focus on science-based recommendations for implementing the Kunming-Montreal Global Biodiversity Framework, 
                 with emphasis on monitoring progress and ecosystem-based approaches.
               </p>
               
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-primary/10 text-primary px-3 py-1.5 rounded-full text-xs font-medium border border-primary/20">
+              <div className="flex flex-wrap gap-3 mb-6">
+                <span className="bg-conference-light text-conference-dark px-3 py-1 rounded-full text-sm">
                   Biodiversity Monitoring
                 </span>
-                <span className="bg-primary/10 text-primary px-3 py-1.5 rounded-full text-xs font-medium border border-primary/20">
+                <span className="bg-conference-light text-conference-dark px-3 py-1 rounded-full text-sm">
                   Scientific Research
                 </span>
-                <span className="bg-primary/10 text-primary px-3 py-1.5 rounded-full text-xs font-medium border border-primary/20">
+                <span className="bg-conference-light text-conference-dark px-3 py-1 rounded-full text-sm">
                   Policy Framework
                 </span>
               </div>
               
-              <Link to="/sbstta-27" className="block">
-                <Button className="w-full group bg-primary hover:bg-primary-hover text-white font-semibold py-3 relative overflow-hidden">
-                  <span className="relative z-10 flex items-center justify-center">
-                    Learn More About SBSTTA-27
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              <Link to="/sbstta-27">
+                <Button className="w-full group bg-primary hover:bg-primary-hover">
+                  Learn More About SBSTTA-27
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
             </CardContent>
           </Card>
 
-          {/* SB8J-1 Event Card - Enhanced design with secondary theme */}
-          <Card className="overflow-hidden shadow-strong hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 group border-2 border-transparent hover:border-secondary/20 bg-gradient-to-br from-card to-card/80 relative">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary via-secondary/50 to-transparent"></div>
-            <div className="relative h-72 overflow-hidden">
+          {/* SB8J-1 Event Card */}
+          <Card className="overflow-hidden shadow-medium hover:shadow-strong transition-all duration-300 group">
+            <div className="relative h-64 overflow-hidden">
               <img 
                 src={sb8jImage} 
                 alt="SB8J-1 Meeting"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-              <div className="absolute bottom-6 left-6 text-white">
-                <span className="bg-secondary/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold border border-white/20">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <span className="bg-secondary px-3 py-1 rounded-full text-sm font-semibold">
                   Indigenous Rights
                 </span>
               </div>
-              <div className="absolute top-6 right-6">
-                <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
-                  <Users className="h-6 w-6 text-white" />
-                </div>
-              </div>
             </div>
             
-            <CardHeader className="pb-4 space-y-4">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-2xl lg:text-3xl text-foreground font-bold">SB8J-1</CardTitle>
-                <div className="w-8 h-8 bg-secondary/10 rounded-full flex items-center justify-center">
-                  <span className="text-secondary font-bold text-sm">1st</span>
-                </div>
-              </div>
-              <CardDescription className="text-base leading-relaxed">
+            <CardHeader className="pb-6">
+              <CardTitle className="text-2xl text-foreground mb-3">SB8J-1</CardTitle>
+              <CardDescription className="text-base">
                 First Meeting of the Subsidiary Body on Article 8(j) and Related Provisions
               </CardDescription>
             </CardHeader>
             
-            <CardContent className="space-y-6 pt-0">
+            <CardContent className="space-y-6">
               <p className="text-foreground leading-relaxed">
                 Historic establishment of a permanent body focused on Indigenous Peoples and local communities, 
                 addressing traditional knowledge and territorial rights.
               </p>
               
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-secondary/10 text-secondary px-3 py-1.5 rounded-full text-xs font-medium border border-secondary/20">
+              <div className="flex flex-wrap gap-3 mb-6">
+                <span className="bg-conference-light text-conference-dark px-3 py-1 rounded-full text-sm">
                   Traditional Knowledge
                 </span>
-                <span className="bg-secondary/10 text-secondary px-3 py-1.5 rounded-full text-xs font-medium border border-secondary/20">
+                <span className="bg-conference-light text-conference-dark px-3 py-1 rounded-full text-sm">
                   Indigenous Rights
                 </span>
-                <span className="bg-secondary/10 text-secondary px-3 py-1.5 rounded-full text-xs font-medium border border-secondary/20">
+                <span className="bg-conference-light text-conference-dark px-3 py-1 rounded-full text-sm">
                   Cultural Diversity
                 </span>
               </div>
               
-              <Link to="/sb8j-1" className="block">
-                <Button className="w-full group bg-secondary hover:bg-secondary-hover text-white font-semibold py-3 relative overflow-hidden">
-                  <span className="relative z-10 flex items-center justify-center">
-                    Learn More About SB8J-1
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              <Link to="/sb8j-1">
+                <Button className="w-full group bg-secondary hover:bg-secondary-hover">
+                  Learn More About SB8J-1
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
             </CardContent>
