@@ -72,7 +72,7 @@ const EventsSection = () => {
               </CardDescription>
             </CardHeader>
             
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-8 pb-8">
               <p className="text-foreground leading-relaxed text-lg">
                 Focus on science-based recommendations for implementing the Kunming-Montreal Global Biodiversity Framework, 
                 with emphasis on monitoring progress and ecosystem-based approaches.
@@ -90,12 +90,14 @@ const EventsSection = () => {
                 </span>
               </div>
               
-              <Link to="/sbstta-27">
-                <Button className="w-full group bg-primary hover:bg-primary-hover text-lg py-6 rounded-xl font-semibold">
-                  Learn More About SBSTTA-27
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
+              <div className="pt-4">
+                <Link to="/sbstta-27">
+                  <Button className="w-full group bg-primary hover:bg-primary-hover text-lg py-6 rounded-xl font-semibold">
+                    Learn More About SBSTTA-27
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              </div>
             </CardContent>
           </Card>
 
@@ -140,7 +142,7 @@ const EventsSection = () => {
               </CardDescription>
             </CardHeader>
             
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-8 pb-8">
               <p className="text-foreground leading-relaxed text-lg">
                 Historic establishment of a permanent body focused on Indigenous Peoples and local communities, 
                 addressing traditional knowledge and territorial rights.
@@ -158,12 +160,14 @@ const EventsSection = () => {
                 </span>
               </div>
               
-              <Link to="/sb8j-1">
-                <Button className="w-full group bg-secondary hover:bg-secondary-hover text-lg py-6 rounded-xl font-semibold">
-                  Learn More About SB8J-1
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
+              <div className="pt-4">
+                <Link to="/sb8j-1">
+                  <Button className="w-full group bg-secondary hover:bg-secondary-hover text-lg py-6 rounded-xl font-semibold">
+                    Learn More About SB8J-1
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              </div>
             </CardContent>
           </Card>
         </div>
