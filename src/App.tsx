@@ -9,6 +9,9 @@ import SBSTTA27 from "./pages/SBSTTA27";
 import SB8J1 from "./pages/SB8J1";
 import Documents from "./pages/Documents";
 import Resources from "./pages/Resources";
+import About from "./pages/About";
+import News from "./pages/News";
+import SideEvents from "./pages/SideEvents";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +28,9 @@ const App = () => (
           <Route path="/sb8j-1" element={<SB8J1 />} />
           <Route path="/documents" element={<Documents />} />
           <Route path="/resources" element={<Resources />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/side-events" element={<SideEvents />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

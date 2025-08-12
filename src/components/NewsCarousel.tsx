@@ -2,6 +2,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Calendar, Clock, Tag } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import indigenousBodyImage from '@/assets/news-indigenous-body.jpg';
 import panamaMeetingsImage from '@/assets/news-panama-meetings.jpg';
 import ipbesWorkshopImage from '@/assets/news-ipbes-workshop.jpg';
@@ -162,10 +163,12 @@ const NewsCarousel = () => {
 
         {/* View All Button */}
         <div className="text-center">
-          <Button variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 px-8 py-3">
-            View All Articles
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <Link to="/news">
+            <Button variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 px-8 py-3">
+              View All Articles
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
