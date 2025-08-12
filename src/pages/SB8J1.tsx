@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import Footer from '@/components/Footer';
 import heroBannerImage from '@/assets/hero-banner.jpg';
-import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const SB8J1 = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,15 +44,6 @@ const SB8J1 = () => {
                 <span className="w-2 h-2 bg-white rounded-full"></span>
                 <span>Panama City, Panama</span>
               </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-3 text-lg font-semibold shadow-lg">
-                Learn More
-              </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 py-3 text-lg font-semibold backdrop-blur-sm">
-                View Schedule
-              </Button>
             </div>
           </div>
 
@@ -139,8 +129,6 @@ const SB8J1 = () => {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 };

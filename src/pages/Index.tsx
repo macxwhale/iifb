@@ -6,7 +6,6 @@ import NewsCarousel from '@/components/NewsCarousel';
 import SideEventsCarousel from '@/components/SideEventsCarousel';
 import StatementsCarousel from '@/components/StatementsCarousel';
 import KeyResourcesSection from '@/components/KeyResourcesSection';
-import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
@@ -59,12 +58,6 @@ const Index = () => {
         <div className="relative z-10">
           <KeyResourcesSection />
         </div>
-      </div>
-      
-      {/* Footer - Clean separation */}
-      <div className="border-t-8 border-t-gradient-primary relative">
-        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-secondary to-accent"></div>
-        <Footer />
       </div>
     </div>
   );
