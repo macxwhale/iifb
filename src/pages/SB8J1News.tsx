@@ -4,6 +4,7 @@ import { ArrowLeft, Calendar, ExternalLink, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import heroBannerImage from '@/assets/hero-banner-indigenous.jpg';
 
 const SB8J1News = () => {
   const newsItems = [
@@ -58,95 +59,130 @@ const SB8J1News = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header with Back Button */}
-      <div className="bg-card border-b border-border sticky top-0 z-50 shadow-soft">
-        <div className="container mx-auto px-4 py-4">
-          <Link to="/sb8j-1" className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors">
-            <ArrowLeft className="h-4 w-4" />
-            Back to SB8J-1
-          </Link>
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroBannerImage})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              SB8J-1 News & Media
+        <div className="relative z-10 container mx-auto px-4 text-center text-white py-20 lg:py-24">
+          <div className="mb-12 lg:mb-16">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              SB8J-1
+              <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
+                News & Media Coverage
+              </span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Latest news, updates, and media coverage related to the First Meeting of the Subsidiary Body on Article 8(j)
+            
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90">
+              Latest news, updates, and media coverage of the historic first meeting
             </p>
-          </div>
-
-          <div className="grid gap-8">
-            {newsItems.map((item, index) => (
-              <Card key={index} className={`hover:shadow-lg transition-shadow ${item.featured ? 'border-secondary' : ''}`}>
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <Badge variant={item.featured ? "default" : "secondary"} className={item.featured ? "bg-secondary" : ""}>
-                          {item.category}
-                        </Badge>
-                        {item.featured && (
-                          <Badge variant="outline" className="border-secondary text-secondary">
-                            Featured
-                          </Badge>
-                        )}
-                      </div>
-                      <CardTitle className="text-xl md:text-2xl mb-2 leading-tight">
-                        {item.title}
-                      </CardTitle>
-                      <CardDescription className="text-base">
-                        {item.source}
-                      </CardDescription>
-                    </div>
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                      <Calendar className="h-4 w-4" />
-                      {item.date}
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-foreground leading-relaxed mb-4">
-                    {item.summary}
-                  </p>
-                  <div className="flex gap-3">
-                    <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
-                      Read Full Article
-                    </Button>
-                    <Button size="sm" variant="outline">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Share
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="mt-16 bg-card p-8 rounded-lg border border-border/50">
-            <div className="flex items-center gap-3 mb-4">
-              <Tag className="h-6 w-6 text-secondary" />
-              <h3 className="text-xl font-bold text-foreground">Media Resources</h3>
+            
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+              <div className="flex items-center space-x-2 text-lg">
+                <span className="w-2 h-2 bg-white rounded-full"></span>
+                <span>October 27-30, 2025</span>
+              </div>
+              <div className="flex items-center space-x-2 text-lg">
+                <span className="w-2 h-2 bg-white rounded-full"></span>
+                <span>Panama City, Panama</span>
+              </div>
             </div>
-            <p className="text-muted-foreground mb-6 leading-relaxed">
-              Access press releases, media kits, high-resolution images, and other resources for media coverage of SB8J-1. 
-              Journalists and media professionals can request interviews with Indigenous leaders and technical experts.
-            </p>
-            <div className="flex gap-4">
-              <Button className="bg-secondary text-white hover:bg-secondary-hover">
-                Media Kit
-              </Button>
-              <Button variant="outline">
-                Press Contacts
-              </Button>
+          </div>
+
+          <div className="pt-8">
+            <Link to="/sb8j-1" className="inline-flex items-center gap-2 text-white/90 hover:text-white bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl transition-all duration-300">
+              <ArrowLeft className="h-4 w-4" />
+              Back to SB8J-1
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Content Section */}
+      <section className="py-20 lg:py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                SB8J-1 News & Media
+              </h2>
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                Latest news, updates, and media coverage related to the First Meeting of the Subsidiary Body on Article 8(j)
+              </p>
+            </div>
+
+            <div className="grid gap-8">
+              {newsItems.map((item, index) => (
+                <Card key={index} className={`hover:shadow-lg transition-shadow ${item.featured ? 'border-secondary' : ''}`}>
+                  <CardHeader>
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-2">
+                          <Badge variant={item.featured ? "default" : "secondary"} className={item.featured ? "bg-secondary" : ""}>
+                            {item.category}
+                          </Badge>
+                          {item.featured && (
+                            <Badge variant="outline" className="border-secondary text-secondary">
+                              Featured
+                            </Badge>
+                          )}
+                        </div>
+                        <CardTitle className="text-xl md:text-2xl mb-2 leading-tight">
+                          {item.title}
+                        </CardTitle>
+                        <CardDescription className="text-base">
+                          {item.source}
+                        </CardDescription>
+                      </div>
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4" />
+                        {item.date}
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-foreground leading-relaxed mb-4">
+                      {item.summary}
+                    </p>
+                    <div className="flex gap-3">
+                      <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
+                        Read Full Article
+                      </Button>
+                      <Button size="sm" variant="outline">
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Share
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="mt-16 bg-card p-8 rounded-lg border border-border/50">
+              <div className="flex items-center gap-3 mb-4">
+                <Tag className="h-6 w-6 text-secondary" />
+                <h3 className="text-xl font-bold text-foreground">Media Resources</h3>
+              </div>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                Access press releases, media kits, high-resolution images, and other resources for media coverage of SB8J-1. 
+                Journalists and media professionals can request interviews with Indigenous leaders and technical experts.
+              </p>
+              <div className="flex gap-4">
+                <Button className="bg-secondary text-white hover:bg-secondary-hover">
+                  Media Kit
+                </Button>
+                <Button variant="outline">
+                  Press Contacts
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

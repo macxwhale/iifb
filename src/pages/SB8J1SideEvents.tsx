@@ -4,6 +4,7 @@ import { ArrowLeft, Calendar, MapPin, Users, Clock, ExternalLink } from 'lucide-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import heroBannerImage from '@/assets/nature-forest.gif';
 
 const SB8J1SideEvents = () => {
   const sideEvents = [
@@ -83,119 +84,154 @@ const SB8J1SideEvents = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header with Back Button */}
-      <div className="bg-card border-b border-border sticky top-0 z-50 shadow-soft">
-        <div className="container mx-auto px-4 py-4">
-          <Link to="/sb8j-1" className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors">
-            <ArrowLeft className="h-4 w-4" />
-            Back to SB8J-1
-          </Link>
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroBannerImage})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              SB8J-1 Side Events
+        <div className="relative z-10 container mx-auto px-4 text-center text-white py-20 lg:py-24">
+          <div className="mb-12 lg:mb-16">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              SB8J-1
+              <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
+                Side Events & Workshops
+              </span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Parallel events, workshops, and cultural exchanges organized alongside the official SB8J-1 meeting to enhance dialogue and knowledge sharing
+            
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90">
+              Parallel events, workshops, and cultural exchanges enhancing the official meeting
             </p>
-          </div>
-
-          <div className="grid gap-8 mb-12">
-            {sideEvents.map((event, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <Badge variant="secondary" className="bg-secondary text-white">
-                          {event.type}
-                        </Badge>
-                        <Badge variant={event.registration === "Open" ? "default" : event.registration === "Limited Spaces" ? "destructive" : "outline"}>
-                          {event.registration}
-                        </Badge>
-                      </div>
-                      <CardTitle className="text-xl mb-2">{event.title}</CardTitle>
-                      <CardDescription className="text-base">
-                        Organized by {event.organizer}
-                      </CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid md:grid-cols-2 gap-4 mb-4">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Calendar className="h-4 w-4 text-secondary" />
-                      {event.date}
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Clock className="h-4 w-4 text-secondary" />
-                      {event.time}
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <MapPin className="h-4 w-4 text-secondary" />
-                      {event.location}
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Users className="h-4 w-4 text-secondary" />
-                      {event.capacity}
-                    </div>
-                  </div>
-                  
-                  <p className="text-foreground leading-relaxed mb-4">
-                    {event.description}
-                  </p>
-                  
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-foreground mb-2">Featured Speakers:</h4>
-                    <ul className="text-sm text-muted-foreground">
-                      {event.speakers.map((speaker, idx) => (
-                        <li key={idx} className="flex items-center gap-2">
-                          <div className="w-1 h-1 bg-secondary rounded-full"></div>
-                          {speaker}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div className="flex gap-3">
-                    <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
-                      Register Now
-                    </Button>
-                    <Button size="sm" variant="outline">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      More Details
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="bg-card p-8 rounded-lg border border-border/50">
-            <div className="flex items-center gap-3 mb-4">
-              <Users className="h-6 w-6 text-secondary" />
-              <h3 className="text-xl font-bold text-foreground">Organize a Side Event</h3>
+            
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+              <div className="flex items-center space-x-2 text-lg">
+                <span className="w-2 h-2 bg-white rounded-full"></span>
+                <span>October 27-30, 2025</span>
+              </div>
+              <div className="flex items-center space-x-2 text-lg">
+                <span className="w-2 h-2 bg-white rounded-full"></span>
+                <span>Panama City, Panama</span>
+              </div>
             </div>
-            <p className="text-muted-foreground mb-6 leading-relaxed">
-              Indigenous organizations, research institutions, and civil society groups are invited to organize side events during SB8J-1. 
-              Side events provide valuable opportunities for deeper dialogue, capacity building, and cultural exchange.
-            </p>
-            <div className="flex gap-4">
-              <Button className="bg-secondary text-white hover:bg-secondary-hover">
-                Submit Proposal
-              </Button>
-              <Button variant="outline">
-                Event Guidelines
-              </Button>
+          </div>
+
+          <div className="pt-8">
+            <Link to="/sb8j-1" className="inline-flex items-center gap-2 text-white/90 hover:text-white bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl transition-all duration-300">
+              <ArrowLeft className="h-4 w-4" />
+              Back to SB8J-1
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Content Section */}
+      <section className="py-20 lg:py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                SB8J-1 Side Events
+              </h2>
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                Parallel events, workshops, and cultural exchanges organized alongside the official SB8J-1 meeting to enhance dialogue and knowledge sharing
+              </p>
+            </div>
+
+            <div className="grid gap-8 mb-12">
+              {sideEvents.map((event, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-2">
+                          <Badge variant="secondary" className="bg-secondary text-white">
+                            {event.type}
+                          </Badge>
+                          <Badge variant={event.registration === "Open" ? "default" : event.registration === "Limited Spaces" ? "destructive" : "outline"}>
+                            {event.registration}
+                          </Badge>
+                        </div>
+                        <CardTitle className="text-xl mb-2">{event.title}</CardTitle>
+                        <CardDescription className="text-base">
+                          Organized by {event.organizer}
+                        </CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid md:grid-cols-2 gap-4 mb-4">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4 text-secondary" />
+                        {event.date}
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Clock className="h-4 w-4 text-secondary" />
+                        {event.time}
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <MapPin className="h-4 w-4 text-secondary" />
+                        {event.location}
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Users className="h-4 w-4 text-secondary" />
+                        {event.capacity}
+                      </div>
+                    </div>
+                    
+                    <p className="text-foreground leading-relaxed mb-4">
+                      {event.description}
+                    </p>
+                    
+                    <div className="mb-4">
+                      <h4 className="font-semibold text-foreground mb-2">Featured Speakers:</h4>
+                      <ul className="text-sm text-muted-foreground">
+                        {event.speakers.map((speaker, idx) => (
+                          <li key={idx} className="flex items-center gap-2">
+                            <div className="w-1 h-1 bg-secondary rounded-full"></div>
+                            {speaker}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div className="flex gap-3">
+                      <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
+                        Register Now
+                      </Button>
+                      <Button size="sm" variant="outline">
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        More Details
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="bg-card p-8 rounded-lg border border-border/50">
+              <div className="flex items-center gap-3 mb-4">
+                <Users className="h-6 w-6 text-secondary" />
+                <h3 className="text-xl font-bold text-foreground">Organize a Side Event</h3>
+              </div>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                Indigenous organizations, research institutions, and civil society groups are invited to organize side events during SB8J-1. 
+                Side events provide valuable opportunities for deeper dialogue, capacity building, and cultural exchange.
+              </p>
+              <div className="flex gap-4">
+                <Button className="bg-secondary text-white hover:bg-secondary-hover">
+                  Submit Proposal
+                </Button>
+                <Button variant="outline">
+                  Event Guidelines
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

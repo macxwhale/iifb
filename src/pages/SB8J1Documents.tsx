@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import heroBannerImage from '@/assets/nature-forest.gif';
 
 const SB8J1Documents = () => {
   const officialDocs = [
@@ -86,135 +87,170 @@ const SB8J1Documents = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header with Back Button */}
-      <div className="bg-card border-b border-border sticky top-0 z-50 shadow-soft">
-        <div className="container mx-auto px-4 py-4">
-          <Link to="/sb8j-1" className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors">
-            <ArrowLeft className="h-4 w-4" />
-            Back to SB8J-1
-          </Link>
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroBannerImage})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              SB8J-1 Documents
+        <div className="relative z-10 container mx-auto px-4 text-center text-white py-20 lg:py-24">
+          <div className="mb-12 lg:mb-16">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              SB8J-1
+              <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
+                Official Documents
+              </span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Official documents, background materials, and stakeholder submissions for the First Meeting of the Subsidiary Body on Article 8(j)
+            
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90">
+              Access all official documents, background materials, and stakeholder submissions
             </p>
+            
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+              <div className="flex items-center space-x-2 text-lg">
+                <span className="w-2 h-2 bg-white rounded-full"></span>
+                <span>October 27-30, 2025</span>
+              </div>
+              <div className="flex items-center space-x-2 text-lg">
+                <span className="w-2 h-2 bg-white rounded-full"></span>
+                <span>Panama City, Panama</span>
+              </div>
+            </div>
           </div>
 
-          <Tabs defaultValue="official" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="official">Official Documents</TabsTrigger>
-              <TabsTrigger value="background">Background Materials</TabsTrigger>
-              <TabsTrigger value="submissions">Stakeholder Submissions</TabsTrigger>
-            </TabsList>
+          <div className="pt-8">
+            <Link to="/sb8j-1" className="inline-flex items-center gap-2 text-white/90 hover:text-white bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl transition-all duration-300">
+              <ArrowLeft className="h-4 w-4" />
+              Back to SB8J-1
+            </Link>
+          </div>
+        </div>
+      </section>
 
-            <TabsContent value="official" className="space-y-6">
-              {officialDocs.map((doc, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <CardTitle className="text-xl mb-2">{doc.title}</CardTitle>
-                        <CardDescription className="text-base">
-                          Document Code: {doc.code}
-                        </CardDescription>
-                      </div>
-                      <div className="flex flex-col items-end gap-2">
-                        <Badge variant={doc.status === "Final" ? "default" : "secondary"}>
-                          {doc.status}
-                        </Badge>
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                          <Clock className="h-4 w-4" />
-                          {doc.date}
+      {/* Content Section */}
+      <section className="py-20 lg:py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                SB8J-1 Documents
+              </h2>
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                Official documents, background materials, and stakeholder submissions for the First Meeting of the Subsidiary Body on Article 8(j)
+              </p>
+            </div>
+
+            <Tabs defaultValue="official" className="w-full">
+              <TabsList className="grid w-full grid-cols-3 mb-8">
+                <TabsTrigger value="official">Official Documents</TabsTrigger>
+                <TabsTrigger value="background">Background Materials</TabsTrigger>
+                <TabsTrigger value="submissions">Stakeholder Submissions</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="official" className="space-y-6">
+                {officialDocs.map((doc, index) => (
+                  <Card key={index} className="hover:shadow-lg transition-shadow">
+                    <CardHeader>
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <CardTitle className="text-xl mb-2">{doc.title}</CardTitle>
+                          <CardDescription className="text-base">
+                            Document Code: {doc.code}
+                          </CardDescription>
+                        </div>
+                        <div className="flex flex-col items-end gap-2">
+                          <Badge variant={doc.status === "Final" ? "default" : "secondary"}>
+                            {doc.status}
+                          </Badge>
+                          <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                            <Clock className="h-4 w-4" />
+                            {doc.date}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center gap-2 mb-3">
-                      <FileText className="h-4 w-4 text-secondary" />
-                      <span className="text-sm font-medium text-secondary">{doc.type}</span>
-                    </div>
-                    <p className="text-foreground leading-relaxed mb-4">
-                      {doc.description}
-                    </p>
-                    <div className="flex gap-3">
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center gap-2 mb-3">
+                        <FileText className="h-4 w-4 text-secondary" />
+                        <span className="text-sm font-medium text-secondary">{doc.type}</span>
+                      </div>
+                      <p className="text-foreground leading-relaxed mb-4">
+                        {doc.description}
+                      </p>
+                      <div className="flex gap-3">
+                        <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
+                          <Download className="h-4 w-4 mr-2" />
+                          Download PDF
+                        </Button>
+                        <Button size="sm" variant="outline">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          View Online
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </TabsContent>
+
+              <TabsContent value="background" className="space-y-6">
+                {backgroundDocs.map((doc, index) => (
+                  <Card key={index} className="hover:shadow-lg transition-shadow">
+                    <CardHeader>
+                      <CardTitle className="text-xl mb-2">{doc.title}</CardTitle>
+                      <CardDescription className="text-base">
+                        {doc.date}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center gap-2 mb-3">
+                        <Folder className="h-4 w-4 text-secondary" />
+                        <span className="text-sm font-medium text-secondary">{doc.type}</span>
+                      </div>
+                      <p className="text-foreground leading-relaxed mb-4">
+                        {doc.description}
+                      </p>
+                      <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
+                        <Download className="h-4 w-4 mr-2" />
+                        Download
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </TabsContent>
+
+              <TabsContent value="submissions" className="space-y-6">
+                {submissionDocs.map((doc, index) => (
+                  <Card key={index} className="hover:shadow-lg transition-shadow">
+                    <CardHeader>
+                      <CardTitle className="text-xl mb-2">{doc.title}</CardTitle>
+                      <CardDescription className="text-base">
+                        {doc.organization}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center gap-2 mb-3">
+                        <FileText className="h-4 w-4 text-secondary" />
+                        <span className="text-sm font-medium text-secondary">{doc.type}</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground mb-4">
+                        <Clock className="h-4 w-4" />
+                        {doc.date}
+                      </div>
                       <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
                         <Download className="h-4 w-4 mr-2" />
                         Download PDF
                       </Button>
-                      <Button size="sm" variant="outline">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        View Online
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </TabsContent>
-
-            <TabsContent value="background" className="space-y-6">
-              {backgroundDocs.map((doc, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="text-xl mb-2">{doc.title}</CardTitle>
-                    <CardDescription className="text-base">
-                      {doc.date}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center gap-2 mb-3">
-                      <Folder className="h-4 w-4 text-secondary" />
-                      <span className="text-sm font-medium text-secondary">{doc.type}</span>
-                    </div>
-                    <p className="text-foreground leading-relaxed mb-4">
-                      {doc.description}
-                    </p>
-                    <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
-                      <Download className="h-4 w-4 mr-2" />
-                      Download
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </TabsContent>
-
-            <TabsContent value="submissions" className="space-y-6">
-              {submissionDocs.map((doc, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="text-xl mb-2">{doc.title}</CardTitle>
-                    <CardDescription className="text-base">
-                      {doc.organization}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center gap-2 mb-3">
-                      <FileText className="h-4 w-4 text-secondary" />
-                      <span className="text-sm font-medium text-secondary">{doc.type}</span>
-                    </div>
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground mb-4">
-                      <Clock className="h-4 w-4" />
-                      {doc.date}
-                    </div>
-                    <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
-                      <Download className="h-4 w-4 mr-2" />
-                      Download PDF
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </TabsContent>
-          </Tabs>
+                    </CardContent>
+                  </Card>
+                ))}
+              </TabsContent>
+            </Tabs>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
