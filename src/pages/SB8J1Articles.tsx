@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import heroBannerImage from '@/assets/hero-banner-indigenous.jpg';
+import indigenousTraditionalKnowledgeImage from '@/assets/indigenous-traditional-knowledge.jpg';
 
 const SB8J1Articles = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -77,7 +77,7 @@ const SB8J1Articles = () => {
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroBannerImage})` }}
+          style={{ backgroundImage: `url(${indigenousTraditionalKnowledgeImage})` }}
         >
           <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>

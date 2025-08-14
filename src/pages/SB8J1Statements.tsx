@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, FileText, Download, Calendar, ChevronDown } from 'lucide-react';
@@ -10,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import indigenousVoicesImage from '@/assets/indigenous-voices.jpg';
 
 const SB8J1Statements = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,7 +56,7 @@ const SB8J1Statements = () => {
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(/assets/news-indigenous-body.jpg)` }}
+          style={{ backgroundImage: `url(${indigenousVoicesImage})` }}
         >
           <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>

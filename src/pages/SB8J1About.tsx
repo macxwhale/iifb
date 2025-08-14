@@ -22,7 +22,7 @@ const SB8J1About = () => {
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(/assets/news-indigenous-body.jpg)` }}
+          style={{ backgroundImage: `url(/assets/hero-banner-indigenous.jpg)` }}
         >
           <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>
