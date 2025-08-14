@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, Users, ArrowRight, MapPin, Clock, Globe } from 'lucide-react';
@@ -13,14 +14,8 @@ const EventsSection = () => {
         <div className="text-center mb-16 relative">
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-full blur-xl"></div>
           <div className="relative">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-2 h-2 rounded-full bg-secondary"></div>
-              <span className="text-sm font-bold text-secondary uppercase tracking-widest">Key Events</span>
-              <div className="w-2 h-2 rounded-full bg-secondary"></div>
-            </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Two Crucial
-              <span className="block text-secondary mt-2">Meetings</span>
+              Key Meetings
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-secondary to-primary mx-auto mb-6"></div>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -66,7 +61,7 @@ const EventsSection = () => {
                 27th meeting of the Subsidiary Body on Scientific, Technical and Technological Advice
               </CardDescription>
               <div className="flex items-center gap-2 text-2xl lg:text-3xl font-bold text-foreground mb-4">
-                <Calendar className="h-6 w-6" />
+                <Calendar className="h-6 w-6 text-primary" />
                 October 20-25, 2025
               </div>
             </CardHeader>
@@ -136,7 +131,7 @@ const EventsSection = () => {
                 First Meeting of the Subsidiary Body on Article 8(j) and Related Provisions
               </CardDescription>
               <div className="flex items-center gap-2 text-2xl lg:text-3xl font-bold text-foreground mb-4">
-                <Calendar className="h-6 w-6" />
+                <Calendar className="h-6 w-6 text-secondary" />
                 October 26-30, 2025
               </div>
             </CardHeader>

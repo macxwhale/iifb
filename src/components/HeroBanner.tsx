@@ -59,7 +59,7 @@ const HeroBanner = () => {
                     </Button>
                   </Link>
                   <Link to="/sb8j-1">
-                    <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full font-semibold backdrop-blur-sm bg-white/10">
+                    <Button size="lg" className="bg-secondary text-white hover:bg-secondary-hover w-full font-semibold shadow-lg">
                       SB8J-1
                     </Button>
                   </Link>
