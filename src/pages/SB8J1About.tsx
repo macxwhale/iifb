@@ -9,9 +9,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { usePexelsImage } from '@/hooks/usePexelsImage';
 
 const SB8J1About = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { imageUrl, isLoading } = usePexelsImage('sb8j-about');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -22,7 +24,11 @@ const SB8J1About = () => {
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(/assets/hero-banner-indigenous.jpg)` }}
+          style={{ 
+            backgroundImage: `url(${imageUrl})`,
+            opacity: isLoading ? 0.5 : 1,
+            transition: 'opacity 0.3s ease-in-out'
+          }}
         >
           <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>

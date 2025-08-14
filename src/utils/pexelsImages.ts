@@ -1,6 +1,5 @@
-
 // Pexels image search and download utility
-const PEXELS_API_KEY = 'YOUR_PEXELS_API_KEY'; // You'll need to get this from pexels.com/api
+const PEXELS_API_KEY = 'PnZA72E3BS2Iod8OM6FtdADHlwMDp44lEd2oYrjyKQWJ09zaps2KJAms';
 
 interface PexelsImage {
   id: number;
