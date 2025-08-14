@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import heroBannerImage from '@/assets/hero-banner-indigenous.jpg';
+import heroBannerImage from '@/assets/hero-banner.jpg';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -54,6 +54,7 @@ const SB8J1 = () => {
             <nav className="hidden md:block">
               <div className="flex items-center justify-center space-x-1 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl">
                 <Link to="/" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Home</Link>
+                <Link to="/sb8j-1/about" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">About</Link>
                 <Link to="/sb8j-1/statements" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Statements</Link>
                 <Link to="/sb8j-1/documents" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Documents</Link>
                 <Link to="/sb8j-1/news" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">News & Media</Link>
@@ -78,6 +79,7 @@ const SB8J1 = () => {
               <nav className="md:hidden mt-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl overflow-hidden">
                 <div className="flex flex-col">
                   <Link to="/" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Home</Link>
+                  <Link to="/sb8j-1/about" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">About</Link>
                   <Link to="/sb8j-1/statements" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Statements</Link>
                   <Link to="/sb8j-1/documents" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Documents</Link>
                   <Link to="/sb8j-1/news" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">News & Media</Link>
@@ -94,15 +96,6 @@ const SB8J1 = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="prose prose-lg max-w-none">
-              <div className="text-center mb-12">
-                <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                  About SB8J-1
-                </h2>
-                <p className="text-xl text-muted-foreground leading-relaxed">
-                  Understanding the First Meeting of the Subsidiary Body on Article 8(j) and Related Provisions
-                </p>
-              </div>
-
               <p className="text-xl text-foreground leading-relaxed mb-8">
                 The First Meeting of the Subsidiary Body on Article 8(j) (SB8J-1) will take place from 27–30 October 2025 in Panama City, Panama, following COP 16's historic decision to establish a permanent body focused on Indigenous Peoples and local communities (IPLCs). The meeting will address key issues such as Indigenous territories, traditional knowledge, and participation in biodiversity planning, with a strong focus on Indigenous women and youth, advancing the implementation of Article 8(j) and the Kunming-Montreal Global Biodiversity Framework.
               </p>
