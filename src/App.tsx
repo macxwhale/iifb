@@ -12,6 +12,11 @@ import SB8J1Statements from "./pages/SB8J1Statements";
 import SB8J1Documents from "./pages/SB8J1Documents";
 import SB8J1News from "./pages/SB8J1News";
 import SB8J1SideEvents from "./pages/SB8J1SideEvents";
+import SB8J1MediaCoverage from "./pages/SB8J1MediaCoverage";
+import SB8J1SocialToolkit from "./pages/SB8J1SocialToolkit";
+import SB8J1PressConferences from "./pages/SB8J1PressConferences";
+import SB8J1Articles from "./pages/SB8J1Articles";
+import SB8J1Videos from "./pages/SB8J1Videos";
 import Documents from "./pages/Documents";
 import Resources from "./pages/Resources";
 import About from "./pages/About";
@@ -35,6 +40,11 @@ const App = () => (
           <Route path="/sb8j-1/statements" element={<SB8J1Statements />} />
           <Route path="/sb8j-1/documents" element={<SB8J1Documents />} />
           <Route path="/sb8j-1/news" element={<SB8J1News />} />
+          <Route path="/sb8j-1/media-coverage" element={<SB8J1MediaCoverage />} />
+          <Route path="/sb8j-1/social-toolkit" element={<SB8J1SocialToolkit />} />
+          <Route path="/sb8j-1/press-conferences" element={<SB8J1PressConferences />} />
+          <Route path="/sb8j-1/articles" element={<SB8J1Articles />} />
+          <Route path="/sb8j-1/videos" element={<SB8J1Videos />} />
           <Route path="/sb8j-1/side-events" element={<SB8J1SideEvents />} />
           <Route path="/documents" element={<Documents />} />
           <Route path="/resources" element={<Resources />} />
