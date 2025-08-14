@@ -1,6 +1,5 @@
-
 import { useState } from 'react';
-import heroBannerImage from '@/assets/hero-banner-indigenous.jpg';
+import heroBannerImage from '@/assets/hero-banner.jpg';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
