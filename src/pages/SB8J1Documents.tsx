@@ -1,12 +1,16 @@
-
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, FileText, Download, ExternalLink, Folder, Clock } from 'lucide-react';
+import { Menu, X, FileText, Download, ExternalLink, Folder, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const SB8J1Documents = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   const officialDocs = [
     {
       title: "SB8J-1 Provisional Agenda",
@@ -97,25 +101,71 @@ const SB8J1Documents = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 text-center text-white py-16 lg:py-20">
-          <div className="mb-8">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
-              SB8J-1 Documents
-              <span className="block text-2xl md:text-3xl font-normal mt-2 opacity-90">
-                Official Resources & Materials
+        <div className="relative z-10 container mx-auto px-4 text-center text-white py-20 lg:py-24">
+          <div className="mb-12 lg:mb-16">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              SB8J-1
+              <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
+                First Meeting on Article 8(j)
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl mb-6 max-w-3xl mx-auto leading-relaxed opacity-90">
-              Official documents, background materials, and stakeholder submissions for the First Meeting of the Subsidiary Body on Article 8(j)
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90">
+              Historic milestone for Indigenous Peoples and local communities in biodiversity governance
             </p>
+            
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+              <div className="flex items-center space-x-2 text-lg">
+                <span className="w-2 h-2 bg-white rounded-full"></span>
+                <span>October 27-30, 2025</span>
+              </div>
+              <div className="flex items-center space-x-2 text-lg">
+                <span className="w-2 h-2 bg-white rounded-full"></span>
+                <span>Panama City, Panama</span>
+              </div>
+            </div>
           </div>
 
-          {/* Back Button */}
-          <Link to="/sb8j-1" className="inline-flex items-center gap-2 text-white/90 hover:text-white bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl transition-all duration-300">
-            <ArrowLeft className="h-4 w-4" />
-            Back to SB8J-1
-          </Link>
+          {/* Navigation */}
+          <div className="pt-8">
+            {/* Desktop Navigation */}
+            <nav className="hidden md:block">
+              <div className="flex items-center justify-center space-x-1 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl">
+                <Link to="/" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Home</Link>
+                <Link to="/sb8j-1/about" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">About</Link>
+                <Link to="/sb8j-1/statements" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Statements</Link>
+                <Link to="/sb8j-1/documents" className="px-4 py-2 text-white bg-white/20 rounded-full transition-all duration-300 text-sm font-medium">Documents</Link>
+                <Link to="/sb8j-1/news" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">News & Media</Link>
+                <Link to="/sb8j-1/side-events" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Side Events</Link>
+              </div>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex justify-center">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-white hover:bg-white/10 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg"
+                onClick={toggleMenu}
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </Button>
+            </div>
+
+            {/* Mobile Navigation */}
+            {isMenuOpen && (
+              <nav className="md:hidden mt-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl overflow-hidden">
+                <div className="flex flex-col">
+                  <Link to="/" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Home</Link>
+                  <Link to="/sb8j-1/about" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">About</Link>
+                  <Link to="/sb8j-1/statements" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Statements</Link>
+                  <Link to="/sb8j-1/documents" className="px-6 py-4 text-white bg-white/20 transition-all duration-300 border-b border-white/10">Documents</Link>
+                  <Link to="/sb8j-1/news" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">News & Media</Link>
+                  <Link to="/sb8j-1/side-events" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300">Side Events</Link>
+                </div>
+              </nav>
+            )}
+          </div>
         </div>
       </section>
 
