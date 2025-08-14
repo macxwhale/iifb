@@ -83,28 +83,42 @@ const SB8J1SideEvents = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header with Back Button */}
-      <div className="bg-card border-b border-border sticky top-0 z-50 shadow-soft">
-        <div className="container mx-auto px-4 py-4">
-          <Link to="/sb8j-1" className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors">
-            <ArrowLeft className="h-4 w-4" />
-            Back to SB8J-1
-          </Link>
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(/assets/sb8j-event.jpg)` }}
+        >
+          <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-4 text-center text-white py-16 lg:py-20">
+          <div className="mb-8">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
               SB8J-1 Side Events
+              <span className="block text-2xl md:text-3xl font-normal mt-2 opacity-90">
+                Cultural Exchange & Dialogue
+              </span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            
+            <p className="text-lg md:text-xl mb-6 max-w-3xl mx-auto leading-relaxed opacity-90">
               Parallel events, workshops, and cultural exchanges organized alongside the official SB8J-1 meeting to enhance dialogue and knowledge sharing
             </p>
           </div>
 
+          {/* Back Button */}
+          <Link to="/sb8j-1" className="inline-flex items-center gap-2 text-white/90 hover:text-white bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl transition-all duration-300">
+            <ArrowLeft className="h-4 w-4" />
+            Back to SB8J-1
+          </Link>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <div className="container mx-auto px-4 py-16">
+        <div className="max-w-6xl mx-auto">
           <div className="grid gap-8 mb-12">
             {sideEvents.map((event, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
