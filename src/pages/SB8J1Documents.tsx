@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Download, FileText, Calendar, ChevronDown } from 'lucide-react';
@@ -11,10 +10,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import indigenousDocumentsImage from '@/assets/indigenous-documents.jpg';
+import { usePexelsImage } from '@/hooks/usePexelsImage';
 
 const SB8J1Documents = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { imageUrl, isLoading } = usePexelsImage('sb8j-documents');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -82,7 +82,11 @@ const SB8J1Documents = () => {
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${indigenousDocumentsImage})` }}
+          style={{ 
+            backgroundImage: `url(${imageUrl})`,
+            opacity: isLoading ? 0.5 : 1,
+            transition: 'opacity 0.3s ease-in-out'
+          }}
         >
           <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>
