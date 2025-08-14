@@ -1,90 +1,75 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, FileText, Download, ExternalLink, Folder, Clock } from 'lucide-react';
+import { Menu, X, Download, FileText, Calendar, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 const SB8J1Documents = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const officialDocs = [
+  const documents = [
     {
-      title: "SB8J-1 Provisional Agenda",
-      code: "CBD/SB8J/1/1",
-      date: "September 2025",
-      type: "Agenda",
-      description: "Provisional agenda for the first meeting of the Subsidiary Body on Article 8(j) and related provisions.",
-      status: "Final"
+      title: "Provisional Agenda",
+      description: "Draft agenda for the first meeting of the Subsidiary Body on Article 8(j).",
+      date: "October 27, 2025",
+      fileType: "PDF",
+      fileSize: "2.1 MB",
+      url: "#",
+      category: "Official Documents"
     },
     {
-      title: "Modus Operandi Draft Guidelines",
-      code: "CBD/SB8J/1/2",
-      date: "October 2025",
-      type: "Working Document",
-      description: "Draft guidelines for the modus operandi of the Subsidiary Body on Article 8(j) and related provisions.",
-      status: "Draft"
+      title: "Compilation of Submissions",
+      description: "A compilation of submissions received from Parties and observers.",
+      date: "October 26, 2025",
+      fileType: "DOCX",
+      fileSize: "1.5 MB",
+      url: "#",
+      category: "Working Documents"
     },
     {
-      title: "Indigenous and Traditional Territories Guidelines",
-      code: "CBD/SB8J/1/3",
-      date: "October 2025",
-      type: "Technical Document",
-      description: "Draft guidelines on Indigenous and traditional territories in the context of the Kunming-Montreal Global Biodiversity Framework.",
-      status: "Draft"
+      title: "Annotated Provisional Agenda",
+      description: "Annotations to the provisional agenda, providing context and background.",
+      date: "October 25, 2025",
+      fileType: "PDF",
+      fileSize: "1.8 MB",
+      url: "#",
+      category: "Information Documents"
     },
     {
-      title: "Voluntary Glossary Update",
-      code: "CBD/SB8J/1/4",
-      date: "October 2025",
-      type: "Reference Document",
-      description: "Updated voluntary glossary of key terms and concepts related to Article 8(j) and related provisions.",
-      status: "Review"
-    }
-  ];
-
-  const backgroundDocs = [
-    {
-      title: "Article 8(j) and Related Provisions: Historical Overview",
-      date: "August 2025",
-      type: "Information Document",
-      description: "Comprehensive background on the development and implementation of Article 8(j) within the CBD framework."
+      title: "Report of the Expert Workshop",
+      description: "Report from the expert workshop on traditional knowledge.",
+      date: "October 24, 2025",
+      fileType: "PDF",
+      fileSize: "2.5 MB",
+      url: "#",
+      category: "Background Documents"
     },
     {
-      title: "Indigenous Knowledge Systems and Biodiversity Conservation",
-      date: "September 2025",
-      type: "Technical Report",
-      description: "Analysis of traditional knowledge contributions to global biodiversity conservation efforts."
+      title: "Draft Recommendations",
+      description: "Initial draft recommendations for consideration by the Subsidiary Body.",
+      date: "October 23, 2025",
+      fileType: "DOCX",
+      fileSize: "1.2 MB",
+      url: "#",
+      category: "Official Documents"
     },
     {
-      title: "KMGBF Target 3 and Indigenous Territories",
-      date: "September 2025",
-      type: "Policy Brief",
-      description: "Examination of how Indigenous territories contribute to achieving 30% protection targets under the KMGBF."
-    }
-  ];
-
-  const submissionDocs = [
-    {
-      title: "IIFB Submission on Modus Operandi",
-      organization: "International Indigenous Forum on Biodiversity",
-      date: "August 2025",
-      type: "Stakeholder Submission"
-    },
-    {
-      title: "Indigenous Women's Network Position",
-      organization: "Indigenous Women's Network for Biodiversity",
-      date: "September 2025",
-      type: "Stakeholder Submission"
-    },
-    {
-      title: "Forest Peoples Programme Recommendations",
-      organization: "Forest Peoples Programme",
-      date: "September 2025",
-      type: "Stakeholder Submission"
+      title: "Information Note for Participants",
+      description: "Essential information for participants attending the SB8J-1 meeting.",
+      date: "October 22, 2025",
+      fileType: "PDF",
+      fileSize: "0.9 MB",
+      url: "#",
+      category: "General Information"
     }
   ];
 
@@ -95,7 +80,7 @@ const SB8J1Documents = () => {
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(/assets/nature-forest.gif)` }}
+          style={{ backgroundImage: `url(/assets/news-indigenous-body.jpg)` }}
         >
           <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>
@@ -135,7 +120,49 @@ const SB8J1Documents = () => {
                 <Link to="/sb8j-1/about" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">About</Link>
                 <Link to="/sb8j-1/statements" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Statements</Link>
                 <Link to="/sb8j-1/documents" className="px-4 py-2 text-white bg-white/20 rounded-full transition-all duration-300 text-sm font-medium">Documents</Link>
-                <Link to="/sb8j-1/news" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">News & Media</Link>
+                
+                {/* News & Media Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="flex items-center px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">
+                      News & Media
+                      <ChevronDown className="ml-1 h-3 w-3" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-white border border-gray-200 shadow-lg min-w-[220px]">
+                    <DropdownMenuItem asChild>
+                      <Link to="/sb8j-1/news" className="w-full px-3 py-2 text-gray-700 hover:bg-gray-100">
+                        General News
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link to="/sb8j-1/media-coverage" className="w-full px-3 py-2 text-gray-700 hover:bg-gray-100">
+                        Media Coverage Links
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link to="/sb8j-1/social-toolkit" className="w-full px-3 py-2 text-gray-700 hover:bg-gray-100">
+                        IIFB Social Media Toolkit
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link to="/sb8j-1/press-conferences" className="w-full px-3 py-2 text-gray-700 hover:bg-gray-100">
+                        Press Conferences
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link to="/sb8j-1/articles" className="w-full px-3 py-2 text-gray-700 hover:bg-gray-100">
+                        Articles
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link to="/sb8j-1/videos" className="w-full px-3 py-2 text-gray-700 hover:bg-gray-100">
+                        Videos
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
                 <Link to="/sb8j-1/side-events" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Side Events</Link>
               </div>
             </nav>
@@ -160,7 +187,18 @@ const SB8J1Documents = () => {
                   <Link to="/sb8j-1/about" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">About</Link>
                   <Link to="/sb8j-1/statements" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Statements</Link>
                   <Link to="/sb8j-1/documents" className="px-6 py-4 text-white bg-white/20 transition-all duration-300 border-b border-white/10">Documents</Link>
-                  <Link to="/sb8j-1/news" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">News & Media</Link>
+                  
+                  {/* Mobile News & Media submenu */}
+                  <div className="border-b border-white/10">
+                    <div className="px-6 py-3 text-white/70 text-sm font-medium">News & Media</div>
+                    <Link to="/sb8j-1/news" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">General News</Link>
+                    <Link to="/sb8j-1/media-coverage" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Media Coverage Links</Link>
+                    <Link to="/sb8j-1/social-toolkit" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">IIFB Social Media Toolkit</Link>
+                    <Link to="/sb8j-1/press-conferences" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Press Conferences</Link>
+                    <Link to="/sb8j-1/articles" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Articles</Link>
+                    <Link to="/sb8j-1/videos" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Videos</Link>
+                  </div>
+                  
                   <Link to="/sb8j-1/side-events" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300">Side Events</Link>
                 </div>
               </nav>
@@ -172,111 +210,48 @@ const SB8J1Documents = () => {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
-          <Tabs defaultValue="official" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="official">Official Documents</TabsTrigger>
-              <TabsTrigger value="background">Background Materials</TabsTrigger>
-              <TabsTrigger value="submissions">Stakeholder Submissions</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="official" className="space-y-6">
-              {officialDocs.map((doc, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <CardTitle className="text-xl mb-2">{doc.title}</CardTitle>
-                        <CardDescription className="text-base">
-                          Document Code: {doc.code}
-                        </CardDescription>
-                      </div>
-                      <div className="flex flex-col items-end gap-2">
-                        <Badge variant={doc.status === "Final" ? "default" : "secondary"}>
-                          {doc.status}
-                        </Badge>
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                          <Clock className="h-4 w-4" />
-                          {doc.date}
-                        </div>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center gap-2 mb-3">
-                      <FileText className="h-4 w-4 text-secondary" />
-                      <span className="text-sm font-medium text-secondary">{doc.type}</span>
-                    </div>
-                    <p className="text-foreground leading-relaxed mb-4">
-                      {doc.description}
-                    </p>
-                    <div className="flex gap-3">
-                      <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
-                        <Download className="h-4 w-4 mr-2" />
-                        Download PDF
-                      </Button>
-                      <Button size="sm" variant="outline">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        View Online
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </TabsContent>
-
-            <TabsContent value="background" className="space-y-6">
-              {backgroundDocs.map((doc, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="text-xl mb-2">{doc.title}</CardTitle>
-                    <CardDescription className="text-base">
-                      {doc.date}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center gap-2 mb-3">
-                      <Folder className="h-4 w-4 text-secondary" />
-                      <span className="text-sm font-medium text-secondary">{doc.type}</span>
-                    </div>
-                    <p className="text-foreground leading-relaxed mb-4">
-                      {doc.description}
-                    </p>
-                    <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
-                      <Download className="h-4 w-4 mr-2" />
-                      Download
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </TabsContent>
-
-            <TabsContent value="submissions" className="space-y-6">
-              {submissionDocs.map((doc, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="text-xl mb-2">{doc.title}</CardTitle>
-                    <CardDescription className="text-base">
-                      {doc.organization}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center gap-2 mb-3">
-                      <FileText className="h-4 w-4 text-secondary" />
-                      <span className="text-sm font-medium text-secondary">{doc.type}</span>
-                    </div>
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground mb-4">
-                      <Clock className="h-4 w-4" />
+          <div className="grid gap-8">
+            {documents.map((doc, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <CardTitle className="text-xl md:text-2xl leading-tight">
+                      {doc.title}
+                    </CardTitle>
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <Calendar className="h-4 w-4" />
                       {doc.date}
                     </div>
-                    <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
+                  </div>
+                  <CardDescription>{doc.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-between">
+                    <Badge variant="secondary">
+                      {doc.category}
+                    </Badge>
+                    <Button variant="outline">
                       <Download className="h-4 w-4 mr-2" />
-                      Download PDF
+                      Download ({doc.fileType}, {doc.fileSize})
                     </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </TabsContent>
-          </Tabs>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-16 bg-card p-8 rounded-lg border border-border/50">
+            <div className="flex items-center gap-3 mb-4">
+              <FileText className="h-6 w-6 text-secondary" />
+              <h3 className="text-xl font-bold text-foreground">Additional Resources</h3>
+            </div>
+            <p className="text-muted-foreground mb-6 leading-relaxed">
+              Explore further resources, including reports, publications, and multimedia content related to Article 8(j) and the rights of Indigenous Peoples.
+            </p>
+            <Button className="bg-secondary text-white hover:bg-secondary-hover">
+              View All Resources
+            </Button>
+          </div>
         </div>
       </div>
     </div>
