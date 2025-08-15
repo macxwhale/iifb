@@ -2,40 +2,34 @@
 import { Grid, List, LayoutGrid } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-type ViewMode = 'grid' | 'list' | 'cards';
+export type ViewMode = 'grid' | 'list' | 'cards';
 
 interface ViewToggleProps {
-  viewMode: ViewMode;
-  onViewModeChange: (mode: ViewMode) => void;
+  currentView: ViewMode;
+  onViewChange: (view: ViewMode) -> void;
 }
 
-const ViewToggle = ({ viewMode, onViewModeChange }: ViewToggleProps) => {
+const ViewToggle = ({ currentView, onViewChange }: ViewToggleProps) => {
+  const viewOptions = [
+    { value: 'cards' as ViewMode, icon: LayoutGrid, label: 'Cards' },
+    { value: 'grid' as ViewMode, icon: Grid, label: 'Grid' },
+    { value: 'list' as ViewMode, icon: List, label: 'List' }
+  ];
+
   return (
-    <div className="flex items-center gap-2 bg-card border border-border rounded-lg p-1">
-      <Button
-        variant={viewMode === 'grid' ? 'default' : 'ghost'}
-        size="sm"
-        onClick={() => onViewModeChange('grid')}
-        className="h-8 px-3"
-      >
-        <Grid className="h-4 w-4" />
-      </Button>
-      <Button
-        variant={viewMode === 'list' ? 'default' : 'ghost'}
-        size="sm"
-        onClick={() => onViewModeChange('list')}
-        className="h-8 px-3"
-      >
-        <List className="h-4 w-4" />
-      </Button>
-      <Button
-        variant={viewMode === 'cards' ? 'default' : 'ghost'}
-        size="sm"
-        onClick={() => onViewModeChange('cards')}
-        className="h-8 px-3"
-      >
-        <LayoutGrid className="h-4 w-4" />
-      </Button>
+    <div className="flex items-center gap-1 bg-muted rounded-lg p-1">
+      {viewOptions.map(({ value, icon: Icon, label }) => (
+        <Button
+          key={value}
+          variant={currentView === value ? "default" : "ghost"}
+          size="sm"
+          onClick={() => onViewChange(value)}
+          className="h-8 px-3"
+        >
+          <Icon className="h-4 w-4 mr-1" />
+          <span className="hidden sm:inline">{label}</span>
+        </Button>
+      ))}
     </div>
   );
 };

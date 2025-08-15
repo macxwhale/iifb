@@ -11,13 +11,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePexelsImage } from '@/hooks/usePexelsImage';
-import ViewToggle from '@/components/ViewToggle';
-
-type ViewMode = 'grid' | 'list' | 'cards';
 
 const SB8J1Statements = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [viewMode, setViewMode] = useState<ViewMode>('cards');
   const { imageUrl, isLoading } = usePexelsImage('sb8j-statements');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -52,119 +48,6 @@ const SB8J1Statements = () => {
       file: "/assets/youth-statement-equity.pdf"
     }
   ];
-
-  const renderContent = () => {
-    if (viewMode === 'grid') {
-      return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {statements.map((statement, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow h-full flex flex-col">
-              <CardHeader className="flex-1">
-                <div className="flex items-center gap-1 text-sm text-muted-foreground mb-2">
-                  <Calendar className="h-4 w-4" />
-                  {statement.date}
-                </div>
-                <CardTitle className="text-lg leading-tight line-clamp-2">
-                  {statement.title}
-                </CardTitle>
-                <CardDescription className="line-clamp-1">
-                  {statement.author}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <p className="text-foreground leading-relaxed mb-4 line-clamp-3">
-                  {statement.summary}
-                </p>
-                <div className="flex gap-2">
-                  <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover flex-1">
-                    <FileText className="h-4 w-4 mr-2" />
-                    Read
-                  </Button>
-                  <Button size="sm" variant="outline" className="flex-1">
-                    <Download className="h-4 w-4 mr-2" />
-                    PDF
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      );
-    }
-
-    if (viewMode === 'list') {
-      return (
-        <div className="space-y-4">
-          {statements.map((statement, index) => (
-            <div key={index} className="flex items-center gap-4 p-4 border border-border rounded-lg hover:shadow-md transition-shadow">
-              <div className="flex-1">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-lg font-semibold line-clamp-1">{statement.title}</h3>
-                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                    <Calendar className="h-4 w-4" />
-                    {statement.date}
-                  </div>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">{statement.author}</p>
-                <p className="text-foreground leading-relaxed line-clamp-2">{statement.summary}</p>
-              </div>
-              <div className="flex gap-2">
-                <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
-                  <FileText className="h-4 w-4 mr-2" />
-                  Read
-                </Button>
-                <Button size="sm" variant="outline">
-                  <Download className="h-4 w-4 mr-2" />
-                  PDF
-                </Button>
-              </div>
-            </div>
-          ))}
-        </div>
-      );
-    }
-
-    // Default cards view
-    return (
-      <div className="grid gap-8">
-        {statements.map((statement, index) => (
-          <Card key={index} className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <CardTitle className="text-xl md:text-2xl mb-2 leading-tight">
-                    {statement.title}
-                  </CardTitle>
-                  <CardDescription>
-                    {statement.author}
-                  </CardDescription>
-                </div>
-                <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                  <Calendar className="h-4 w-4" />
-                  {statement.date}
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-foreground leading-relaxed mb-4">
-                {statement.summary}
-              </p>
-              <div className="flex gap-3">
-                <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
-                  <FileText className="h-4 w-4 mr-2" />
-                  Read Full Statement
-                </Button>
-                <Button size="sm" variant="outline">
-                  <Download className="h-4 w-4 mr-2" />
-                  Download PDF
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    );
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -309,13 +192,43 @@ const SB8J1Statements = () => {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
-          {/* View Toggle */}
-          <div className="flex justify-end mb-8">
-            <ViewToggle viewMode={viewMode} onViewModeChange={setViewMode} />
+          <div className="grid gap-8">
+            {statements.map((statement, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <CardTitle className="text-xl md:text-2xl mb-2 leading-tight">
+                        {statement.title}
+                      </CardTitle>
+                      <CardDescription>
+                        {statement.author}
+                      </CardDescription>
+                    </div>
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <Calendar className="h-4 w-4" />
+                      {statement.date}
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-foreground leading-relaxed mb-4">
+                    {statement.summary}
+                  </p>
+                  <div className="flex gap-3">
+                    <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
+                      <FileText className="h-4 w-4 mr-2" />
+                      Read Full Statement
+                    </Button>
+                    <Button size="sm" variant="outline">
+                      <Download className="h-4 w-4 mr-2" />
+                      Download PDF
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
-
-          {/* Content */}
-          {renderContent()}
         </div>
       </div>
     </div>
