@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -26,13 +27,11 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))',
-					hover: 'hsl(var(--primary-hover))'
+					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))',
-					hover: 'hsl(var(--secondary-hover))'
+					foreground: 'hsl(var(--secondary-foreground))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -44,8 +43,7 @@ export default {
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))',
-					hover: 'hsl(var(--accent-hover))'
+					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -85,10 +83,6 @@ export default {
 				'soft': 'var(--shadow-soft)',
 				'medium': 'var(--shadow-medium)',
 				'strong': 'var(--shadow-strong)'
-			},
-			transitionTimingFunction: {
-				'smooth': 'var(--transition-smooth)',
-				'spring': 'var(--transition-spring)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

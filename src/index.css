@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,17 +22,14 @@ All colors MUST be HSL.
     /* IIFB Rust Primary */
     --primary: 15 75% 45%;
     --primary-foreground: 0 0% 98%;
-    --primary-hover: 15 75% 40%;
 
     /* Deep Forest Secondary */
     --secondary: 140 60% 25%;
     --secondary-foreground: 0 0% 98%;
-    --secondary-hover: 140 60% 20%;
 
     /* Warm Orange Accent */
     --accent: 25 85% 55%;
     --accent-foreground: 0 0% 98%;
-    --accent-hover: 25 85% 50%;
 
     /* Earth Muted Tones */
     --muted: 28 20% 94%;
@@ -66,24 +64,13 @@ All colors MUST be HSL.
     --shadow-medium: 0 8px 30px hsl(var(--iifb-rust) / 0.15);
     --shadow-strong: 0 20px 60px hsl(var(--iifb-rust) / 0.2);
 
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
