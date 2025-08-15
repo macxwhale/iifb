@@ -6,7 +6,7 @@ export type ViewMode = 'grid' | 'list' | 'cards';
 
 interface ViewToggleProps {
   currentView: ViewMode;
-  onViewChange: (view: ViewMode) => void;
+  onViewChange: (view: ViewMode) -> void;
 }
 
 const ViewToggle = ({ currentView, onViewChange }: ViewToggleProps) => {
