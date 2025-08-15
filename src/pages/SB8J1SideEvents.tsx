@@ -12,9 +12,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePexelsImage } from '@/hooks/usePexelsImage';
+import ViewToggle from '@/components/ViewToggle';
+
+type ViewType = 'grid' | 'list' | 'cards';
 
 const SB8J1SideEvents = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentView, setCurrentView] = useState<ViewType>('cards');
   const { imageUrl, isLoading } = usePexelsImage('sb8j-side-events');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -76,11 +80,128 @@ const SB8J1SideEvents = () => {
     }
   ];
 
+  const renderSideEvents = () => {
+    if (currentView === 'grid') {
+      return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {sideEvents.map((event, index) => (
+            <Card key={index} className="hover:shadow-lg transition-shadow">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg leading-tight line-clamp-2 mb-2">
+                  {event.title}
+                </CardTitle>
+                <CardDescription className="text-sm line-clamp-1">
+                  {event.organizers}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2 mb-3 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="h-3 w-3" />
+                    {event.date}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-3 w-3" />
+                    {event.time}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-3 w-3" />
+                    <span className="line-clamp-1">{event.location}</span>
+                  </div>
+                </div>
+                <p className="text-sm text-foreground leading-relaxed mb-3 line-clamp-3">
+                  {event.description}
+                </p>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <Users className="h-3 w-3" />
+                  <span className="line-clamp-1">{event.attendees}</span>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      );
+    }
+
+    if (currentView === 'list') {
+      return (
+        <div className="space-y-2">
+          {sideEvents.map((event, index) => (
+            <div key={index} className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-start gap-3">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-medium truncate mb-1">{event.title}</h3>
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-3 w-3" />
+                        {event.date}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-3 w-3" />
+                        {event.time}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <MapPin className="h-3 w-3" />
+                        {event.location}
+                      </div>
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-1 line-clamp-1">{event.organizers}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    // Default cards view
+    return (
+      <div className="grid gap-8">
+        {sideEvents.map((event, index) => (
+          <Card key={index} className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <CardTitle className="text-xl md:text-2xl mb-2 leading-tight">
+                {event.title}
+              </CardTitle>
+              <CardDescription>
+                {event.organizers}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-4 mb-4 text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4" />
+                  {event.date}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="h-4 w-4" />
+                  {event.time}
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4" />
+                  {event.location}
+                </div>
+              </div>
+              <p className="text-foreground leading-relaxed mb-4">
+                {event.description}
+              </p>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Users className="h-4 w-4" />
+                {event.attendees}
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative min-h-fit h-auto overflow-hidden">
-        {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full"
           style={{ 
@@ -92,7 +213,6 @@ const SB8J1SideEvents = () => {
           <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>
 
-        {/* Content */}
         <div className="relative z-10 flex flex-col justify-between min-h-[50vh] sm:min-h-[45vh] md:min-h-[40vh] lg:min-h-[35vh] xl:min-h-[30vh] max-w-6xl mx-auto px-6 lg:px-8 py-6 sm:py-8 md:py-10 lg:py-12">
           <div className="flex-1 flex items-center">
             <div className="text-white text-center w-full">
@@ -118,20 +238,17 @@ const SB8J1SideEvents = () => {
                 </div>
               </div>
 
-              {/* Navigation */}
               <div className="pt-8">
-                {/* Desktop Navigation */}
                 <nav className="hidden md:block">
                   <div className="flex items-center justify-center space-x-1 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl">
-                    <Link to="/" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">Home</Link>
-                    <Link to="/sb8j-1/about" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">About</Link>
-                    <Link to="/sb8j-1/statements" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">Statements</Link>
-                    <Link to="/sb8j-1/documents" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">Documents</Link>
+                    <Link to="/" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-lg font-medium">Home</Link>
+                    <Link to="/sb8j-1/about" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-lg font-medium">About</Link>
+                    <Link to="/sb8j-1/statements" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-lg font-medium">Statements</Link>
+                    <Link to="/sb8j-1/documents" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-lg font-medium">Documents</Link>
                     
-                    {/* News & Media Dropdown */}
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <button className="flex items-center px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">
+                        <button className="flex items-center px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-lg font-medium">
                           News & Media
                           <ChevronDown className="ml-1 h-3 w-3" />
                         </button>
@@ -170,11 +287,10 @@ const SB8J1SideEvents = () => {
                       </DropdownMenuContent>
                     </DropdownMenu>
 
-                    <Link to="/sb8j-1/side-events" className="px-4 py-2 text-white bg-white/20 rounded-full transition-all duration-300 text-xl font-medium">Side Events</Link>
+                    <Link to="/sb8j-1/side-events" className="px-4 py-2 text-white bg-white/20 rounded-full transition-all duration-300 text-lg font-medium">Side Events</Link>
                   </div>
                 </nav>
 
-                {/* Mobile Menu Button */}
                 <div className="md:hidden flex justify-center">
                   <Button
                     variant="ghost"
@@ -186,27 +302,25 @@ const SB8J1SideEvents = () => {
                   </Button>
                 </div>
 
-                {/* Mobile Navigation */}
                 {isMenuOpen && (
                   <nav className="md:hidden mt-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl overflow-hidden">
                     <div className="flex flex-col">
-                      <Link to="/" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-xl">Home</Link>
-                      <Link to="/sb8j-1/about" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-xl">About</Link>
-                      <Link to="/sb8j-1/statements" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-xl">Statements</Link>
-                      <Link to="/sb8j-1/documents" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-xl">Documents</Link>
+                      <Link to="/" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-lg">Home</Link>
+                      <Link to="/sb8j-1/about" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-lg">About</Link>
+                      <Link to="/sb8j-1/statements" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-lg">Statements</Link>
+                      <Link to="/sb8j-1/documents" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-lg">Documents</Link>
                       
-                      {/* Mobile News & Media submenu */}
                       <div className="border-b border-white/10">
-                        <div className="px-6 py-3 text-white/70 text-xl font-medium">News & Media</div>
-                        <Link to="/sb8j-1/news" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">General News</Link>
-                        <Link to="/sb8j-1/media-coverage" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Media Coverage Links</Link>
-                        <Link to="/sb8j-1/social-toolkit" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">IIFB Social Media Toolkit</Link>
-                        <Link to="/sb8j-1/press-conferences" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Press Conferences</Link>
-                        <Link to="/sb8j-1/articles" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Articles</Link>
-                        <Link to="/sb8j-1/videos" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Videos</Link>
+                        <div className="px-6 py-3 text-white/70 text-lg font-medium">News & Media</div>
+                        <Link to="/sb8j-1/news" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">General News</Link>
+                        <Link to="/sb8j-1/media-coverage" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">Media Coverage Links</Link>
+                        <Link to="/sb8j-1/social-toolkit" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">IIFB Social Media Toolkit</Link>
+                        <Link to="/sb8j-1/press-conferences" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">Press Conferences</Link>
+                        <Link to="/sb8j-1/articles" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">Articles</Link>
+                        <Link to="/sb8j-1/videos" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">Videos</Link>
                       </div>
                       
-                      <Link to="/sb8j-1/side-events" className="px-6 py-4 text-white bg-white/20 transition-all duration-300 text-xl">Side Events</Link>
+                      <Link to="/sb8j-1/side-events" className="px-6 py-4 text-white bg-white/20 transition-all duration-300 text-lg">Side Events</Link>
                     </div>
                   </nav>
                 )}
@@ -219,44 +333,15 @@ const SB8J1SideEvents = () => {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-foreground mb-8">Side Events</h2>
-          <div className="grid gap-8">
-            {sideEvents.map((event, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-xl md:text-2xl mb-2 leading-tight">
-                    {event.title}
-                  </CardTitle>
-                  <CardDescription>
-                    {event.organizers}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-4 mb-4 text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4" />
-                      {event.date}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4" />
-                      {event.time}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4" />
-                      {event.location}
-                    </div>
-                  </div>
-                  <p className="text-foreground leading-relaxed mb-4">
-                    {event.description}
-                  </p>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Users className="h-4 w-4" />
-                    {event.attendees}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold text-foreground mb-2">Side Events</h2>
+              <p className="text-muted-foreground">Special events and activities during SB8J-1</p>
+            </div>
+            <ViewToggle currentView={currentView} onViewChange={setCurrentView} />
           </div>
+          
+          {renderSideEvents()}
         </div>
       </div>
     </div>

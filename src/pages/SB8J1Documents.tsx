@@ -12,9 +12,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePexelsImage } from '@/hooks/usePexelsImage';
+import ViewToggle from '@/components/ViewToggle';
+
+type ViewType = 'grid' | 'list' | 'cards';
 
 const SB8J1Documents = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentView, setCurrentView] = useState<ViewType>('cards');
   const { imageUrl, isLoading } = usePexelsImage('sb8j-documents');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -76,6 +80,101 @@ const SB8J1Documents = () => {
     }
   ];
 
+  const renderDocuments = () => {
+    if (currentView === 'grid') {
+      return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {documents.map((doc, index) => (
+            <Card key={index} className="hover:shadow-lg transition-shadow">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg leading-tight line-clamp-2">
+                  {doc.title}
+                </CardTitle>
+                <Badge variant="secondary" className="w-fit">
+                  {doc.category}
+                </Badge>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{doc.description}</p>
+                <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-3 w-3" />
+                    {doc.date}
+                  </div>
+                </div>
+                <Button variant="outline" size="sm" className="w-full">
+                  <Download className="h-3 w-3 mr-2" />
+                  {doc.fileType} ({doc.fileSize})
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      );
+    }
+
+    if (currentView === 'list') {
+      return (
+        <div className="space-y-2">
+          {documents.map((doc, index) => (
+            <div key={index} className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-3">
+                  <FileText className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-medium truncate">{doc.title}</h3>
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      <span>{doc.category}</span>
+                      <span>•</span>
+                      <span>{doc.date}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <Button variant="outline" size="sm">
+                <Download className="h-4 w-4 mr-2" />
+                {doc.fileType} ({doc.fileSize})
+              </Button>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    // Default cards view
+    return (
+      <div className="grid gap-8">
+        {documents.map((doc, index) => (
+          <Card key={index} className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <div className="flex items-start justify-between">
+                <CardTitle className="text-xl md:text-2xl leading-tight">
+                  {doc.title}
+                </CardTitle>
+                <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                  <Calendar className="h-4 w-4" />
+                  {doc.date}
+                </div>
+              </div>
+              <CardDescription>{doc.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-between">
+                <Badge variant="secondary">
+                  {doc.category}
+                </Badge>
+                <Button variant="outline">
+                  <Download className="h-4 w-4 mr-2" />
+                  Download ({doc.fileType}, {doc.fileSize})
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -123,15 +222,15 @@ const SB8J1Documents = () => {
                 {/* Desktop Navigation */}
                 <nav className="hidden md:block">
                   <div className="flex items-center justify-center space-x-1 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl">
-                    <Link to="/" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">Home</Link>
-                    <Link to="/sb8j-1/about" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">About</Link>
-                    <Link to="/sb8j-1/statements" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">Statements</Link>
-                    <Link to="/sb8j-1/documents" className="px-4 py-2 text-white bg-white/20 rounded-full transition-all duration-300 text-xl font-medium">Documents</Link>
+                    <Link to="/" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-lg font-medium">Home</Link>
+                    <Link to="/sb8j-1/about" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-lg font-medium">About</Link>
+                    <Link to="/sb8j-1/statements" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-lg font-medium">Statements</Link>
+                    <Link to="/sb8j-1/documents" className="px-4 py-2 text-white bg-white/20 rounded-full transition-all duration-300 text-lg font-medium">Documents</Link>
                     
                     {/* News & Media Dropdown */}
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <button className="flex items-center px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">
+                        <button className="flex items-center px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-lg font-medium">
                           News & Media
                           <ChevronDown className="ml-1 h-3 w-3" />
                         </button>
@@ -170,7 +269,7 @@ const SB8J1Documents = () => {
                       </DropdownMenuContent>
                     </DropdownMenu>
 
-                    <Link to="/sb8j-1/side-events" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">Side Events</Link>
+                    <Link to="/sb8j-1/side-events" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-lg font-medium">Side Events</Link>
                   </div>
                 </nav>
 
@@ -190,23 +289,23 @@ const SB8J1Documents = () => {
                 {isMenuOpen && (
                   <nav className="md:hidden mt-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl overflow-hidden">
                     <div className="flex flex-col">
-                      <Link to="/" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-xl">Home</Link>
-                      <Link to="/sb8j-1/about" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-xl">About</Link>
-                      <Link to="/sb8j-1/statements" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-xl">Statements</Link>
-                      <Link to="/sb8j-1/documents" className="px-6 py-4 text-white bg-white/20 transition-all duration-300 border-b border-white/10 text-xl">Documents</Link>
+                      <Link to="/" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-lg">Home</Link>
+                      <Link to="/sb8j-1/about" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-lg">About</Link>
+                      <Link to="/sb8j-1/statements" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-lg">Statements</Link>
+                      <Link to="/sb8j-1/documents" className="px-6 py-4 text-white bg-white/20 transition-all duration-300 border-b border-white/10 text-lg">Documents</Link>
                       
                       {/* Mobile News & Media submenu */}
                       <div className="border-b border-white/10">
-                        <div className="px-6 py-3 text-white/70 text-xl font-medium">News & Media</div>
-                        <Link to="/sb8j-1/news" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">General News</Link>
-                        <Link to="/sb8j-1/media-coverage" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Media Coverage Links</Link>
-                        <Link to="/sb8j-1/social-toolkit" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">IIFB Social Media Toolkit</Link>
-                        <Link to="/sb8j-1/press-conferences" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Press Conferences</Link>
-                        <Link to="/sb8j-1/articles" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Articles</Link>
-                        <Link to="/sb8j-1/videos" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Videos</Link>
+                        <div className="px-6 py-3 text-white/70 text-lg font-medium">News & Media</div>
+                        <Link to="/sb8j-1/news" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">General News</Link>
+                        <Link to="/sb8j-1/media-coverage" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">Media Coverage Links</Link>
+                        <Link to="/sb8j-1/social-toolkit" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">IIFB Social Media Toolkit</Link>
+                        <Link to="/sb8j-1/press-conferences" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">Press Conferences</Link>
+                        <Link to="/sb8j-1/articles" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">Articles</Link>
+                        <Link to="/sb8j-1/videos" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">Videos</Link>
                       </div>
                       
-                      <Link to="/sb8j-1/side-events" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-xl">Side Events</Link>
+                      <Link to="/sb8j-1/side-events" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Side Events</Link>
                     </div>
                   </nav>
                 )}
@@ -219,35 +318,15 @@ const SB8J1Documents = () => {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
-          <div className="grid gap-8">
-            {documents.map((doc, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <CardTitle className="text-xl md:text-2xl leading-tight">
-                      {doc.title}
-                    </CardTitle>
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                      <Calendar className="h-4 w-4" />
-                      {doc.date}
-                    </div>
-                  </div>
-                  <CardDescription>{doc.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <Badge variant="secondary">
-                      {doc.category}
-                    </Badge>
-                    <Button variant="outline">
-                      <Download className="h-4 w-4 mr-2" />
-                      Download ({doc.fileType}, {doc.fileSize})
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold text-foreground mb-2">Documents</h2>
+              <p className="text-muted-foreground">Official documents and resources for SB8J-1</p>
+            </div>
+            <ViewToggle currentView={currentView} onViewChange={setCurrentView} />
           </div>
+
+          {renderDocuments()}
 
           <div className="mt-16 bg-card p-8 rounded-lg border border-border/50">
             <div className="flex items-center gap-3 mb-4">

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ExternalLink, Calendar, ChevronDown } from 'lucide-react';
@@ -12,9 +11,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePexelsImage } from '@/hooks/usePexelsImage';
+import ViewToggle from '@/components/ViewToggle';
+
+type ViewType = 'grid' | 'list' | 'cards';
 
 const SB8J1MediaCoverage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentView, setCurrentView] = useState<ViewType>('cards');
   const { imageUrl, isLoading } = usePexelsImage('sb8j-media-coverage');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -65,9 +68,118 @@ const SB8J1MediaCoverage = () => {
     }
   ];
 
+  const renderMediaItems = () => {
+    if (currentView === 'grid') {
+      return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {mediaItems.map((item, index) => (
+            <Card key={index} className="hover:shadow-lg transition-shadow">
+              <CardHeader className="pb-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <Badge variant="secondary">{item.type}</Badge>
+                  {item.duration && (
+                    <Badge variant="outline" className="text-xs">{item.duration}</Badge>
+                  )}
+                </div>
+                <CardTitle className="text-lg leading-tight line-clamp-2">
+                  {item.title}
+                </CardTitle>
+                <CardDescription className="text-sm line-clamp-1">{item.source}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{item.description}</p>
+                <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-3 w-3" />
+                    {item.date}
+                  </div>
+                </div>
+                <Button size="sm" className="w-full bg-secondary text-white hover:bg-secondary-hover">
+                  <ExternalLink className="h-3 w-3 mr-2" />
+                  View
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      );
+    }
+
+    if (currentView === 'list') {
+      return (
+        <div className="space-y-2">
+          {mediaItems.map((item, index) => (
+            <div key={index} className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-3">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="font-medium truncate">{item.title}</h3>
+                      <Badge variant="secondary" className="text-xs">{item.type}</Badge>
+                    </div>
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      <span>{item.source}</span>
+                      <span>•</span>
+                      <span>{item.date}</span>
+                      {item.duration && (
+                        <>
+                          <span>•</span>
+                          <span>{item.duration}</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
+                <ExternalLink className="h-4 w-4 mr-2" />
+                View
+              </Button>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    // Default cards view
+    return (
+      <div className="grid gap-6">
+        {mediaItems.map((item, index) => (
+          <Card key={index} className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Badge variant="secondary">{item.type}</Badge>
+                    {item.duration && (
+                      <Badge variant="outline">{item.duration}</Badge>
+                    )}
+                  </div>
+                  <CardTitle className="text-xl mb-2">{item.title}</CardTitle>
+                  <CardDescription className="text-base font-medium">{item.source}</CardDescription>
+                </div>
+                <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                  <Calendar className="h-4 w-4" />
+                  {item.date}
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="text-foreground leading-relaxed mb-4">{item.description}</p>
+              <Button className="bg-secondary text-white hover:bg-secondary-hover">
+                <ExternalLink className="h-4 w-4 mr-2" />
+                View Coverage
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
+      {/* Hero Section - keep existing code for hero section */}
       <section className="relative min-h-fit h-auto overflow-hidden">
         {/* Background Image */}
         <div 
@@ -107,7 +219,7 @@ const SB8J1MediaCoverage = () => {
                 </div>
               </div>
 
-              {/* Navigation */}
+              {/* Navigation - keep existing navigation code */}
               <div className="pt-8">
                 {/* Desktop Navigation */}
                 <nav className="hidden md:block">
@@ -208,44 +320,15 @@ const SB8J1MediaCoverage = () => {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Media Coverage Links</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              External news coverage, podcasts, and interviews about SB8J-1 and Indigenous Peoples' participation in biodiversity governance.
-            </p>
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold text-foreground mb-2">Media Coverage Links</h2>
+              <p className="text-muted-foreground">External news coverage, podcasts, and interviews about SB8J-1</p>
+            </div>
+            <ViewToggle currentView={currentView} onViewChange={setCurrentView} />
           </div>
 
-          <div className="grid gap-6">
-            {mediaItems.map((item, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Badge variant="secondary">{item.type}</Badge>
-                        {item.duration && (
-                          <Badge variant="outline">{item.duration}</Badge>
-                        )}
-                      </div>
-                      <CardTitle className="text-xl mb-2">{item.title}</CardTitle>
-                      <CardDescription className="text-base font-medium">{item.source}</CardDescription>
-                    </div>
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                      <Calendar className="h-4 w-4" />
-                      {item.date}
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-foreground leading-relaxed mb-4">{item.description}</p>
-                  <Button className="bg-secondary text-white hover:bg-secondary-hover">
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    View Coverage
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {renderMediaItems()}
         </div>
       </div>
     </div>
