@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ExternalLink, Calendar, User, ChevronDown } from 'lucide-react';
@@ -12,12 +11,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePexelsImage } from '@/hooks/usePexelsImage';
+import ViewToggle, { ViewType } from '@/components/ViewToggle';
 
 const SB8J1Articles = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentView, setCurrentView] = useState<ViewType>(() => {
+    const saved = localStorage.getItem('sb8j-articles-view');
+    return (saved as ViewType) || 'cards';
+  });
   const { imageUrl, isLoading } = usePexelsImage('sb8j-articles');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleViewChange = (view: ViewType) => {
+    setCurrentView(view);
+    localStorage.setItem('sb8j-articles-view', view);
+  };
 
   const articles = [
     {
@@ -79,6 +88,160 @@ const SB8J1Articles = () => {
 
   const featuredArticle = articles.find(article => article.featured);
   const regularArticles = articles.filter(article => !article.featured);
+
+  const renderCardsView = () => (
+    <div>
+      {/* Featured Article */}
+      {featuredArticle && (
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-foreground mb-6">Featured Article</h3>
+          <Card className="overflow-hidden bg-card border-2 border-primary shadow-xl">
+            <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10 pb-8">
+              <div className="flex items-center gap-2 mb-3">
+                <Badge className="bg-primary text-white">Featured</Badge>
+                <Badge variant="outline">{featuredArticle.category}</Badge>
+              </div>
+              <CardTitle className="text-2xl lg:text-3xl mb-4">{featuredArticle.title}</CardTitle>
+              <CardDescription className="text-lg">{featuredArticle.excerpt}</CardDescription>
+            </CardHeader>
+            <CardContent className="p-8">
+              <div className="flex items-center gap-6 mb-6 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <User className="h-4 w-4" />
+                  {featuredArticle.author}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4" />
+                  {featuredArticle.date}
+                </div>
+                <span>{featuredArticle.readTime}</span>
+              </div>
+              <Button size="lg" className="bg-secondary text-white hover:bg-secondary-hover">
+                <ExternalLink className="h-4 w-4 mr-2" />
+                Read Full Article
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Articles Grid */}
+      <div>
+        <h3 className="text-2xl font-bold text-foreground mb-6">All Articles</h3>
+        <div className="grid md:grid-cols-2 gap-8">
+          {regularArticles.map((article, index) => (
+            <Card key={index} className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <div className="flex items-center justify-between mb-3">
+                  <Badge variant="secondary">{article.category}</Badge>
+                  <span className="text-sm text-muted-foreground">{article.readTime}</span>
+                </div>
+                <CardTitle className="text-xl">{article.title}</CardTitle>
+                <CardDescription>{article.excerpt}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1">
+                    <User className="h-3 w-3" />
+                    {article.author}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-3 w-3" />
+                    {article.date}
+                  </div>
+                </div>
+                <Button variant="outline" className="w-full">
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  Read Article
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderGridView = () => (
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {articles.map((article, index) => (
+        <Card key={index} className={`hover:shadow-lg transition-shadow ${article.featured ? 'border-2 border-primary' : ''}`}>
+          <CardHeader>
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                {article.featured && <Badge className="bg-primary text-white text-xs">Featured</Badge>}
+                <Badge variant="secondary" className="text-xs">{article.category}</Badge>
+              </div>
+              <span className="text-xs text-muted-foreground">{article.readTime}</span>
+            </div>
+            <CardTitle className="text-lg line-clamp-2">{article.title}</CardTitle>
+            <CardDescription className="text-sm line-clamp-3">{article.excerpt}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-3 mb-4 text-xs text-muted-foreground">
+              <div className="flex items-center gap-1">
+                <User className="h-3 w-3" />
+                <span className="line-clamp-1">{article.author}</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Calendar className="h-3 w-3" />
+                {article.date}
+              </div>
+            </div>
+            <Button size="sm" variant="outline" className="w-full">
+              <ExternalLink className="h-3 w-3 mr-1" />
+              Read
+            </Button>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+
+  const renderListView = () => (
+    <div className="space-y-4">
+      {articles.map((article, index) => (
+        <Card key={index} className={`hover:shadow-lg transition-shadow ${article.featured ? 'border-2 border-primary' : ''}`}>
+          <CardContent className="p-6">
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-2">
+                  {article.featured && <Badge className="bg-primary text-white">Featured</Badge>}
+                  <Badge variant="secondary">{article.category}</Badge>
+                  <span className="text-sm text-muted-foreground">{article.readTime}</span>
+                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                    <Calendar className="h-4 w-4" />
+                    {article.date}
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{article.title}</h3>
+                <p className="text-muted-foreground mb-2">{article.excerpt}</p>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <User className="h-4 w-4" />
+                  {article.author}
+                </div>
+              </div>
+              <Button className="bg-secondary text-white hover:bg-secondary-hover ml-4">
+                <ExternalLink className="h-4 w-4 mr-2" />
+                Read Article
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+
+  const renderContent = () => {
+    switch (currentView) {
+      case 'grid':
+        return renderGridView();
+      case 'list':
+        return renderListView();
+      default:
+        return renderCardsView();
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -223,81 +386,17 @@ const SB8J1Articles = () => {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Articles</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              In-depth articles, analysis, and perspectives on Indigenous rights, traditional knowledge, and biodiversity governance related to SB8J-1.
-            </p>
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold text-foreground mb-4">Articles</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                In-depth articles, analysis, and perspectives on Indigenous rights, traditional knowledge, and biodiversity governance related to SB8J-1.
+              </p>
+            </div>
+            <ViewToggle currentView={currentView} onViewChange={handleViewChange} />
           </div>
 
-          {/* Featured Article */}
-          {featuredArticle && (
-            <div className="mb-16">
-              <h3 className="text-2xl font-bold text-foreground mb-6">Featured Article</h3>
-              <Card className="overflow-hidden bg-card border-2 border-primary shadow-xl">
-                <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10 pb-8">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Badge className="bg-primary text-white">Featured</Badge>
-                    <Badge variant="outline">{featuredArticle.category}</Badge>
-                  </div>
-                  <CardTitle className="text-2xl lg:text-3xl mb-4">{featuredArticle.title}</CardTitle>
-                  <CardDescription className="text-lg">{featuredArticle.excerpt}</CardDescription>
-                </CardHeader>
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-6 mb-6 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <User className="h-4 w-4" />
-                      {featuredArticle.author}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4" />
-                      {featuredArticle.date}
-                    </div>
-                    <span>{featuredArticle.readTime}</span>
-                  </div>
-                  <Button size="lg" className="bg-secondary text-white hover:bg-secondary-hover">
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    Read Full Article
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          )}
-
-          {/* Articles Grid */}
-          <div>
-            <h3 className="text-2xl font-bold text-foreground mb-6">All Articles</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              {regularArticles.map((article, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-3">
-                      <Badge variant="secondary">{article.category}</Badge>
-                      <span className="text-sm text-muted-foreground">{article.readTime}</span>
-                    </div>
-                    <CardTitle className="text-xl">{article.title}</CardTitle>
-                    <CardDescription>{article.excerpt}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <User className="h-3 w-3" />
-                        {article.author}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" />
-                        {article.date}
-                      </div>
-                    </div>
-                    <Button variant="outline" className="w-full">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Read Article
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
+          {renderContent()}
         </div>
       </div>
     </div>

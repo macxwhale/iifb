@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Calendar, Clock, MapPin, ChevronDown } from 'lucide-react';
@@ -12,12 +11,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePexelsImage } from '@/hooks/usePexelsImage';
+import ViewToggle, { ViewType } from '@/components/ViewToggle';
 
 const SB8J1PressConferences = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentView, setCurrentView] = useState<ViewType>(() => {
+    const saved = localStorage.getItem('sb8j-press-conferences-view');
+    return (saved as ViewType) || 'cards';
+  });
   const { imageUrl, isLoading } = usePexelsImage('sb8j-press-conferences');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleViewChange = (view: ViewType) => {
+    setCurrentView(view);
+    localStorage.setItem('sb8j-press-conferences-view', view);
+  };
 
   const pressConferences = [
     {
@@ -76,11 +85,164 @@ const SB8J1PressConferences = () => {
     }
   ];
 
+  const renderCardsView = () => (
+    <div className="grid gap-6">
+      {pressConferences.map((conference, index) => (
+        <Card key={index} className="hover:shadow-lg transition-shadow">
+          <CardHeader>
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <Badge variant={conference.status === 'Upcoming' ? 'default' : 'secondary'} 
+                         className={conference.status === 'Upcoming' ? 'bg-secondary' : ''}>
+                    {conference.status}
+                  </Badge>
+                </div>
+                <CardTitle className="text-xl mb-2">{conference.title}</CardTitle>
+                <CardDescription className="text-base">
+                  Speakers: {conference.speakers.join(', ')}
+                </CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <p className="text-foreground leading-relaxed mb-4">{conference.description}</p>
+            
+            <div className="grid md:grid-cols-3 gap-4 mb-4">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Calendar className="h-4 w-4" />
+                {conference.date}
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Clock className="h-4 w-4" />
+                {conference.time}
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <MapPin className="h-4 w-4" />
+                {conference.location}
+              </div>
+            </div>
+
+            <div className="flex gap-3">
+              <Button className="bg-secondary text-white hover:bg-secondary-hover">
+                Register for Media Access
+              </Button>
+              <Button variant="outline">
+                Add to Calendar
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+
+  const renderGridView = () => (
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {pressConferences.map((conference, index) => (
+        <Card key={index} className="hover:shadow-lg transition-shadow">
+          <CardHeader>
+            <Badge variant={conference.status === 'Upcoming' ? 'default' : 'secondary'} 
+                   className={`w-fit mb-2 ${conference.status === 'Upcoming' ? 'bg-secondary' : ''}`}>
+              {conference.status}
+            </Badge>
+            <CardTitle className="text-lg line-clamp-2">{conference.title}</CardTitle>
+            <CardDescription className="text-sm line-clamp-2">
+              Speakers: {conference.speakers.join(', ')}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground line-clamp-3 mb-4">{conference.description}</p>
+            
+            <div className="space-y-2 mb-4">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Calendar className="h-3 w-3" />
+                {conference.date}
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Clock className="h-3 w-3" />
+                {conference.time}
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <MapPin className="h-3 w-3" />
+                <span className="line-clamp-1">{conference.location}</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
+                Register
+              </Button>
+              <Button size="sm" variant="outline">
+                Add to Calendar
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+
+  const renderListView = () => (
+    <div className="space-y-4">
+      {pressConferences.map((conference, index) => (
+        <Card key={index} className="hover:shadow-lg transition-shadow">
+          <CardContent className="p-6">
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-2">
+                  <Badge variant={conference.status === 'Upcoming' ? 'default' : 'secondary'} 
+                         className={conference.status === 'Upcoming' ? 'bg-secondary' : ''}>
+                    {conference.status}
+                  </Badge>
+                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                    <Calendar className="h-4 w-4" />
+                    {conference.date}
+                  </div>
+                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                    <Clock className="h-4 w-4" />
+                    {conference.time}
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{conference.title}</h3>
+                <p className="text-muted-foreground mb-2">{conference.description}</p>
+                <div className="text-sm text-muted-foreground mb-2">
+                  <strong>Speakers:</strong> {conference.speakers.join(', ')}
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <MapPin className="h-4 w-4" />
+                  {conference.location}
+                </div>
+              </div>
+              <div className="flex flex-col gap-2 ml-4">
+                <Button className="bg-secondary text-white hover:bg-secondary-hover">
+                  Register for Media Access
+                </Button>
+                <Button variant="outline">
+                  Add to Calendar
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+
+  const renderContent = () => {
+    switch (currentView) {
+      case 'grid':
+        return renderGridView();
+      case 'list':
+        return renderListView();
+      default:
+        return renderCardsView();
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
       <section className="relative min-h-fit h-auto overflow-hidden">
-        {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full"
           style={{ 
@@ -92,7 +254,6 @@ const SB8J1PressConferences = () => {
           <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>
 
-        {/* Content */}
         <div className="relative z-10 flex flex-col justify-between min-h-[50vh] sm:min-h-[45vh] md:min-h-[40vh] lg:min-h-[35vh] xl:min-h-[30vh] max-w-6xl mx-auto px-6 lg:px-8 py-6 sm:py-8 md:py-10 lg:py-12">
           <div className="flex-1 flex items-center">
             <div className="text-white text-center w-full">
@@ -118,9 +279,7 @@ const SB8J1PressConferences = () => {
                 </div>
               </div>
 
-              {/* Navigation */}
               <div className="pt-8">
-                {/* Desktop Navigation */}
                 <nav className="hidden md:block">
                   <div className="flex items-center justify-center space-x-1 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl">
                     <Link to="/" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">Home</Link>
@@ -128,7 +287,6 @@ const SB8J1PressConferences = () => {
                     <Link to="/sb8j-1/statements" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">Statements</Link>
                     <Link to="/sb8j-1/documents" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">Documents</Link>
                     
-                    {/* News & Media Dropdown */}
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <button className="flex items-center px-4 py-2 text-white bg-white/20 rounded-full transition-all duration-300 text-xl font-medium">
@@ -174,7 +332,6 @@ const SB8J1PressConferences = () => {
                   </div>
                 </nav>
 
-                {/* Mobile Menu Button */}
                 <div className="md:hidden flex justify-center">
                   <Button
                     variant="ghost"
@@ -186,7 +343,6 @@ const SB8J1PressConferences = () => {
                   </Button>
                 </div>
 
-                {/* Mobile Navigation */}
                 {isMenuOpen && (
                   <nav className="md:hidden mt-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl overflow-hidden">
                     <div className="flex flex-col">
@@ -195,7 +351,6 @@ const SB8J1PressConferences = () => {
                       <Link to="/sb8j-1/statements" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-xl">Statements</Link>
                       <Link to="/sb8j-1/documents" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-xl">Documents</Link>
                       
-                      {/* Mobile News & Media submenu */}
                       <div className="border-b border-white/10">
                         <div className="px-6 py-3 text-white bg-white/20 text-xl font-medium">News & Media</div>
                         <Link to="/sb8j-1/news" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">General News</Link>
@@ -216,65 +371,19 @@ const SB8J1PressConferences = () => {
         </div>
       </section>
 
-      {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Press Conferences</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Scheduled press conferences and media briefings during SB8J-1, featuring Indigenous leaders, experts, and key stakeholders.
-            </p>
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold text-foreground mb-4">Press Conferences</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Scheduled press conferences and media briefings during SB8J-1, featuring Indigenous leaders, experts, and key stakeholders.
+              </p>
+            </div>
+            <ViewToggle currentView={currentView} onViewChange={handleViewChange} />
           </div>
 
-          <div className="grid gap-6">
-            {pressConferences.map((conference, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Badge variant={conference.status === 'Upcoming' ? 'default' : 'secondary'} 
-                               className={conference.status === 'Upcoming' ? 'bg-secondary' : ''}>
-                          {conference.status}
-                        </Badge>
-                      </div>
-                      <CardTitle className="text-xl mb-2">{conference.title}</CardTitle>
-                      <CardDescription className="text-base">
-                        Speakers: {conference.speakers.join(', ')}
-                      </CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-foreground leading-relaxed mb-4">{conference.description}</p>
-                  
-                  <div className="grid md:grid-cols-3 gap-4 mb-4">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Calendar className="h-4 w-4" />
-                      {conference.date}
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Clock className="h-4 w-4" />
-                      {conference.time}
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <MapPin className="h-4 w-4" />
-                      {conference.location}
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3">
-                    <Button className="bg-secondary text-white hover:bg-secondary-hover">
-                      Register for Media Access
-                    </Button>
-                    <Button variant="outline">
-                      Add to Calendar
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {renderContent()}
 
           <div className="mt-16 bg-card p-8 rounded-lg border border-border/50">
             <h3 className="text-xl font-bold text-foreground mb-4">Media Accreditation</h3>

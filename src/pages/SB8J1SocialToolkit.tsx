@@ -1,7 +1,6 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Download, Share2, Calendar, ChevronDown } from 'lucide-react';
+import { Menu, X, Download, Share2, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -12,12 +11,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePexelsImage } from '@/hooks/usePexelsImage';
+import ViewToggle, { ViewType } from '@/components/ViewToggle';
 
 const SB8J1SocialToolkit = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentView, setCurrentView] = useState<ViewType>(() => {
+    const saved = localStorage.getItem('sb8j-social-toolkit-view');
+    return (saved as ViewType) || 'cards';
+  });
   const { imageUrl, isLoading } = usePexelsImage('sb8j-social-toolkit');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleViewChange = (view: ViewType) => {
+    setCurrentView(view);
+    localStorage.setItem('sb8j-social-toolkit-view', view);
+  };
 
   const socialAssets = [
     {
@@ -88,11 +97,197 @@ const SB8J1SocialToolkit = () => {
     }
   ];
 
+  const renderCardsView = () => (
+    <div>
+      {/* Social Media Assets */}
+      <div className="mb-16">
+        <h3 className="text-2xl font-bold text-foreground mb-6">Downloadable Assets</h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {socialAssets.map((asset, index) => (
+            <Card key={index} className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-lg">{asset.title}</CardTitle>
+                <CardDescription>{asset.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Format</span>
+                    <Badge variant="outline">{asset.format}</Badge>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Dimensions</span>
+                    <span className="font-medium">{asset.dimensions}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">File Size</span>
+                    <span className="font-medium">{asset.fileSize}</span>
+                  </div>
+                </div>
+                <Button className="w-full bg-secondary text-white hover:bg-secondary-hover">
+                  <Download className="h-4 w-4 mr-2" />
+                  Download Asset
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Sample Posts */}
+      <div>
+        <h3 className="text-2xl font-bold text-foreground mb-6">Sample Social Media Posts</h3>
+        <div className="grid gap-6">
+          {samplePosts.map((post, index) => (
+            <Card key={index} className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-lg">{post.platform}</CardTitle>
+                  <Badge variant="secondary">{post.platform}</Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="bg-muted/50 p-4 rounded-lg">
+                    <p className="text-foreground leading-relaxed">{post.content}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-2">Suggested hashtags:</p>
+                    <p className="text-sm text-primary">{post.hashtags}</p>
+                  </div>
+                  <Button variant="outline" className="w-full">
+                    <Share2 className="h-4 w-4 mr-2" />
+                    Copy Post Text
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderGridView = () => (
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {[...socialAssets, ...samplePosts.map(post => ({
+        title: post.platform + " Post Template",
+        description: post.content.substring(0, 100) + "...",
+        format: "Text",
+        dimensions: "N/A",
+        fileSize: "N/A",
+        downloadUrl: "#",
+        type: "post"
+      }))].map((item, index) => (
+        <Card key={index} className="hover:shadow-lg transition-shadow">
+          <CardHeader>
+            <CardTitle className="text-lg line-clamp-2">{item.title}</CardTitle>
+            <CardDescription className="line-clamp-3">{item.description}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2 mb-4">
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">Format</span>
+                <Badge variant="outline" className="text-xs">{item.format}</Badge>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">Size</span>
+                <span className="text-xs font-medium">{item.fileSize}</span>
+              </div>
+            </div>
+            <Button size="sm" className="w-full bg-secondary text-white hover:bg-secondary-hover">
+              {item.type === 'post' ? (
+                <>
+                  <Share2 className="h-3 w-3 mr-1" />
+                  Copy
+                </>
+              ) : (
+                <>
+                  <Download className="h-3 w-3 mr-1" />
+                  Download
+                </>
+              )}
+            </Button>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+
+  const renderListView = () => (
+    <div className="space-y-4">
+      {/* Assets */}
+      <div className="mb-8">
+        <h3 className="text-xl font-bold text-foreground mb-4">Downloadable Assets</h3>
+        {socialAssets.map((asset, index) => (
+          <Card key={index} className="hover:shadow-lg transition-shadow mb-4">
+            <CardContent className="p-6">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Badge variant="outline">{asset.format}</Badge>
+                    <span className="text-sm text-muted-foreground">{asset.fileSize}</span>
+                    <span className="text-sm text-muted-foreground">{asset.dimensions}</span>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{asset.title}</h3>
+                  <p className="text-muted-foreground">{asset.description}</p>
+                </div>
+                <Button className="bg-secondary text-white hover:bg-secondary-hover ml-4">
+                  <Download className="h-4 w-4 mr-2" />
+                  Download Asset
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Posts */}
+      <div>
+        <h3 className="text-xl font-bold text-foreground mb-4">Sample Social Media Posts</h3>
+        {samplePosts.map((post, index) => (
+          <Card key={index} className="hover:shadow-lg transition-shadow mb-4">
+            <CardContent className="p-6">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Badge variant="secondary">{post.platform}</Badge>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{post.platform} Post Template</h3>
+                  <div className="bg-muted/50 p-4 rounded-lg mb-4">
+                    <p className="text-foreground leading-relaxed">{post.content}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-1">Suggested hashtags:</p>
+                    <p className="text-sm text-primary">{post.hashtags}</p>
+                  </div>
+                </div>
+                <Button className="bg-secondary text-white hover:bg-secondary-hover ml-4">
+                  <Share2 className="h-4 w-4 mr-2" />
+                  Copy Post Text
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+
+  const renderContent = () => {
+    switch (currentView) {
+      case 'grid':
+        return renderGridView();
+      case 'list':
+        return renderListView();
+      default:
+        return renderCardsView();
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
       <section className="relative min-h-fit h-auto overflow-hidden">
-        {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full"
           style={{ 
@@ -104,7 +299,6 @@ const SB8J1SocialToolkit = () => {
           <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
         </div>
 
-        {/* Content */}
         <div className="relative z-10 flex flex-col justify-between min-h-[50vh] sm:min-h-[45vh] md:min-h-[40vh] lg:min-h-[35vh] xl:min-h-[30vh] max-w-6xl mx-auto px-6 lg:px-8 py-6 sm:py-8 md:py-10 lg:py-12">
           <div className="flex-1 flex items-center">
             <div className="text-white text-center w-full">
@@ -130,9 +324,7 @@ const SB8J1SocialToolkit = () => {
                 </div>
               </div>
 
-              {/* Navigation */}
               <div className="pt-8">
-                {/* Desktop Navigation */}
                 <nav className="hidden md:block">
                   <div className="flex items-center justify-center space-x-1 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl">
                     <Link to="/" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">Home</Link>
@@ -140,7 +332,6 @@ const SB8J1SocialToolkit = () => {
                     <Link to="/sb8j-1/statements" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">Statements</Link>
                     <Link to="/sb8j-1/documents" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">Documents</Link>
                     
-                    {/* News & Media Dropdown */}
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <button className="flex items-center px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">
@@ -186,7 +377,6 @@ const SB8J1SocialToolkit = () => {
                   </div>
                 </nav>
 
-                {/* Mobile Menu Button */}
                 <div className="md:hidden flex justify-center">
                   <Button
                     variant="ghost"
@@ -198,7 +388,6 @@ const SB8J1SocialToolkit = () => {
                   </Button>
                 </div>
 
-                {/* Mobile Navigation */}
                 {isMenuOpen && (
                   <nav className="md:hidden mt-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl overflow-hidden">
                     <div className="flex flex-col">
@@ -207,7 +396,6 @@ const SB8J1SocialToolkit = () => {
                       <Link to="/sb8j-1/statements" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-lg">Statements</Link>
                       <Link to="/sb8j-1/documents" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-lg">Documents</Link>
                       
-                      {/* Mobile News & Media submenu */}
                       <div className="border-b border-white/10">
                         <div className="px-6 py-3 text-white/70 text-lg font-medium">News & Media</div>
                         <Link to="/sb8j-1/news" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">General News</Link>
@@ -228,82 +416,19 @@ const SB8J1SocialToolkit = () => {
         </div>
       </section>
 
-      {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-foreground mb-4">IIFB Social Media Toolkit</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Download ready-to-use social media assets and sample posts to amplify Indigenous voices and promote SB8J-1 awareness across social platforms.
-            </p>
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold text-foreground mb-4">IIFB Social Media Toolkit</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Download ready-to-use social media assets and sample posts to amplify Indigenous voices and promote SB8J-1 awareness across social platforms.
+              </p>
+            </div>
+            <ViewToggle currentView={currentView} onViewChange={handleViewChange} />
           </div>
 
-          {/* Social Media Assets */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-foreground mb-6">Downloadable Assets</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {socialAssets.map((asset, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="text-lg">{asset.title}</CardTitle>
-                    <CardDescription>{asset.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-2 mb-4">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Format</span>
-                        <Badge variant="outline">{asset.format}</Badge>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Dimensions</span>
-                        <span className="font-medium">{asset.dimensions}</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">File Size</span>
-                        <span className="font-medium">{asset.fileSize}</span>
-                      </div>
-                    </div>
-                    <Button className="w-full bg-secondary text-white hover:bg-secondary-hover">
-                      <Download className="h-4 w-4 mr-2" />
-                      Download Asset
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Sample Posts */}
-          <div>
-            <h3 className="text-2xl font-bold text-foreground mb-6">Sample Social Media Posts</h3>
-            <div className="grid gap-6">
-              {samplePosts.map((post, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <CardTitle className="text-lg">{post.platform}</CardTitle>
-                      <Badge variant="secondary">{post.platform}</Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="bg-muted/50 p-4 rounded-lg">
-                        <p className="text-foreground leading-relaxed">{post.content}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-muted-foreground mb-2">Suggested hashtags:</p>
-                        <p className="text-sm text-primary">{post.hashtags}</p>
-                      </div>
-                      <Button variant="outline" className="w-full">
-                        <Share2 className="h-4 w-4 mr-2" />
-                        Copy Post Text
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
+          {renderContent()}
         </div>
       </div>
     </div>
