@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, FileText, Download, Calendar, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -11,21 +11,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePexelsImage } from '@/hooks/usePexelsImage';
-import ViewToggle, { ViewMode } from '@/components/ViewToggle';
 
 const SB8J1Statements = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [viewMode, setViewMode] = useState<ViewMode>(() => {
-    const saved = localStorage.getItem('sb8j-statements-view');
-    return (saved as ViewMode) || 'cards';
-  });
   const { imageUrl, isLoading } = usePexelsImage('sb8j-statements');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  useEffect(() => {
-    localStorage.setItem('sb8j-statements-view', viewMode);
-  }, [viewMode]);
 
   const statements = [
     {
@@ -57,74 +48,6 @@ const SB8J1Statements = () => {
       file: "/assets/youth-statement-equity.pdf"
     }
   ];
-
-  const renderStatements = () => {
-    const getLayoutClasses = () => {
-      switch (viewMode) {
-        case 'grid':
-          return 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4';
-        case 'list':
-          return 'space-y-2';
-        default: // cards
-          return 'grid gap-8';
-      }
-    };
-
-    return (
-      <div className={getLayoutClasses()}>
-        {statements.map((statement, index) => (
-          <Card key={index} className={`hover:shadow-lg transition-shadow ${
-            viewMode === 'list' ? 'p-4' : ''
-          }`}>
-            <CardHeader className={viewMode === 'list' ? 'pb-3' : ''}>
-              <div className={`flex items-start ${
-                viewMode === 'list' ? 'justify-between' : 'justify-between'
-              }`}>
-                <div className="flex-1">
-                  <CardTitle className={`${
-                    viewMode === 'grid' ? 'text-lg' : 
-                    viewMode === 'list' ? 'text-base' : 'text-xl md:text-2xl'
-                  } mb-2 leading-tight`}>
-                    {statement.title}
-                  </CardTitle>
-                  <CardDescription className={
-                    viewMode === 'list' ? 'text-sm' : ''
-                  }>
-                    {statement.author}
-                  </CardDescription>
-                </div>
-                <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                  <Calendar className="h-4 w-4" />
-                  {statement.date}
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent className={viewMode === 'list' ? 'pt-0' : ''}>
-              {viewMode !== 'list' && (
-                <p className={`text-foreground leading-relaxed mb-4 ${
-                  viewMode === 'grid' ? 'text-sm line-clamp-3' : ''
-                }`}>
-                  {statement.summary}
-                </p>
-              )}
-              <div className={`flex gap-3 ${
-                viewMode === 'list' ? 'justify-end' : ''
-              }`}>
-                <Button size={viewMode === 'list' ? 'sm' : 'sm'} className="bg-secondary text-white hover:bg-secondary-hover">
-                  <FileText className="h-4 w-4 mr-2" />
-                  {viewMode === 'list' ? 'Read' : 'Read Full Statement'}
-                </Button>
-                <Button size={viewMode === 'list' ? 'sm' : 'sm'} variant="outline">
-                  <Download className="h-4 w-4 mr-2" />
-                  {viewMode === 'list' ? 'PDF' : 'Download PDF'}
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    );
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -269,8 +192,43 @@ const SB8J1Statements = () => {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
-          <ViewToggle viewMode={viewMode} onViewModeChange={setViewMode} />
-          {renderStatements()}
+          <div className="grid gap-8">
+            {statements.map((statement, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <CardTitle className="text-xl md:text-2xl mb-2 leading-tight">
+                        {statement.title}
+                      </CardTitle>
+                      <CardDescription>
+                        {statement.author}
+                      </CardDescription>
+                    </div>
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <Calendar className="h-4 w-4" />
+                      {statement.date}
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-foreground leading-relaxed mb-4">
+                    {statement.summary}
+                  </p>
+                  <div className="flex gap-3">
+                    <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
+                      <FileText className="h-4 w-4 mr-2" />
+                      Read Full Statement
+                    </Button>
+                    <Button size="sm" variant="outline">
+                      <Download className="h-4 w-4 mr-2" />
+                      Download PDF
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </div>
