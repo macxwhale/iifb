@@ -168,51 +168,58 @@ const SB8J1SocialToolkit = () => {
     </div>
   );
 
-  const renderGridView = () => (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {[...socialAssets, ...samplePosts.map(post => ({
+  const renderGridView = () => {
+    const combinedItems = [
+      ...socialAssets.map(asset => ({ ...asset, itemType: 'asset' })),
+      ...samplePosts.map(post => ({
         title: post.platform + " Post Template",
         description: post.content.substring(0, 100) + "...",
         format: "Text",
         dimensions: "N/A",
         fileSize: "N/A",
         downloadUrl: "#",
-        type: "post"
-      }))].map((item, index) => (
-        <Card key={index} className="hover:shadow-lg transition-shadow">
-          <CardHeader>
-            <CardTitle className="text-lg line-clamp-2">{item.title}</CardTitle>
-            <CardDescription className="line-clamp-3">{item.description}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-2 mb-4">
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Format</span>
-                <Badge variant="outline" className="text-xs">{item.format}</Badge>
+        itemType: "post"
+      }))
+    ];
+
+    return (
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {combinedItems.map((item, index) => (
+          <Card key={index} className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <CardTitle className="text-lg line-clamp-2">{item.title}</CardTitle>
+              <CardDescription className="line-clamp-3">{item.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2 mb-4">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Format</span>
+                  <Badge variant="outline" className="text-xs">{item.format}</Badge>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Size</span>
+                  <span className="text-xs font-medium">{item.fileSize}</span>
+                </div>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Size</span>
-                <span className="text-xs font-medium">{item.fileSize}</span>
-              </div>
-            </div>
-            <Button size="sm" className="w-full bg-secondary text-white hover:bg-secondary-hover">
-              {item.type === 'post' ? (
-                <>
-                  <Share2 className="h-3 w-3 mr-1" />
-                  Copy
-                </>
-              ) : (
-                <>
-                  <Download className="h-3 w-3 mr-1" />
-                  Download
-                </>
-              )}
-            </Button>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  );
+              <Button size="sm" className="w-full bg-secondary text-white hover:bg-secondary-hover">
+                {item.itemType === 'post' ? (
+                  <>
+                    <Share2 className="h-3 w-3 mr-1" />
+                    Copy
+                  </>
+                ) : (
+                  <>
+                    <Download className="h-3 w-3 mr-1" />
+                    Download
+                  </>
+                )}
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  };
 
   const renderListView = () => (
     <div className="space-y-4">
