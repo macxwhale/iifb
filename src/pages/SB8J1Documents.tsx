@@ -1,10 +1,8 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Download, FileText, Calendar, ChevronDown } from 'lucide-react';
+import { Menu, X, FileText, Download, Calendar, ChevronDown, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,67 +10,55 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePexelsImage } from '@/hooks/usePexelsImage';
+import ViewToggle, { ViewType } from '@/components/ViewToggle';
 
 const SB8J1Documents = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentView, setCurrentView] = useState<ViewType>(() => {
+    const saved = localStorage.getItem('sb8j1-documents-view');
+    return (saved as ViewType) || 'cards';
+  });
   const { imageUrl, isLoading } = usePexelsImage('sb8j-documents');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  const handleViewChange = (view: ViewType) => {
+    setCurrentView(view);
+    localStorage.setItem('sb8j1-documents-view', view);
+  };
+
   const documents = [
     {
-      title: "Provisional Agenda",
-      description: "Draft agenda for the first meeting of the Subsidiary Body on Article 8(j).",
-      date: "October 27, 2025",
-      fileType: "PDF",
-      fileSize: "2.1 MB",
-      url: "#",
-      category: "Official Documents"
-    },
-    {
-      title: "Compilation of Submissions",
-      description: "A compilation of submissions received from Parties and observers.",
-      date: "October 26, 2025",
-      fileType: "DOCX",
-      fileSize: "1.5 MB",
-      url: "#",
-      category: "Working Documents"
-    },
-    {
-      title: "Annotated Provisional Agenda",
-      description: "Annotations to the provisional agenda, providing context and background.",
+      title: "SB8J-1 Agenda",
       date: "October 25, 2025",
-      fileType: "PDF",
-      fileSize: "1.8 MB",
-      url: "#",
-      category: "Information Documents"
+      author: "CBD Secretariat",
+      summary: "Official agenda for the first meeting of the Subsidiary Body on Implementation of Article 8(j) and Related Provisions.",
+      category: "Official Document",
+      file: "/assets/sb8j1-agenda.pdf"
     },
     {
-      title: "Report of the Expert Workshop",
-      description: "Report from the expert workshop on traditional knowledge.",
-      date: "October 24, 2025",
-      fileType: "PDF",
-      fileSize: "2.5 MB",
-      url: "#",
-      category: "Background Documents"
+      title: "Modus Operandi Draft",
+      date: "October 20, 2025",
+      author: "IIFB Working Group",
+      summary: "Draft framework for Indigenous Peoples and local communities participation in the subsidiary body's operations.",
+      category: "Working Document",
+      file: "/assets/modus-operandi-draft.pdf"
     },
     {
-      title: "Draft Recommendations",
-      description: "Initial draft recommendations for consideration by the Subsidiary Body.",
-      date: "October 23, 2025",
-      fileType: "DOCX",
-      fileSize: "1.2 MB",
-      url: "#",
-      category: "Official Documents"
+      title: "Traditional Knowledge Guidelines",
+      date: "October 15, 2025",
+      author: "Indigenous Knowledge Holders",
+      summary: "Guidelines for the protection and promotion of traditional knowledge in biodiversity conservation efforts.",
+      category: "Guidelines",
+      file: "/assets/traditional-knowledge-guidelines.pdf"
     },
     {
-      title: "Information Note for Participants",
-      description: "Essential information for participants attending the SB8J-1 meeting.",
-      date: "October 22, 2025",
-      fileType: "PDF",
-      fileSize: "0.9 MB",
-      url: "#",
-      category: "General Information"
+      title: "Spatial Planning Framework",
+      date: "October 10, 2025",
+      author: "Technical Working Group",
+      summary: "Framework for incorporating Indigenous territories and traditional land use in spatial planning processes.",
+      category: "Technical Document",
+      file: "/assets/spatial-planning-framework.pdf"
     }
   ];
 
@@ -97,26 +83,15 @@ const SB8J1Documents = () => {
           <div className="flex-1 flex items-center">
             <div className="text-white text-center w-full">
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                SB8J-1
+                Documents
                 <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
-                  First Meeting on Article 8(j)
+                  Official SB8J-1 Documents
                 </span>
               </h1>
               
               <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90">
-                Historic milestone for Indigenous Peoples and local communities in biodiversity governance
+                Access key documents and resources for the first Article 8(j) subsidiary body meeting
               </p>
-              
-              <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
-                <div className="flex items-center space-x-2 text-lg">
-                  <span className="w-2 h-2 bg-white rounded-full"></span>
-                  <span>October 27-30, 2025</span>
-                </div>
-                <div className="flex items-center space-x-2 text-lg">
-                  <span className="w-2 h-2 bg-white rounded-full"></span>
-                  <span>Panama City, Panama</span>
-                </div>
-              </div>
 
               {/* Navigation */}
               <div className="pt-8">
@@ -133,7 +108,7 @@ const SB8J1Documents = () => {
                       <DropdownMenuTrigger asChild>
                         <button className="flex items-center px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-xl font-medium">
                           News & Media
-                          <ChevronDown className="ml-1 h-3 w-3" />
+                          <ChevronDown className="ml-1 h-4 w-4" />
                         </button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent className="bg-white border border-gray-200 shadow-lg min-w-[220px]">
@@ -190,23 +165,22 @@ const SB8J1Documents = () => {
                 {isMenuOpen && (
                   <nav className="md:hidden mt-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl overflow-hidden">
                     <div className="flex flex-col">
-                      <Link to="/" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-xl">Home</Link>
-                      <Link to="/sb8j-1/about" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-xl">About</Link>
-                      <Link to="/sb8j-1/statements" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-xl">Statements</Link>
-                      <Link to="/sb8j-1/documents" className="px-6 py-4 text-white bg-white/20 transition-all duration-300 border-b border-white/10 text-xl">Documents</Link>
+                      <Link to="/" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-lg">Home</Link>
+                      <Link to="/sb8j-1/about" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-lg">About</Link>
+                      <Link to="/sb8j-1/statements" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10 text-lg">Statements</Link>
+                      <Link to="/sb8j-1/documents" className="px-6 py-4 text-white bg-white/20 transition-all duration-300 border-b border-white/10 text-lg">Documents</Link>
                       
-                      {/* Mobile News & Media submenu */}
                       <div className="border-b border-white/10">
-                        <div className="px-6 py-3 text-white/70 text-xl font-medium">News & Media</div>
-                        <Link to="/sb8j-1/news" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">General News</Link>
-                        <Link to="/sb8j-1/media-coverage" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Media Coverage Links</Link>
-                        <Link to="/sb8j-1/social-toolkit" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">IIFB Social Media Toolkit</Link>
-                        <Link to="/sb8j-1/press-conferences" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Press Conferences</Link>
-                        <Link to="/sb8j-1/articles" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Articles</Link>
-                        <Link to="/sb8j-1/videos" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Videos</Link>
+                        <div className="px-6 py-3 text-white/70 text-lg font-medium">News & Media</div>
+                        <Link to="/sb8j-1/news" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">General News</Link>
+                        <Link to="/sb8j-1/media-coverage" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Media Coverage Links</Link>
+                        <Link to="/sb8j-1/social-toolkit" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">IIFB Social Media Toolkit</Link>
+                        <Link to="/sb8j-1/press-conferences" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Press Conferences</Link>
+                        <Link to="/sb8j-1/articles" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Articles</Link>
+                        <Link to="/sb8j-1/videos" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Videos</Link>
                       </div>
                       
-                      <Link to="/sb8j-1/side-events" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-xl">Side Events</Link>
+                      <Link to="/sb8j-1/side-events" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Side Events</Link>
                     </div>
                   </nav>
                 )}
@@ -219,52 +193,155 @@ const SB8J1Documents = () => {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
-          <div className="grid gap-8">
-            {documents.map((doc, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <CardTitle className="text-xl md:text-2xl leading-tight">
-                      {doc.title}
-                    </CardTitle>
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                      <Calendar className="h-4 w-4" />
-                      {doc.date}
-                    </div>
-                  </div>
-                  <CardDescription>{doc.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <Badge variant="secondary">
-                      {doc.category}
-                    </Badge>
-                    <Button variant="outline">
-                      <Download className="h-4 w-4 mr-2" />
-                      Download ({doc.fileType}, {doc.fileSize})
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="mt-16 bg-card p-8 rounded-lg border border-border/50">
-            <div className="flex items-center gap-3 mb-4">
-              <FileText className="h-6 w-6 text-secondary" />
-              <h3 className="text-xl font-bold text-foreground">Additional Resources</h3>
+          {/* View Toggle Controls */}
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Official Documents</h2>
+              <p className="text-muted-foreground">Browse through our collection of official documents and resources</p>
             </div>
-            <p className="text-muted-foreground mb-6 leading-relaxed">
-              Explore further resources, including reports, publications, and multimedia content related to Article 8(j) and the rights of Indigenous Peoples.
-            </p>
-            <Button className="bg-secondary text-white hover:bg-secondary-hover">
-              View All Resources
-            </Button>
+            <ViewToggle currentView={currentView} onViewChange={handleViewChange} />
           </div>
+          
+          {/* Content based on selected view */}
+          {renderContent()}
         </div>
       </div>
     </div>
   );
+
+  const renderCardsView = () => (
+    <div className="grid gap-8">
+      {documents.map((document, index) => (
+        <Card key={index} className="hover:shadow-lg transition-shadow">
+          <CardHeader>
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <CardTitle className="text-xl md:text-2xl mb-2 leading-tight">
+                  {document.title}
+                </CardTitle>
+                <CardDescription>
+                  {document.author}
+                </CardDescription>
+              </div>
+              <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                <Calendar className="h-4 w-4" />
+                {document.date}
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="mb-4">
+              <span className="bg-secondary/10 text-secondary px-2 py-1 rounded-full text-xs font-medium">
+                {document.category}
+              </span>
+            </div>
+            <p className="text-foreground leading-relaxed mb-4">
+              {document.summary}
+            </p>
+            <div className="flex gap-3">
+              <Button size="sm" className="bg-secondary text-white hover:bg-secondary/90">
+                <FileText className="h-4 w-4 mr-2" />
+                View Document
+              </Button>
+              <Button size="sm" variant="outline">
+                <Download className="h-4 w-4 mr-2" />
+                Download PDF
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+
+  const renderGridView = () => (
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {documents.map((document, index) => (
+        <Card key={index} className="hover:shadow-lg transition-shadow h-full flex flex-col">
+          <CardHeader className="flex-shrink-0">
+            <div className="flex items-center gap-1 text-xs text-muted-foreground mb-2">
+              <Calendar className="h-3 w-3" />
+              {document.date}
+            </div>
+            <CardTitle className="text-lg leading-tight line-clamp-2">
+              {document.title}
+            </CardTitle>
+            <CardDescription className="line-clamp-1">
+              {document.author}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex-1 flex flex-col">
+            <div className="mb-3">
+              <span className="bg-secondary/10 text-secondary px-2 py-1 rounded-full text-xs font-medium">
+                {document.category}
+              </span>
+            </div>
+            <p className="text-sm text-foreground leading-relaxed mb-4 flex-1 line-clamp-3">
+              {document.summary}
+            </p>
+            <div className="flex flex-col gap-2 mt-auto">
+              <Button size="sm" className="bg-secondary text-white hover:bg-secondary/90 w-full">
+                <FileText className="h-4 w-4 mr-2" />
+                View Document
+              </Button>
+              <Button size="sm" variant="outline" className="w-full">
+                <Download className="h-4 w-4 mr-2" />
+                Download PDF
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+
+  const renderListView = () => (
+    <div className="space-y-4">
+      {documents.map((document, index) => (
+        <div key={index} className="border border-border rounded-lg p-6 hover:bg-muted/50 transition-colors">
+          <div className="flex items-start justify-between mb-3">
+            <div className="flex-1">
+              <h3 className="text-lg font-semibold mb-1">{document.title}</h3>
+              <p className="text-sm text-muted-foreground">{document.author}</p>
+            </div>
+            <div className="flex items-center gap-1 text-sm text-muted-foreground">
+              <Calendar className="h-4 w-4" />
+              {document.date}
+            </div>
+          </div>
+          <div className="mb-3">
+            <span className="bg-secondary/10 text-secondary px-2 py-1 rounded-full text-xs font-medium">
+              {document.category}
+            </span>
+          </div>
+          <p className="text-sm text-foreground leading-relaxed mb-4 line-clamp-2">
+            {document.summary}
+          </p>
+          <div className="flex gap-3">
+            <Button size="sm" className="bg-secondary text-white hover:bg-secondary/90">
+              <FileText className="h-4 w-4 mr-2" />
+              View Document
+            </Button>
+            <Button size="sm" variant="outline">
+              <Download className="h-4 w-4 mr-2" />
+              Download PDF
+            </Button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
+  const renderContent = () => {
+    switch (currentView) {
+      case 'grid':
+        return renderGridView();
+      case 'list':
+        return renderListView();
+      default:
+        return renderCardsView();
+    }
+  };
 };
 
 export default SB8J1Documents;
