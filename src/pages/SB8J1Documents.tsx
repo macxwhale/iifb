@@ -1,7 +1,10 @@
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, Download, FileText, Calendar, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,7 +12,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePexelsImage } from '@/hooks/usePexelsImage';
-import DocumentsContent from '@/components/DocumentsContent';
 
 const SB8J1Documents = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,49 +21,58 @@ const SB8J1Documents = () => {
 
   const documents = [
     {
-      title: "Provisional Agenda for SB8J-1",
-      type: "Official Document", 
-      category: "Agenda",
-      date: "September 15, 2025",
-      size: "2.3 MB",
-      description: "Comprehensive agenda outlining all sessions, discussions, and activities planned for the first meeting of the Subsidiary Body on Article 8(j).",
-      url: "#"
+      title: "Provisional Agenda",
+      description: "Draft agenda for the first meeting of the Subsidiary Body on Article 8(j).",
+      date: "October 27, 2025",
+      fileType: "PDF",
+      fileSize: "2.1 MB",
+      url: "#",
+      category: "Official Documents"
     },
     {
-      title: "Background Information Note",
-      type: "Information Note",
-      category: "Background", 
-      date: "September 10, 2025",
-      size: "4.1 MB",
-      description: "Detailed background information on the establishment of SB8J and its mandate within the Convention on Biological Diversity framework.",
-      url: "#"
+      title: "Compilation of Submissions",
+      description: "A compilation of submissions received from Parties and observers.",
+      date: "October 26, 2025",
+      fileType: "DOCX",
+      fileSize: "1.5 MB",
+      url: "#",
+      category: "Working Documents"
     },
     {
-      title: "Rules of Procedure",
-      type: "Procedural Document",
-      category: "Rules",
-      date: "August 30, 2025", 
-      size: "1.8 MB",
-      description: "Official rules and procedures governing the conduct of meetings and decision-making processes of the Subsidiary Body.",
-      url: "#"
+      title: "Annotated Provisional Agenda",
+      description: "Annotations to the provisional agenda, providing context and background.",
+      date: "October 25, 2025",
+      fileType: "PDF",
+      fileSize: "1.8 MB",
+      url: "#",
+      category: "Information Documents"
     },
     {
-      title: "Compilation of Indigenous Views",
-      type: "Compilation",
-      category: "Submissions",
-      date: "August 25, 2025",
-      size: "6.7 MB",
-      description: "Comprehensive compilation of views and recommendations submitted by Indigenous Peoples and local communities organizations.",
-      url: "#"
+      title: "Report of the Expert Workshop",
+      description: "Report from the expert workshop on traditional knowledge.",
+      date: "October 24, 2025",
+      fileType: "PDF",
+      fileSize: "2.5 MB",
+      url: "#",
+      category: "Background Documents"
     },
     {
-      title: "Scientific Assessment Framework",
-      type: "Technical Document",
-      category: "Framework",
-      date: "August 20, 2025",
-      size: "3.5 MB",
-      description: "Framework for assessing and integrating traditional ecological knowledge into biodiversity conservation and management.",
-      url: "#"
+      title: "Draft Recommendations",
+      description: "Initial draft recommendations for consideration by the Subsidiary Body.",
+      date: "October 23, 2025",
+      fileType: "DOCX",
+      fileSize: "1.2 MB",
+      url: "#",
+      category: "Official Documents"
+    },
+    {
+      title: "Information Note for Participants",
+      description: "Essential information for participants attending the SB8J-1 meeting.",
+      date: "October 22, 2025",
+      fileType: "PDF",
+      fileSize: "0.9 MB",
+      url: "#",
+      category: "General Information"
     }
   ];
 
@@ -206,11 +217,52 @@ const SB8J1Documents = () => {
       </section>
 
       {/* Main Content */}
-      <DocumentsContent 
-        documents={documents}
-        title="Documents"
-        subtitle="Official documents, reports, and resources for the first meeting of the Subsidiary Body on Article 8(j) and related provisions."
-      />
+      <div className="container mx-auto px-4 py-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid gap-8">
+            {documents.map((doc, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <CardTitle className="text-xl md:text-2xl leading-tight">
+                      {doc.title}
+                    </CardTitle>
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <Calendar className="h-4 w-4" />
+                      {doc.date}
+                    </div>
+                  </div>
+                  <CardDescription>{doc.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-between">
+                    <Badge variant="secondary">
+                      {doc.category}
+                    </Badge>
+                    <Button variant="outline">
+                      <Download className="h-4 w-4 mr-2" />
+                      Download ({doc.fileType}, {doc.fileSize})
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-16 bg-card p-8 rounded-lg border border-border/50">
+            <div className="flex items-center gap-3 mb-4">
+              <FileText className="h-6 w-6 text-secondary" />
+              <h3 className="text-xl font-bold text-foreground">Additional Resources</h3>
+            </div>
+            <p className="text-muted-foreground mb-6 leading-relaxed">
+              Explore further resources, including reports, publications, and multimedia content related to Article 8(j) and the rights of Indigenous Peoples.
+            </p>
+            <Button className="bg-secondary text-white hover:bg-secondary-hover">
+              View All Resources
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
