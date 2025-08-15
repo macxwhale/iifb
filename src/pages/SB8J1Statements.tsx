@@ -1,5 +1,4 @@
-
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, FileText, Download, Calendar, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -12,28 +11,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePexelsImage } from '@/hooks/usePexelsImage';
-import ViewToggle from '@/components/ViewToggle';
 
 const SB8J1Statements = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [view, setView] = useState<'cards' | 'grid' | 'list'>('cards');
   const { imageUrl, isLoading } = usePexelsImage('sb8j-statements');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  // Load saved view preference
-  useEffect(() => {
-    const savedView = localStorage.getItem('statements-view') as 'cards' | 'grid' | 'list';
-    if (savedView) {
-      setView(savedView);
-    }
-  }, []);
-
-  // Save view preference
-  const handleViewChange = (newView: 'cards' | 'grid' | 'list') => {
-    setView(newView);
-    localStorage.setItem('statements-view', newView);
-  };
 
   const statements = [
     {
@@ -65,133 +48,6 @@ const SB8J1Statements = () => {
       file: "/assets/youth-statement-equity.pdf"
     }
   ];
-
-  const renderCardsView = () => (
-    <div className="grid gap-8">
-      {statements.map((statement, index) => (
-        <Card key={index} className="hover:shadow-lg transition-shadow">
-          <CardHeader>
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
-                <CardTitle className="text-xl md:text-2xl mb-2 leading-tight">
-                  {statement.title}
-                </CardTitle>
-                <CardDescription>
-                  {statement.author}
-                </CardDescription>
-              </div>
-              <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                <Calendar className="h-4 w-4" />
-                {statement.date}
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p className="text-foreground leading-relaxed mb-4">
-              {statement.summary}
-            </p>
-            <div className="flex gap-3">
-              <Button size="sm" className="bg-secondary text-white hover:bg-secondary/80">
-                <FileText className="h-4 w-4 mr-2" />
-                Read Full Statement
-              </Button>
-              <Button size="sm" variant="outline">
-                <Download className="h-4 w-4 mr-2" />
-                Download PDF
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  );
-
-  const renderGridView = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {statements.map((statement, index) => (
-        <Card key={index} className="hover:shadow-lg transition-shadow h-full flex flex-col">
-          <CardHeader className="flex-shrink-0">
-            <CardTitle className="text-lg leading-tight line-clamp-2">
-              {statement.title}
-            </CardTitle>
-            <CardDescription className="text-sm">
-              {statement.author}
-            </CardDescription>
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <Calendar className="h-3 w-3" />
-              {statement.date}
-            </div>
-          </CardHeader>
-          <CardContent className="flex-1 flex flex-col">
-            <p className="text-sm text-foreground leading-relaxed mb-4 flex-1 line-clamp-4">
-              {statement.summary}
-            </p>
-            <div className="flex flex-col gap-2">
-              <Button size="sm" className="bg-secondary text-white hover:bg-secondary/80 w-full">
-                <FileText className="h-4 w-4 mr-2" />
-                Read
-              </Button>
-              <Button size="sm" variant="outline" className="w-full">
-                <Download className="h-4 w-4 mr-2" />
-                Download
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  );
-
-  const renderListView = () => (
-    <div className="space-y-4">
-      {statements.map((statement, index) => (
-        <div key={index} className="border rounded-lg p-4 hover:shadow-md transition-shadow bg-card">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex-1">
-              <h3 className="text-lg font-semibold mb-1 text-foreground">
-                {statement.title}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-2">
-                {statement.author}
-              </p>
-              <p className="text-sm text-foreground leading-relaxed line-clamp-2">
-                {statement.summary}
-              </p>
-            </div>
-            <div className="flex flex-col items-end gap-2 flex-shrink-0">
-              <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                <Calendar className="h-3 w-3" />
-                {statement.date}
-              </div>
-              <div className="flex gap-2">
-                <Button size="sm" className="bg-secondary text-white hover:bg-secondary/80">
-                  <FileText className="h-4 w-4 mr-1" />
-                  Read
-                </Button>
-                <Button size="sm" variant="outline">
-                  <Download className="h-4 w-4 mr-1" />
-                  PDF
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-
-  const renderContent = () => {
-    switch (view) {
-      case 'cards':
-        return renderCardsView();
-      case 'grid':
-        return renderGridView();
-      case 'list':
-        return renderListView();
-      default:
-        return renderCardsView();
-    }
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -336,8 +192,43 @@ const SB8J1Statements = () => {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
-          <ViewToggle view={view} onViewChange={handleViewChange} />
-          {renderContent()}
+          <div className="grid gap-8">
+            {statements.map((statement, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <CardTitle className="text-xl md:text-2xl mb-2 leading-tight">
+                        {statement.title}
+                      </CardTitle>
+                      <CardDescription>
+                        {statement.author}
+                      </CardDescription>
+                    </div>
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <Calendar className="h-4 w-4" />
+                      {statement.date}
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-foreground leading-relaxed mb-4">
+                    {statement.summary}
+                  </p>
+                  <div className="flex gap-3">
+                    <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
+                      <FileText className="h-4 w-4 mr-2" />
+                      Read Full Statement
+                    </Button>
+                    <Button size="sm" variant="outline">
+                      <Download className="h-4 w-4 mr-2" />
+                      Download PDF
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </div>
