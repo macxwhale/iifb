@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, FileText, Download, Calendar, ChevronDown } from 'lucide-react';
@@ -101,7 +100,7 @@ const SB8J1Statements = () => {
                 </p>
               </div>
               <div className="flex gap-2 ml-4 shrink-0">
-                <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
+                <Button size="sm" className="bg-secondary text-white hover:bg-secondary/90">
                   <FileText className="h-4 w-4 mr-1" />
                   Read
                 </Button>
@@ -138,7 +137,7 @@ const SB8J1Statements = () => {
             {statement.summary}
           </p>
           <div className="flex gap-3">
-            <Button size="sm" className="bg-secondary text-white hover:bg-secondary-hover">
+            <Button size="sm" className="bg-secondary text-white hover:bg-secondary/90">
               <FileText className="h-4 w-4 mr-2" />
               Read Full Statement
             </Button>
