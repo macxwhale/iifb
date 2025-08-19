@@ -32,6 +32,20 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
+        {/* Sponsored By Section */}
+        <div className="border-t border-white/20 mt-16 pt-8">
+          <div className="text-center">
+            <p className="text-gray-300 text-sm mb-4">Sponsored by</p>
+            <div className="flex justify-center">
+              <img 
+                src="/lovable-uploads/35d6dee7-4d9b-4354-8f18-83f7bd69dce6.png" 
+                alt="International Indigenous Forum on Biodiversity" 
+                className="h-16 md:h-20 object-contain"
+              />
+            </div>
+          </div>
+        </div>
       </div>
       
       <BackToTop />
