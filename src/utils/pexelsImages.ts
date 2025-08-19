@@ -1,3 +1,4 @@
+
 const PEXELS_API_KEY = process.env.NEXT_PUBLIC_PEXELS_API_KEY;
 
 // Simple cache to avoid hitting the API too often
@@ -19,8 +20,7 @@ export const fallbackImages: { [key: string]: string } = {
   'sb8j-media-coverage': '/assets/indigenous-media.jpg',
   'sb8j-press-conferences': '/assets/indigenous-press.jpg',
   'sb8j-social-toolkit': '/assets/indigenous-social-media.jpg',
-  'sb8j-videos': '/assets/indigenous-video-storytelling.jpg',
-  'sb8j-gallery': '/src/assets/indigenous-media.jpg'
+  'sb8j-videos': '/assets/indigenous-video-storytelling.jpg'
 };
 
 export const imageQueries = {
@@ -39,9 +39,8 @@ export const imageQueries = {
   'sb8j-media-coverage': 'indigenous media coverage news',
   'sb8j-press-conferences': 'indigenous press conference meeting',
   'sb8j-social-toolkit': 'indigenous social media toolkit',
-  'sb8j-videos': 'indigenous video storytelling documentary',
-  'sb8j-gallery': 'indigenous photography exhibition cultural heritage visual storytelling',
-} as const;
+  'sb8j-videos': 'indigenous video storytelling documentary'
+};
 
 export const getImageForPage = async (pageKey: keyof typeof imageQueries): Promise<string | null> => {
   if (!PEXELS_API_KEY) {

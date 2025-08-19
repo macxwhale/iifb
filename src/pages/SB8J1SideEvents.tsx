@@ -1,7 +1,6 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Calendar, Clock, MapPin, Users, ChevronDown, User } from 'lucide-react';
+import { Menu, X, Calendar, Clock, MapPin, Users, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -12,8 +11,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { usePexelsImage } from '@/hooks/usePexelsImage';
 import ViewToggle, { ViewType } from '@/components/ViewToggle';
-import PatternStrip from '@/components/PatternStrip';
-import SB8J1SponsorBar from '@/components/SB8J1SponsorBar';
 
 const SB8J1SideEvents = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,21 +36,7 @@ const SB8J1SideEvents = () => {
       organizer: "Indigenous Women's Network",
       summary: "Interactive workshop exploring the critical role of Indigenous women as knowledge keepers and environmental stewards in biodiversity conservation.",
       capacity: "50 participants",
-      status: "Open Registration",
-      keynoteSpeakers: [
-        {
-          name: "Maria Xólotl",
-          title: "Traditional Knowledge Keeper",
-          organization: "Nahua Nation, Mexico",
-          bio: "Leading expert in traditional medicinal plants and biodiversity conservation"
-        },
-        {
-          name: "Dr. Sarah Blackhorse",
-          title: "Director of Indigenous Programs",
-          organization: "Native Conservation Alliance",
-          bio: "Researcher specializing in Indigenous-led conservation initiatives"
-        }
-      ]
+      status: "Open Registration"
     },
     {
       title: "Youth Voices for Intergenerational Equity",
@@ -63,15 +46,7 @@ const SB8J1SideEvents = () => {
       organizer: "Global Indigenous Youth Caucus",
       summary: "Forum for Indigenous youth to share their perspectives on climate action and biodiversity protection for future generations.",
       capacity: "100 participants",
-      status: "Registration Full",
-      keynoteSpeakers: [
-        {
-          name: "Aiyana Running Bear",
-          title: "Youth Climate Activist",
-          organization: "Lakota Youth Council",
-          bio: "International advocate for Indigenous youth rights and environmental justice"
-        }
-      ]
+      status: "Registration Full"
     },
     {
       title: "Traditional Ecological Knowledge Documentation",
@@ -81,15 +56,7 @@ const SB8J1SideEvents = () => {
       organizer: "Knowledge Holders Alliance",
       summary: "Collaborative session on best practices for documenting and protecting traditional ecological knowledge systems.",
       capacity: "30 participants",
-      status: "Open Registration",
-      keynoteSpeakers: [
-        {
-          name: "Elder Joseph Crow Feather",
-          title: "Cultural Heritage Specialist",
-          organization: "First Nations Knowledge Institute",
-          bio: "Traditional knowledge holder with 40+ years of experience in cultural preservation"
-        }
-      ]
+      status: "Open Registration"
     },
     {
       title: "Community-Based Conservation Success Stories",
@@ -99,23 +66,186 @@ const SB8J1SideEvents = () => {
       organizer: "IPLC Conservation Network",
       summary: "Showcase of successful community-led conservation initiatives from Indigenous Peoples and local communities worldwide.",
       capacity: "200 participants",
-      status: "Open Registration",
-      keynoteSpeakers: [
-        {
-          name: "Ana Tuxá",
-          title: "Community Conservation Leader",
-          organization: "Amazon Indigenous Federation",
-          bio: "Leader of award-winning forest conservation program protecting 50,000 hectares"
-        },
-        {
-          name: "Dr. Michael Strongeagle",
-          title: "Conservation Biologist",
-          organization: "Indigenous Science Collective",
-          bio: "Bridging traditional knowledge and modern conservation science"
-        }
-      ]
+      status: "Open Registration"
     }
   ];
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${imageUrl})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-4 text-center text-white py-20 lg:py-24">
+          <div className="mb-12 lg:mb-16">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              Side Events
+              <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
+                Community Workshops & Sessions
+              </span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90">
+              Participate in workshops, forums, and collaborative sessions during SB8J-1
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-3 text-lg font-semibold shadow-lg">
+                View All Events
+              </Button>
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 py-3 text-lg font-semibold backdrop-blur-sm">
+                Search Events
+              </Button>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div className="pt-8">
+            {/* Desktop Navigation */}
+            <nav className="hidden md:block">
+              <div className="flex items-center justify-center space-x-1 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 shadow-xl">
+                <Link to="/" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Home</Link>
+                <Link to="/sb8j-1/about" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">About</Link>
+                <Link to="/sb8j-1/statements" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Statements</Link>
+                <Link to="/sb8j-1/documents" className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">Documents</Link>
+                    
+                {/* News & Media Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="flex items-center px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 text-sm font-medium">
+                      News & Media
+                      <ChevronDown className="ml-1 h-4 w-4" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-white border border-gray-200 shadow-lg min-w-[220px]">
+                    <DropdownMenuItem asChild>
+                      <Link to="/sb8j-1/news" className="w-full px-3 py-2 text-gray-700 hover:bg-gray-100">
+                        General News
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link to="/sb8j-1/media-coverage" className="w-full px-3 py-2 text-gray-700 hover:bg-gray-100">
+                        Media Coverage Links
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link to="/sb8j-1/social-toolkit" className="w-full px-3 py-2 text-gray-700 hover:bg-gray-100">
+                        IIFB Social Media Toolkit
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link to="/sb8j-1/press-conferences" className="w-full px-3 py-2 text-gray-700 hover:bg-gray-100">
+                        Press Conferences
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link to="/sb8j-1/articles" className="w-full px-3 py-2 text-gray-700 hover:bg-gray-100">
+                        Articles
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link to="/sb8j-1/videos" className="w-full px-3 py-2 text-gray-700 hover:bg-gray-100">
+                        Videos
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                <Link to="/sb8j-1/side-events" className="px-4 py-2 text-white bg-white/20 rounded-full transition-all duration-300 text-sm font-medium">Side Events</Link>
+              </div>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex justify-center">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-white hover:bg-white/10 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg"
+                onClick={toggleMenu}
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </Button>
+            </div>
+
+            {/* Mobile Navigation */}
+            {isMenuOpen && (
+              <nav className="md:hidden mt-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl overflow-hidden">
+                <div className="flex flex-col">
+                  <Link to="/" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Home</Link>
+                  <Link to="/sb8j-1/about" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">About</Link>
+                  <Link to="/sb8j-1/statements" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Statements</Link>
+                  <Link to="/sb8j-1/documents" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 border-b border-white/10">Documents</Link>
+                      
+                  <div className="border-b border-white/10">
+                    <div className="px-6 py-3 text-white/70 text-lg font-medium">News & Media</div>
+                    <Link to="/sb8j-1/news" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">General News</Link>
+                    <Link to="/sb8j-1/media-coverage" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Media Coverage Links</Link>
+                    <Link to="/sb8j-1/social-toolkit" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">IIFB Social Media Toolkit</Link>
+                    <Link to="/sb8j-1/press-conferences" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Press Conferences</Link>
+                    <Link to="/sb8j-1/articles" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Articles</Link>
+                    <Link to="/sb8j-1/videos" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Videos</Link>
+                  </div>
+                      
+                  <Link to="/sb8j-1/side-events" className="px-6 py-4 text-white bg-white/20 transition-all duration-300">Side Events</Link>
+                </div>
+              </nav>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Content Section */}
+      <section className="py-20 lg:py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Side Events & Workshops</h2>
+            <div className="grid md:grid-cols-1 gap-8">
+              {/* Side Event Card */}
+              <Card className="p-8 border border-border/50 shadow-soft">
+                <CardHeader>
+                  <CardTitle className="text-2xl flex items-center gap-3">
+                    <Calendar className="h-6 w-6 text-primary" />
+                    Indigenous Women's Knowledge Systems Workshop
+                  </CardTitle>
+                  <CardDescription className="text-lg">
+                    Interactive workshop exploring the critical role of Indigenous women as knowledge keepers
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-gradient-subtle p-6 rounded-lg">
+                    <p className="text-foreground mb-4">
+                      Join us for an engaging workshop on: 
+                    </p>
+                    <ul className="list-disc list-inside text-foreground">
+                      <li>Traditional ecological knowledge</li>
+                      <li>Biodiversity conservation</li>
+                      <li>Sustainable resource management</li>
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-secondary text-white py-12">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-lg">
+            © 2025 SB8J-1 Panama. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
 
   const renderCardsView = () => (
     <div className="grid gap-8">
@@ -163,31 +293,9 @@ const SB8J1SideEvents = () => {
                 <span>{event.capacity}</span>
               </div>
             </div>
-            
             <p className="text-foreground leading-relaxed mb-4">
               {event.summary}
             </p>
-
-            {/* Keynote Speakers */}
-            {event.keynoteSpeakers && event.keynoteSpeakers.length > 0 && (
-              <div className="mb-4 p-4 bg-muted/50 rounded-lg">
-                <h4 className="font-semibold text-sm mb-3 flex items-center gap-2">
-                  <User className="h-4 w-4" />
-                  Keynote Speakers
-                </h4>
-                <div className="space-y-3">
-                  {event.keynoteSpeakers.map((speaker, speakerIndex) => (
-                    <div key={speakerIndex} className="border-l-2 border-primary pl-3">
-                      <div className="font-medium text-sm">{speaker.name}</div>
-                      <div className="text-xs text-muted-foreground">{speaker.title}</div>
-                      <div className="text-xs text-primary font-medium">{speaker.organization}</div>
-                      <div className="text-xs text-muted-foreground mt-1 line-clamp-2">{speaker.bio}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
             <div className="flex gap-3">
               <Button 
                 size="sm" 
@@ -245,28 +353,6 @@ const SB8J1SideEvents = () => {
             <p className="text-sm text-foreground leading-relaxed mb-4 flex-1 line-clamp-3">
               {event.summary}
             </p>
-
-            {/* Keynote Speakers - Grid View */}
-            {event.keynoteSpeakers && event.keynoteSpeakers.length > 0 && (
-              <div className="mb-4 p-3 bg-muted/50 rounded">
-                <div className="text-xs font-medium mb-2 flex items-center gap-1">
-                  <User className="h-3 w-3" />
-                  Speakers ({event.keynoteSpeakers.length})
-                </div>
-                <div className="space-y-1">
-                  {event.keynoteSpeakers.slice(0, 2).map((speaker, speakerIndex) => (
-                    <div key={speakerIndex} className="text-xs">
-                      <div className="font-medium">{speaker.name}</div>
-                      <div className="text-muted-foreground">{speaker.organization}</div>
-                    </div>
-                  ))}
-                  {event.keynoteSpeakers.length > 2 && (
-                    <div className="text-xs text-muted-foreground">+{event.keynoteSpeakers.length - 2} more</div>
-                  )}
-                </div>
-              </div>
-            )}
-
             <div className="flex flex-col gap-2 mt-auto">
               <Button 
                 size="sm" 
@@ -314,7 +400,6 @@ const SB8J1SideEvents = () => {
               </div>
             </div>
           </div>
-          
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <MapPin className="h-4 w-4" />
@@ -325,30 +410,9 @@ const SB8J1SideEvents = () => {
               <span>{event.capacity}</span>
             </div>
           </div>
-          
           <p className="text-sm text-foreground leading-relaxed mb-4 line-clamp-2">
             {event.summary}
           </p>
-
-          {/* Keynote Speakers - List View */}
-          {event.keynoteSpeakers && event.keynoteSpeakers.length > 0 && (
-            <div className="mb-4 p-3 bg-muted/50 rounded">
-              <div className="text-sm font-medium mb-2 flex items-center gap-2">
-                <User className="h-4 w-4" />
-                Keynote Speakers
-              </div>
-              <div className="flex flex-wrap gap-4">
-                {event.keynoteSpeakers.map((speaker, speakerIndex) => (
-                  <div key={speakerIndex} className="text-sm">
-                    <div className="font-medium">{speaker.name}</div>
-                    <div className="text-xs text-muted-foreground">{speaker.title}</div>
-                    <div className="text-xs text-primary">{speaker.organization}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
           <div className="flex gap-3">
             <Button 
               size="sm" 
@@ -379,7 +443,7 @@ const SB8J1SideEvents = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section - No overlay */}
+      {/* Hero Section */}
       <section className="relative min-h-fit h-auto overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full"
@@ -388,19 +452,21 @@ const SB8J1SideEvents = () => {
             opacity: isLoading ? 0.5 : 1,
             transition: 'opacity 0.3s ease-in-out'
           }}
-        />
+        >
+          <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
+        </div>
 
         <div className="relative z-10 flex flex-col justify-between min-h-[50vh] sm:min-h-[45vh] md:min-h-[40vh] lg:min-h-[35vh] xl:min-h-[30vh] max-w-6xl mx-auto px-6 lg:px-8 py-6 sm:py-8 md:py-10 lg:py-12">
           <div className="flex-1 flex items-center">
             <div className="text-white text-center w-full">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight drop-shadow-2xl">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                 Side Events
                 <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
                   Community Workshops & Sessions
                 </span>
               </h1>
               
-              <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90 drop-shadow-lg">
+              <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90">
                 Participate in workshops, forums, and collaborative sessions during SB8J-1
               </p>
 
@@ -453,11 +519,6 @@ const SB8J1SideEvents = () => {
                             Videos
                           </Link>
                         </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                          <Link to="/sb8j-1/gallery" className="w-full px-3 py-2 text-gray-700 hover:bg-gray-100">
-                            Gallery
-                          </Link>
-                        </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
 
@@ -494,7 +555,6 @@ const SB8J1SideEvents = () => {
                         <Link to="/sb8j-1/press-conferences" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Press Conferences</Link>
                         <Link to="/sb8j-1/articles" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Articles</Link>
                         <Link to="/sb8j-1/videos" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Videos</Link>
-                        <Link to="/sb8j-1/gallery" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm">Gallery</Link>
                       </div>
                       
                       <Link to="/sb8j-1/side-events" className="px-6 py-4 text-white bg-white/20 transition-all duration-300 text-lg">Side Events</Link>
@@ -506,8 +566,6 @@ const SB8J1SideEvents = () => {
           </div>
         </div>
       </section>
-
-      <PatternStrip />
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
@@ -525,9 +583,6 @@ const SB8J1SideEvents = () => {
           {renderContent()}
         </div>
       </div>
-
-      <PatternStrip />
-      <SB8J1SponsorBar />
     </div>
   );
 };
