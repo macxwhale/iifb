@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -10,6 +9,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePexelsImage } from '@/hooks/usePexelsImage';
+import PatternStrip from '@/components/PatternStrip';
+import SB8J1SponsorBar from '@/components/SB8J1SponsorBar';
 
 const SB8J1 = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,9 +20,8 @@ const SB8J1 = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
+      {/* Hero Section - Raw image, no overlay */}
       <section className="relative min-h-fit h-auto overflow-hidden">
-        {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full"
           style={{ 
@@ -29,31 +29,28 @@ const SB8J1 = () => {
             opacity: isLoading ? 0.5 : 1,
             transition: 'opacity 0.3s ease-in-out'
           }}
-        >
-          <div className="absolute inset-0 bg-gradient-hero opacity-75"></div>
-        </div>
+        />
 
-        {/* Content */}
         <div className="relative z-10 flex flex-col justify-between min-h-[50vh] sm:min-h-[45vh] md:min-h-[40vh] lg:min-h-[35vh] xl:min-h-[30vh] max-w-6xl mx-auto px-6 lg:px-8 py-6 sm:py-8 md:py-10 lg:py-12">
           <div className="flex-1 flex items-center">
             <div className="text-white text-center w-full">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight drop-shadow-2xl">
                 SB8J-1
                 <span className="block text-3xl md:text-4xl font-normal mt-2 opacity-90">
                   First Meeting on Article 8(j)
                 </span>
               </h1>
               
-              <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90">
+              <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90 drop-shadow-lg">
                 Historic milestone for Indigenous Peoples and local communities in biodiversity governance
               </p>
               
               <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
-                <div className="flex items-center space-x-2 text-lg">
+                <div className="flex items-center space-x-2 text-lg drop-shadow-lg">
                   <span className="w-2 h-2 bg-white rounded-full"></span>
                   <span>October 27-30, 2025</span>
                 </div>
-                <div className="flex items-center space-x-2 text-lg">
+                <div className="flex items-center space-x-2 text-lg drop-shadow-lg">
                   <span className="w-2 h-2 bg-white rounded-full"></span>
                   <span>Panama City, Panama</span>
                 </div>
@@ -108,6 +105,11 @@ const SB8J1 = () => {
                             Videos
                           </Link>
                         </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link to="/sb8j-1/gallery" className="w-full px-3 py-2 text-gray-700 hover:bg-gray-100">
+                            Gallery
+                          </Link>
+                        </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
 
@@ -145,6 +147,7 @@ const SB8J1 = () => {
                         <Link to="/sb8j-1/press-conferences" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">Press Conferences</Link>
                         <Link to="/sb8j-1/articles" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">Articles</Link>
                         <Link to="/sb8j-1/videos" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">Videos</Link>
+                        <Link to="/sb8j-1/gallery" className="px-8 py-3 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-base">Gallery</Link>
                       </div>
                       
                       <Link to="/sb8j-1/side-events" className="px-6 py-4 text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 text-lg">Side Events</Link>
@@ -156,6 +159,8 @@ const SB8J1 = () => {
           </div>
         </div>
       </section>
+
+      <PatternStrip />
 
       {/* Content Section */}
       <section className="py-20 lg:py-24 bg-background">
@@ -196,6 +201,9 @@ const SB8J1 = () => {
           </div>
         </div>
       </section>
+
+      <PatternStrip />
+      <SB8J1SponsorBar />
     </div>
   );
 };
