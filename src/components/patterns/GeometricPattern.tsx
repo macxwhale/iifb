@@ -6,13 +6,15 @@ interface GeometricPatternProps {
   color?: string;
   opacity?: number;
   size?: number;
+  className?: string;
 }
 
 const GeometricPattern: React.FC<GeometricPatternProps> = ({ 
   variant, 
   color = 'currentColor', 
   opacity = 0.1,
-  size = 60 
+  size = 60,
+  className = 'absolute inset-0'
 }) => {
   const patternId = `pattern-${variant}-${Math.random().toString(36).substr(2, 9)}`;
 
@@ -20,7 +22,7 @@ const GeometricPattern: React.FC<GeometricPatternProps> = ({
     switch (variant) {
       case 'diamond':
         return (
-          <svg width="100%" height="100%" className="absolute inset-0">
+          <svg width="100%" height="100%" className={`${className} overflow-hidden`}>
             <defs>
               <pattern id={patternId} x="0" y="0" width={size} height={size} patternUnits="userSpaceOnUse">
                 <path 
@@ -36,7 +38,7 @@ const GeometricPattern: React.FC<GeometricPatternProps> = ({
       
       case 'zigzag':
         return (
-          <svg width="100%" height="100%" className="absolute inset-0">
+          <svg width="100%" height="100%" className={`${className} overflow-hidden`}>
             <defs>
               <pattern id={patternId} x="0" y="0" width={size * 2} height={size} patternUnits="userSpaceOnUse">
                 <path 
@@ -54,7 +56,7 @@ const GeometricPattern: React.FC<GeometricPatternProps> = ({
       
       case 'spiral':
         return (
-          <svg width="100%" height="100%" className="absolute inset-0">
+          <svg width="100%" height="100%" className={`${className} overflow-hidden`}>
             <defs>
               <pattern id={patternId} x="0" y="0" width={size} height={size} patternUnits="userSpaceOnUse">
                 <path 
@@ -72,7 +74,7 @@ const GeometricPattern: React.FC<GeometricPatternProps> = ({
       
       case 'weave':
         return (
-          <svg width="100%" height="100%" className="absolute inset-0">
+          <svg width="100%" height="100%" className={`${className} overflow-hidden`}>
             <defs>
               <pattern id={patternId} x="0" y="0" width={size} height={size} patternUnits="userSpaceOnUse">
                 <g opacity={opacity}>
@@ -93,7 +95,7 @@ const GeometricPattern: React.FC<GeometricPatternProps> = ({
   };
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="pointer-events-none">
       {renderPattern()}
     </div>
   );

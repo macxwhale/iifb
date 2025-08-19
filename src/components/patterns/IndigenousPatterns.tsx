@@ -40,8 +40,8 @@ const IndigenousPatterns: React.FC<IndigenousPatternsProps> = ({
 
       case 'stepped-diamond':
         return (
-          <div className={`absolute inset-0 ${className}`}>
-            <svg width="100%" height="100%" className="absolute inset-0">
+          <div className={`${className} pointer-events-none overflow-hidden`}>
+            <svg width="100%" height="100%" className="w-full h-full">
               <defs>
                 <pattern id={patternId} x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
                   <g opacity={opacity}>
@@ -78,8 +78,8 @@ const IndigenousPatterns: React.FC<IndigenousPatternsProps> = ({
 
       case 'tribal-weave':
         return (
-          <div className={`absolute inset-0 ${className}`}>
-            <svg width="100%" height="100%" className="absolute inset-0">
+          <div className={`${className} pointer-events-none overflow-hidden`}>
+            <svg width="100%" height="100%" className="w-full h-full">
               <defs>
                 <pattern id={patternId} x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
                   <g opacity={opacity}>
