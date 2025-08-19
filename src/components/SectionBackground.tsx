@@ -1,4 +1,3 @@
-
 import React from 'react';
 import GeometricPattern from './patterns/GeometricPattern';
 import IndigenousPatterns from './patterns/IndigenousPatterns';
@@ -59,7 +58,7 @@ const SectionBackground: React.FC<SectionBackgroundProps> = ({ children, variant
       
       case 'side-events':
         return {
-          bgClass: 'bg-gradient-to-tr from-blue-50 via-slate-50/80 to-cyan-50/60',
+          bgClass: 'bg-gradient-to-tr from-purple-50 via-violet-50/80 to-indigo-50/60',
           pattern: null,
           divider: <IndigenousPatterns variant="geometric-border" color="hsl(var(--accent))" opacity={0.3} className="absolute top-0 left-0 right-0" />,
           edgePattern: <IndigenousPatterns variant="tribal-weave" color="hsl(var(--accent))" opacity={0.15} className="absolute left-0 top-0 bottom-0 w-24 sm:w-32 md:w-52" />,
@@ -68,7 +67,7 @@ const SectionBackground: React.FC<SectionBackgroundProps> = ({ children, variant
       
       case 'resources':
         return {
-          bgClass: 'bg-gradient-to-r from-emerald-50 via-green-50/80 to-teal-50/60',
+          bgClass: 'bg-gradient-to-r from-rose-50 via-pink-50/80 to-red-50/60',
           pattern: null,
           divider: null,
           edgePattern: <GeometricPattern variant="zigzag" color="hsl(var(--iifb-rust))" opacity={0.12} size={110} className="absolute right-0 top-0 bottom-0 w-24 sm:w-32 md:w-36" />,
