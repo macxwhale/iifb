@@ -30,18 +30,14 @@ const Index = () => {
       {/* Statements Section - Zigzag pattern with textured background */}
       <SectionBackground variant="statements" className="border-y border-border/40 relative">
         <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_25%,rgba(255,255,255,0.1)_50%,transparent_50%,transparent_75%,rgba(255,255,255,0.1)_75%)] bg-[length:20px_20px] opacity-20"></div>
-        <div className="relative z-20">
-          <StatementsCarousel />
-        </div>
+        <StatementsCarousel />
       </SectionBackground>
       
       {/* News Section - Spiral pattern with geometric elements */}
       <SectionBackground variant="news" className="border-y-4 border-y-primary/30 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-32 translate-x-32"></div>
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-secondary/5 rounded-full translate-y-24 -translate-x-24"></div>
-        <div className="relative z-20">
-          <NewsCarousel />
-        </div>
+        <NewsCarousel />
       </SectionBackground>
       
       {/* Side Events Section - Weave pattern with dot grid */}
@@ -50,17 +46,13 @@ const Index = () => {
           backgroundImage: `radial-gradient(circle at 1px 1px, rgba(var(--primary), 0.3) 1px, transparent 0)`,
           backgroundSize: '40px 40px'
         }}></div>
-        <div className="relative z-20">
-          <SideEventsCarousel />
-        </div>
+        <SideEventsCarousel />
       </SectionBackground>
       
       {/* Key Resources Section - Diamond pattern with gradient overlay */}
       <SectionBackground variant="resources" className="border-t-4 border-t-iifb-forest relative">
         <div className="absolute inset-0 bg-gradient-to-tr from-iifb-rust/5 via-transparent to-iifb-orange/5"></div>
-        <div className="relative z-20">
-          <KeyResourcesSection />
-        </div>
+        <KeyResourcesSection />
       </SectionBackground>
     </div>
   );
