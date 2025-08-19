@@ -106,7 +106,7 @@ const SideEventsCarousel = () => {
   };
 
   return (
-    <section id="side-events" className="py-20 lg:py-24 bg-background border-t border-border/30">
+    <section id="side-events" className="py-20 lg:py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 lg:mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">

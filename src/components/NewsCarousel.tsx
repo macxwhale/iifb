@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Calendar, Clock, Tag } from 'lucide-react';
@@ -48,7 +47,7 @@ const newsItems = [
 
 const NewsCarousel = () => {
   return (
-    <section id="news" className="py-20 lg:py-24 bg-gradient-subtle">
+    <section id="news" className="py-20 lg:py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-6">

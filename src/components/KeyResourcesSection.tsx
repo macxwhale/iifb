@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -100,7 +101,7 @@ const KeyResourcesSection = () => {
   };
 
   return (
-    <section className="py-20 bg-background border-t border-border/30">
+    <section className="py-20">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-12 gap-6">
           <div>
