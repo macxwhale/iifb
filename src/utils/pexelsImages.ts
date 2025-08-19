@@ -1,5 +1,5 @@
 
-const PEXELS_API_KEY = process.env.NEXT_PUBLIC_PEXELS_API_KEY;
+const PEXELS_API_KEY = import.meta.env.VITE_PEXELS_API_KEY;
 
 // Simple cache to avoid hitting the API too often
 const cache: { [key: string]: string } = {};
@@ -44,7 +44,7 @@ export const imageQueries = {
 
 export const getImageForPage = async (pageKey: keyof typeof imageQueries): Promise<string | null> => {
   if (!PEXELS_API_KEY) {
-    console.warn('Pexels API key is missing. Please set the NEXT_PUBLIC_PEXELS_API_KEY environment variable.');
+    console.warn('Pexels API key is missing. Please set the VITE_PEXELS_API_KEY environment variable.');
     return null;
   }
 
