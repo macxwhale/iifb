@@ -1,5 +1,3 @@
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -112,6 +110,12 @@ All colors MUST be HSL.
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  /* Homepage color override for rgb(228,103,24) -> #741b00 */
+  .home-primary-override {
+    --primary: 14 100% 23%; /* #741b00 converted to HSL */
+    --iifb-rust: 14 100% 23%; /* Also override rust color as it's similar */
+  }
 }
 
 @layer base {
@@ -146,4 +150,3 @@ All colors MUST be HSL.
     -webkit-line-clamp: 3;
   }
 }
-
