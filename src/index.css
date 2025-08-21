@@ -115,6 +115,17 @@ All colors MUST be HSL.
   .home-primary-override {
     --primary: 14 100% 23%; /* #741b00 converted to HSL */
     --iifb-rust: 14 100% 23%; /* Also override rust color as it's similar */
+    --iifb-orange: 14 100% 23%; /* Override orange backgrounds */
+    --accent: 14 100% 23%; /* Override accent backgrounds */
+    
+    /* Update gradients to use the new color */
+    --gradient-primary: linear-gradient(135deg, hsl(14 100% 23%), hsl(14 100% 23%));
+    --gradient-hero: linear-gradient(135deg, hsl(14 100% 23%) 0%, hsl(var(--iifb-earth)) 50%, hsl(var(--iifb-forest)) 100%);
+    
+    /* Update shadows to use the new color */
+    --shadow-soft: 0 2px 20px hsl(14 100% 23% / 0.1);
+    --shadow-medium: 0 8px 30px hsl(14 100% 23% / 0.15);
+    --shadow-strong: 0 20px 60px hsl(14 100% 23% / 0.2);
   }
 }
 
