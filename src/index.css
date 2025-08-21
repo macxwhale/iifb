@@ -1,5 +1,4 @@
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -145,5 +144,10 @@ All colors MUST be HSL.
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
   }
-}
 
+  /* Homepage orange color override */
+  .home-orange-override {
+    --iifb-orange: 14 100% 23%;
+    --accent: 14 100% 23%;
+  }
+}
